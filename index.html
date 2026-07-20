@@ -3,66 +3,358 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>原神牛逼原神牛逼</title>
+  <title>CHU.LIFE — Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
     <div class="container">
-      <a href="index.html" class="site-title">原神牛逼</a>
+      <a href="#" class="logo">CHU<span>.</span>LIFE</a>
       <nav class="site-nav">
-        <a href="index.html">原神牛逼</a>
-        <a href="about.html">原神牛逼原神牛逼</a>
-        <a href="https://github.com" target="_blank" rel="noopener">原神牛逼原神牛逼原神牛逼</a>
+        <a href="#works">作品</a>
+        <a href="#awards">奖项</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>👋 原神牛逼原神牛逼原神牛逼原神牛逼</h1>
-      <p>原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼。</p>
-    </section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content reveal">
+        <div class="hero-eyebrow">Design · Code · Photography</div>
+        <h1 class="hero-title">
+          CHU<span class="dot">.</span>LIFE
+        </h1>
+        <div class="hero-line"></div>
+        <p class="hero-sub">
+          创造有温度的数字化表达 — 设计、编程、摄影，每一个像素都有它的故事。
+        </p>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    <section class="post-list">
-      <h2 class="section-title">原神牛逼原神牛逼原神牛逼</h2>
+  <!-- Works -->
+  <section class="section" id="works">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">精选作品</h2>
+        <p class="section-desc">每一个项目都是一次对美与功能的探索。</p>
+      </div>
 
-      <article class="post-card">
-        <time datetime="2026-07-18">2026-07-18</time>
-        <h3><a href="posts/hello-world.html">原神牛逼原神牛逼 — 原神牛逼原神牛逼原神牛逼</a></h3>
-        <p class="post-excerpt">原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼。</p>
-        <div class="post-tags">
-          <span class="tag">原神牛逼</span>
-          <span class="tag">原神牛逼原神牛逼</span>
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="design">设计</button>
+        <button class="filter-btn" data-filter="code">编程</button>
+        <button class="filter-btn" data-filter="photo">摄影</button>
+      </div>
+
+      <div class="work-grid" id="workGrid">
+        <!-- Design -->
+        <div class="work-card reveal" data-cat="design" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a3e"/><stop offset="100%" stop-color="#2d1b4e"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g1)"/>
+            <circle cx="200" cy="180" r="100" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+            <circle cx="200" cy="180" r="60" fill="rgba(255,255,255,.08)"/>
+            <rect x="350" y="100" width="300" height="18" rx="9" fill="rgba(255,255,255,.12)"/>
+            <rect x="350" y="135" width="200" height="18" rx="9" fill="rgba(255,255,255,.06)"/>
+            <rect x="350" y="170" width="300" height="130" rx="10" fill="rgba(255,255,255,.04)"/>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">UI 设计</span>
+            <h3 class="card-title">极简音乐播放器界面</h3>
+          </div>
         </div>
-      </article>
 
-      <article class="post-card">
-        <time datetime="2026-07-15">2026-07-15</time>
-        <h3><a href="posts/github-pages-guide.html">原神牛逼 原神牛逼原神牛逼</a></h3>
-        <p class="post-excerpt">原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼。</p>
-        <div class="post-tags">
-          <span class="tag">原神牛逼原神牛逼原神牛逼</span>
-          <span class="tag">原神牛逼</span>
+        <div class="work-card reveal" data-cat="design" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e2d1e"/><stop offset="100%" stop-color="#0f2818"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g2)"/>
+            <rect x="80" y="60" width="280" height="380" rx="20" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <rect x="400" y="100" width="320" height="200" rx="14" fill="rgba(255,255,255,.05)"/>
+            <rect x="400" y="320" width="320" height="140" rx="14" fill="rgba(255,255,255,.04)"/>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">品牌设计</span>
+            <h3 class="card-title">茶饮品牌视觉识别系统</h3>
+          </div>
         </div>
-      </article>
 
-      <article class="post-card">
-        <time datetime="2026-07-10">2026-07-10</time>
-        <h3><a href="posts/markdown-cheatsheet.html">原神牛逼 原神牛逼原神牛逼原神牛逼</a></h3>
-        <p class="post-excerpt">原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼原神牛逼。</p>
-        <div class="post-tags">
-          <span class="tag">原神牛逼原神牛逼原神牛逼原神牛逼</span>
-          <span class="tag">原神牛逼原神牛逼原神牛逼</span>
+        <!-- Code -->
+        <div class="work-card reveal" data-cat="code" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f2027"/><stop offset="100%" stop-color="#203a43"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g3)"/>
+            <rect x="60" y="60" width="680" height="28" rx="6" fill="rgba(255,255,255,.06)"/>
+            <rect x="60" y="220" width="680" height="200" rx="8" fill="rgba(255,255,255,.04)"/>
+            <text x="90" y="160" fill="rgba(255,255,255,.2)" font-family="monospace" font-size="14">&gt; npm run build</text>
+            <text x="90" y="185" fill="rgba(255,255,255,.1)" font-family="monospace" font-size="14">✓ Build complete. 12 modules in 3.2s</text>
+            <rect x="90" y="250" width="120" height="16" rx="4" fill="rgba(255,200,100,.15)"/>
+            <rect x="220" y="250" width="80" height="16" rx="4" fill="rgba(100,200,255,.15)"/>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">全栈开发</span>
+            <h3 class="card-title">实时协作白板应用</h3>
+          </div>
         </div>
-      </article>
-    </section>
-  </main>
 
+        <div class="work-card reveal" data-cat="code" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#16213e"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g4)"/>
+            <circle cx="400" cy="260" r="120" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="20" stroke-dasharray="80 20"/>
+            <circle cx="400" cy="260" r="60" fill="rgba(255,255,255,.06)"/>
+            <text x="400" y="440" text-anchor="middle" fill="rgba(255,255,255,.15)" font-family="monospace" font-size="12">api.chulife.top/v2/graph</text>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">后端架构</span>
+            <h3 class="card-title">高性能 API 网关服务</h3>
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="work-card reveal" data-cat="photo" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2d1b1b"/><stop offset="100%" stop-color="#4a2020"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g5)"/>
+            <circle cx="400" cy="280" r="180" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <circle cx="400" cy="280" r="120" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+            <circle cx="400" cy="280" r="60" fill="rgba(255,255,255,.04)"/>
+            <rect x="350" y="230" width="100" height="100" rx="6" fill="rgba(255,255,255,.03)" transform="rotate(15 400 280)"/>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">风光摄影</span>
+            <h3 class="card-title">城市天际线 · 蓝调时刻</h3>
+          </div>
+        </div>
+
+        <div class="work-card reveal" data-cat="photo" data-full="images/placeholder.svg">
+          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a2a1a"/><stop offset="100%" stop-color="#0f1f0f"/></linearGradient></defs>
+            <rect width="800" height="600" fill="url(#g6)"/>
+            <rect x="120" y="180" width="120" height="160" rx="4" fill="rgba(255,255,255,.04)"/>
+            <rect x="260" y="140" width="120" height="200" rx="4" fill="rgba(255,255,255,.06)"/>
+            <rect x="400" y="160" width="120" height="180" rx="4" fill="rgba(255,255,255,.05)"/>
+            <rect x="540" y="190" width="120" height="150" rx="4" fill="rgba(255,255,255,.03)"/>
+          </svg>
+          <div class="card-overlay">
+            <span class="card-tag">街拍摄影</span>
+            <h3 class="card-title">老街光影 · 人文纪实</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="section" id="awards">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Honors</div>
+        <h2 class="section-title">荣誉奖项</h2>
+        <p class="section-desc">每一份认可都是继续前行的动力。</p>
+      </div>
+
+      <div class="awards-list">
+        <div class="award-item reveal">
+          <div class="award-year">2026</div>
+          <div class="award-info">
+            <h3>全国大学生计算机设计大赛一等奖</h3>
+            <p>作品：基于AI的智能学习助手平台</p>
+          </div>
+          <div class="award-badge">国家级</div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-year">2025</div>
+          <div class="award-info">
+            <h3>省优秀毕业生</h3>
+            <p>综合成绩排名前 1%，获省级表彰</p>
+          </div>
+          <div class="award-badge">省级</div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-year">2025</div>
+          <div class="award-info">
+            <h3>Adobe Certified Professional</h3>
+            <p>视觉设计专业认证</p>
+          </div>
+          <div class="award-badge">国际认证</div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-year">2024</div>
+          <div class="award-info">
+            <h3>校园摄影大赛金奖</h3>
+            <p>系列作品《城市脉搏》获最佳系列奖</p>
+          </div>
+          <div class="award-badge">校级</div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-year">2024</div>
+          <div class="award-info">
+            <h3>Hackathon 最佳创意奖</h3>
+            <p>48小时极限编程，团队作品获评委满分评价</p>
+          </div>
+          <div class="award-badge">赛事</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gabout" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a3e"/><stop offset="100%" stop-color="#0f2027"/></linearGradient></defs>
+            <rect width="600" height="800" fill="url(#gabout)"/>
+            <circle cx="300" cy="280" r="140" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+            <circle cx="300" cy="280" r="70" fill="rgba(255,255,255,.05)"/>
+            <text x="300" y="480" text-anchor="middle" fill="rgba(255,255,255,.12)" font-family="sans-serif" font-size="14">CHU.LIFE</text>
+          </svg>
+        </div>
+        <div class="about-text reveal">
+          <div class="section-label">About</div>
+          <h2>关于我</h2>
+          <p>一个徘徊于代码与色彩之间的创作者。相信好的设计不需要解释，好的代码自己会说话。</p>
+          <p>擅长将复杂的逻辑转化为优雅的界面，用镜头捕捉生活中转瞬即逝的光影。对新技术保持狂热，对经典美学心怀敬畏。</p>
+          <p>目前在寻找能够将设计、编程与摄影三者融合的创作契机 — 如果你有有趣的项目，欢迎联系。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">欢迎联系</h2>
+        <p class="section-desc" style="margin:0 auto;">合作、交流，或者只是想打个招呼 👋</p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:hello@chulife.top" class="contact-link">✉️ hello@chulife.top</a>
+        <a href="https://github.com/chu100210" target="_blank" rel="noopener" class="contact-link">💻 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 原神牛逼. 原神牛逼 <a href="https://pages.github.com">原神牛逼 原神牛逼</a>.</p>
+      <p>© 2026 CHU.LIFE. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+  </div>
+
+  <script>
+    // ===== Cursor Glow =====
+    const glow = document.getElementById('cursorGlow');
+    let mouseX = -500, mouseY = -500;
+    let currentX = -500, currentY = -500;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateGlow() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+      glow.style.left = currentX + 'px';
+      glow.style.top = currentY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
+
+    // ===== Scroll Reveal =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== Filter Tabs =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const workCards = document.querySelectorAll('.work-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        workCards.forEach((card, i) => {
+          if (filter === 'all' || card.dataset.cat === filter) {
+            card.style.display = '';
+            card.style.animation = `fadeInUp .5s cubic-bezier(.22,1,.36,1) ${i * 0.06}s both`;
+          } else {
+            card.style.display = 'none';
+            card.style.animation = '';
+          }
+        });
+      });
+    });
+
+    // ===== Lightbox =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.work-card[data-full]').forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImg.src = card.dataset.full;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Add fadeInUp keyframe dynamically
+    const style = document.createElement('style');
+    style.textContent = `@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}`;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
