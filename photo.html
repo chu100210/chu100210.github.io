@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摄影作品 — CHU.LIFE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">CHU<span>.</span>LIFE</a>
+      <nav class="site-nav">
+        <a href="index.html#works">作品</a>
+        <a href="index.html#awards">奖项</a>
+        <a href="index.html#about">关于</a>
+        <a href="index.html#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="photo-hero">
+    <img src="images/photo/CR1420250628_161915809.jpg" alt="摄影作品" class="photo-hero-bg">
+    <div class="photo-hero-overlay"></div>
+    <div class="photo-hero-content reveal">
+      <div class="photo-tag">Photography</div>
+      <h1>用镜头<br>捕捉光的形状</h1>
+      <p>每一次按下快门，都是与世界的对话。<br>光影之间，记录那些转瞬即逝的真实。</p>
+    </div>
+    <div class="photo-hero-scroll">
+      <span>下滑探索</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="photo-gallery">
+    <div class="container">
+      <a href="index.html#works" class="photo-back reveal">← 返回作品集</a>
+      <div class="photo-gallery-header reveal">
+        <h2>全部摄影作品</h2>
+        <p>街拍 · 风光 · 人文 · 生活碎片</p>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-item reveal">
+          <img src="images/photo/CR1420250628_161915809.jpg" alt="摄影作品 1" loading="lazy">
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/photo/CR1420250628_164222457.jpg" alt="摄影作品 2" loading="lazy">
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/photo/CR1420250628_164245153.jpg" alt="摄影作品 3" loading="lazy">
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/photo/CR1420250628_170725099.jpg" alt="摄影作品 4" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 CHU.LIFE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+  </div>
+
+  <script>
+    // ===== Cursor Glow =====
+    const glow = document.getElementById('cursorGlow');
+    let mouseX = -500, mouseY = -500, currentX = -500, currentY = -500;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    function animateGlow() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+      glow.style.left = currentX + 'px';
+      glow.style.top = currentY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
+
+    // ===== Scroll Reveal =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== Lightbox =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    document.querySelectorAll('.photo-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
