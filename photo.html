@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>摄影作品 — CHU.LIFE</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Cursor Glow -->
@@ -171,10 +168,12 @@
     const dotsContainer = document.getElementById('carouselDots');
     let slides, dots, currentSlide = 0, totalSlides, carouselInterval;
 
-    // Build carousel
+    // Build carousel — lazy load: only set src on first 3, rest use data-src
     carouselPhotos.forEach((src, i) => {
       const img = document.createElement('img');
-      img.src = src;
+      if (i < 3) img.src = src;
+      else img.dataset.src = src;
+      img.loading = 'lazy';
       img.className = 'carousel-slide' + (i === 0 ? ' active' : '');
       img.alt = '摄影作品';
       track.appendChild(img);
@@ -189,12 +188,24 @@
     dots = document.querySelectorAll('.carousel-dot');
     totalSlides = slides.length;
 
+    // Preload adjacent images when slide changes
+    function preloadSlide(index) {
+      const img = slides[index];
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        delete img.dataset.src;
+      }
+    }
+
     function goToSlide(index) {
       slides[currentSlide].classList.remove('active');
       dots[currentSlide].classList.remove('active');
       currentSlide = index;
       slides[currentSlide].classList.add('active');
       dots[currentSlide].classList.add('active');
+      // Preload next two
+      preloadSlide((currentSlide + 1) % totalSlides);
+      preloadSlide((currentSlide + 2) % totalSlides);
     }
 
     function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
