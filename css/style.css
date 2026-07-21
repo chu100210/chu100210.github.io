@@ -43,6 +43,26 @@ html.light {
 }
 /* Cursor glow hidden in light mode */
 html.light .cursor-glow { display: none !important; }
+
+/* ===== Light Mode Ambient Orbs ===== */
+html.light body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,150,200,.12) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(130,180,255,.10) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,200,120,.08) 0%, transparent 60%),
+    radial-gradient(circle at 70% 15%, rgba(180,220,255,.10) 0%, transparent 45%),
+    radial-gradient(circle at 30% 90%, rgba(255,180,220,.09) 0%, transparent 50%);
+  animation: orbFloat 12s ease-in-out infinite;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(2%, -1.5%) scale(1.05); }
+  50% { transform: translate(-1%, -2%) scale(1.1); }
+  75% { transform: translate(-2%, 1%) scale(1.05); }
+}
+
 /* Header overrides */
 html.light .site-header { background: rgba(248,247,243,.75); }
 /* Card hover shadow override */
