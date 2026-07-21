@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模块化日记 — CHU.LIFE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="site-header" id="header">
+    <div class="container">
+      <a href="../index.html" class="logo">CHU<span>.</span>LIFE</a>
+      <nav class="site-nav">
+        <a href="../index.html#works">作品</a>
+        <a href="../index.html#awards">奖项</a>
+        <a href="../index.html#about">关于</a>
+        <a href="../index.html#contact">联系</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;">
+    <div class="reveal visible">
+      <div class="section-label">模块化日记</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1rem;">敬请期待</h1>
+      <p style="color:var(--text2);font-size:1.1rem;max-width:400px;margin:0 auto 2rem;">正在努力开发中，很快就能和你见面。</p>
+      <a href="../index.html" class="photo-back">← 返回作品集</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 CHU.LIFE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') html.classList.add('light');
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('light');
+      localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    const glow = document.getElementById('cursorGlow');
+    let mx = -500, my = -500, cx = -500, cy = -500;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function anim() {
+      cx += (mx - cx) * 0.08; cy += (my - cy) * 0.08;
+      glow.style.left = cx + 'px'; glow.style.top = cy + 'px';
+      requestAnimationFrame(anim);
+    })();
+    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+    document.addEventListener('mouseenter', () => glow.style.opacity = '1');
+  </script>
+</body>
+</html>
