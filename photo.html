@@ -30,10 +30,26 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="photo-hero">
-    <img src="images/photo/CR1420250628_161915809.jpg" alt="摄影作品" class="photo-hero-bg">
+  <!-- Hero Carousel -->
+  <section class="photo-hero" id="photoHero">
+    <div class="carousel-track" id="carouselTrack">
+      <img src="images/photo/IMG_20250807_151850_1784626771606edit.jpg" class="carousel-slide active" alt="摄影作品">
+      <img src="images/photo/CR1420250628_164245153.jpg" class="carousel-slide" alt="摄影作品">
+      <img src="images/photo/IMG_20260502_140116.jpg" class="carousel-slide" alt="摄影作品">
+      <img src="images/photo/CR1420250628_161915809.jpg" class="carousel-slide" alt="摄影作品">
+      <img src="images/photo/IMG_20260502_210321.jpg" class="carousel-slide" alt="摄影作品">
+    </div>
     <div class="photo-hero-overlay"></div>
+
+    <!-- Carousel indicators -->
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" data-index="0"></button>
+      <button class="carousel-dot" data-index="1"></button>
+      <button class="carousel-dot" data-index="2"></button>
+      <button class="carousel-dot" data-index="3"></button>
+      <button class="carousel-dot" data-index="4"></button>
+    </div>
+
     <div class="photo-hero-content reveal">
       <div class="photo-tag">Photography</div>
       <h1>用镜头<br>捕捉光的形状</h1>
@@ -54,18 +70,50 @@
         <p>街拍 · 风光 · 人文 · 生活碎片</p>
       </div>
 
-      <div class="photo-grid">
-        <div class="photo-item reveal">
-          <img src="images/photo/CR1420250628_161915809.jpg" alt="摄影作品 1" loading="lazy">
+      <!-- 城市掠影 -->
+      <div class="gallery-category reveal">
+        <h3 class="gallery-cat-title">城市掠影</h3>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="images/photo/IMG20240813181722.jpg" alt="城市掠影" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20250807_151850_1784626771606edit.jpg" alt="城市掠影" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20260313_174455_1.jpg" alt="城市掠影" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20260321_193034.jpg" alt="城市掠影" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20260322_104849_1.jpg" alt="城市掠影" loading="lazy"></div>
         </div>
-        <div class="photo-item reveal">
-          <img src="images/photo/CR1420250628_164222457.jpg" alt="摄影作品 2" loading="lazy">
+      </div>
+
+      <!-- 光影瞬间 -->
+      <div class="gallery-category reveal">
+        <h3 class="gallery-cat-title">光影瞬间</h3>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="images/photo/IMG_20260502_140116.jpg" alt="光影瞬间" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20260502_140541.jpg" alt="光影瞬间" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/IMG_20260502_210321.jpg" alt="光影瞬间" loading="lazy"></div>
         </div>
-        <div class="photo-item reveal">
-          <img src="images/photo/CR1420250628_164245153.jpg" alt="摄影作品 3" loading="lazy">
+      </div>
+
+      <!-- 人文纪实 -->
+      <div class="gallery-category reveal">
+        <h3 class="gallery-cat-title">人文纪实</h3>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="images/photo/CR1420250627_180319745.jpg" alt="人文纪实" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250628_154138144.jpg" alt="人文纪实" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250628_161915809.jpg" alt="人文纪实" loading="lazy"></div>
         </div>
-        <div class="photo-item reveal">
-          <img src="images/photo/CR1420250628_170725099.jpg" alt="摄影作品 4" loading="lazy">
+      </div>
+
+      <!-- 生活碎片 -->
+      <div class="gallery-category reveal">
+        <h3 class="gallery-cat-title">生活碎片</h3>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="images/photo/CR1420250628_164222457.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250628_164245153.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250628_170725099.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250629_093635227.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250629_142459996.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250629_145210379.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250629_185406386.jpg" alt="生活碎片" loading="lazy"></div>
+          <div class="photo-item"><img src="images/photo/CR1420250629_191258477.jpg" alt="生活碎片" loading="lazy"></div>
         </div>
       </div>
     </div>
@@ -109,6 +157,43 @@
     animateGlow();
     document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
+
+    // ===== Carousel =====
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let carouselInterval;
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.index));
+        resetCarouselTimer();
+      });
+    });
+
+    function resetCarouselTimer() {
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextSlide, 4000);
+    }
+    carouselInterval = setInterval(nextSlide, 4000);
+
+    // Pause on hover
+    const hero = document.getElementById('photoHero');
+    hero.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+    hero.addEventListener('mouseleave', () => {
+      carouselInterval = setInterval(nextSlide, 4000);
+    });
 
     // ===== Scroll Reveal =====
     const observer = new IntersectionObserver((entries) => {
