@@ -362,6 +362,18 @@ html.light .theme-toggle .icon-moon { display: none; }
   border: 1px solid rgba(212,168,83,.2);
 }
 
+/* Awards placeholder */
+.awards-placeholder {
+  text-align: center;
+  padding: 3rem 0;
+}
+.awards-placeholder p {
+  font-size: 1.1rem; color: var(--text3);
+  font-style: italic;
+  letter-spacing: .03em;
+  line-height: 2;
+}
+
 /* ===== About ===== */
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
