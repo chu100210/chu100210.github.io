@@ -32,23 +32,9 @@
 
   <!-- Hero Carousel -->
   <section class="photo-hero" id="photoHero">
-    <div class="carousel-track" id="carouselTrack">
-      <img src="images/photo/IMG_20250807_151850_1784626771606edit.jpg" class="carousel-slide active" alt="摄影作品">
-      <img src="images/photo/CR1420250628_164245153.jpg" class="carousel-slide" alt="摄影作品">
-      <img src="images/photo/IMG_20260502_140116.jpg" class="carousel-slide" alt="摄影作品">
-      <img src="images/photo/CR1420250628_161915809.jpg" class="carousel-slide" alt="摄影作品">
-      <img src="images/photo/IMG_20260502_210321.jpg" class="carousel-slide" alt="摄影作品">
-    </div>
+    <div class="carousel-track" id="carouselTrack"></div>
     <div class="photo-hero-overlay"></div>
-
-    <!-- Carousel indicators -->
-    <div class="carousel-dots" id="carouselDots">
-      <button class="carousel-dot active" data-index="0"></button>
-      <button class="carousel-dot" data-index="1"></button>
-      <button class="carousel-dot" data-index="2"></button>
-      <button class="carousel-dot" data-index="3"></button>
-      <button class="carousel-dot" data-index="4"></button>
-    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
 
     <div class="photo-hero-content reveal">
       <div class="photo-tag">Photography</div>
@@ -159,11 +145,49 @@
     document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
 
     // ===== Carousel =====
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let carouselInterval;
+    const carouselPhotos = [
+      "images/photo/IMG20240813181722.jpg",
+      "images/photo/IMG_20250807_151850_1784626771606edit.jpg",
+      "images/photo/IMG_20260313_174455_1.jpg",
+      "images/photo/IMG_20260321_193034.jpg",
+      "images/photo/IMG_20260322_104849_1.jpg",
+      "images/photo/IMG_20260502_140116.jpg",
+      "images/photo/IMG_20260502_140541.jpg",
+      "images/photo/IMG_20260502_210321.jpg",
+      "images/photo/CR1420250627_180319745.jpg",
+      "images/photo/CR1420250628_154138144.jpg",
+      "images/photo/CR1420250628_161915809.jpg",
+      "images/photo/CR1420250628_164222457.jpg",
+      "images/photo/CR1420250628_164245153.jpg",
+      "images/photo/CR1420250628_170725099.jpg",
+      "images/photo/CR1420250629_093635227.jpg",
+      "images/photo/CR1420250629_142459996.jpg",
+      "images/photo/CR1420250629_145210379.jpg",
+      "images/photo/CR1420250629_185406386.jpg",
+      "images/photo/CR1420250629_191258477.jpg"
+    ];
+
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+    let slides, dots, currentSlide = 0, totalSlides, carouselInterval;
+
+    // Build carousel
+    carouselPhotos.forEach((src, i) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+      img.alt = '摄影作品';
+      track.appendChild(img);
+
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.dataset.index = i;
+      dotsContainer.appendChild(dot);
+    });
+
+    slides = document.querySelectorAll('.carousel-slide');
+    dots = document.querySelectorAll('.carousel-dot');
+    totalSlides = slides.length;
 
     function goToSlide(index) {
       slides[currentSlide].classList.remove('active');
@@ -188,7 +212,6 @@
     }
     carouselInterval = setInterval(nextSlide, 4000);
 
-    // Pause on hover
     const hero = document.getElementById('photoHero');
     hero.addEventListener('mouseenter', () => clearInterval(carouselInterval));
     hero.addEventListener('mouseleave', () => {
