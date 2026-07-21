@@ -23,6 +23,10 @@
         <a href="index.html#about">关于</a>
         <a href="index.html#contact">联系</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
     </div>
   </header>
 
@@ -81,6 +85,16 @@
   </div>
 
   <script>
+    // ===== Theme Toggle =====
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') html.classList.add('light');
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('light');
+      localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+    });
+
     // ===== Cursor Glow =====
     const glow = document.getElementById('cursorGlow');
     let mouseX = -500, mouseY = -500, currentX = -500, currentY = -500;
