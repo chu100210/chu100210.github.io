@@ -41,6 +41,10 @@ html.light {
   --border-hover: rgba(0,0,0,.15);
   --glass: rgba(255,255,255,.75);
 }
+/* Colorful cursor glow in light mode */
+html.light .cursor-glow {
+  background: radial-gradient(circle, rgba(255,100,150,.22) 0%, rgba(130,140,255,.18) 25%, rgba(80,210,200,.14) 50%, rgba(255,200,80,.08) 70%, transparent 85%);
+}
 /* Header overrides */
 html.light .site-header { background: rgba(248,247,243,.75); }
 /* Card hover shadow override */
