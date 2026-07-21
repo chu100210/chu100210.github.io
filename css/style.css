@@ -557,6 +557,15 @@ html.light .theme-toggle .icon-moon { display: none; }
 }
 .photo-back:hover { color: var(--accent); }
 
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center; padding: 3rem 0;
+}
+.empty-state p {
+  font-size: 1rem; color: var(--text3);
+  letter-spacing: .05em;
+}
+
 /* ===== More Link ===== */
 .more-link {
   display: inline-flex; align-items: center; gap: .4rem;

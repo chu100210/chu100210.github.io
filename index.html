@@ -67,69 +67,6 @@
       </div>
 
       <div class="work-grid" id="workGrid">
-        <!-- Design -->
-        <div class="work-card reveal" data-cat="design" data-full="images/placeholder.svg">
-          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a3e"/><stop offset="100%" stop-color="#2d1b4e"/></linearGradient></defs>
-            <rect width="800" height="600" fill="url(#g1)"/>
-            <circle cx="200" cy="180" r="100" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
-            <circle cx="200" cy="180" r="60" fill="rgba(255,255,255,.08)"/>
-            <rect x="350" y="100" width="300" height="18" rx="9" fill="rgba(255,255,255,.12)"/>
-            <rect x="350" y="135" width="200" height="18" rx="9" fill="rgba(255,255,255,.06)"/>
-            <rect x="350" y="170" width="300" height="130" rx="10" fill="rgba(255,255,255,.04)"/>
-          </svg>
-          <div class="card-overlay">
-            <span class="card-tag">UI 设计</span>
-            <h3 class="card-title">极简音乐播放器界面</h3>
-          </div>
-        </div>
-
-        <div class="work-card reveal" data-cat="design" data-full="images/placeholder.svg">
-          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e2d1e"/><stop offset="100%" stop-color="#0f2818"/></linearGradient></defs>
-            <rect width="800" height="600" fill="url(#g2)"/>
-            <rect x="80" y="60" width="280" height="380" rx="20" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-            <rect x="400" y="100" width="320" height="200" rx="14" fill="rgba(255,255,255,.05)"/>
-            <rect x="400" y="320" width="320" height="140" rx="14" fill="rgba(255,255,255,.04)"/>
-          </svg>
-          <div class="card-overlay">
-            <span class="card-tag">品牌设计</span>
-            <h3 class="card-title">茶饮品牌视觉识别系统</h3>
-          </div>
-        </div>
-
-        <!-- Code -->
-        <div class="work-card reveal" data-cat="code" data-full="images/placeholder.svg">
-          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f2027"/><stop offset="100%" stop-color="#203a43"/></linearGradient></defs>
-            <rect width="800" height="600" fill="url(#g3)"/>
-            <rect x="60" y="60" width="680" height="28" rx="6" fill="rgba(255,255,255,.06)"/>
-            <rect x="60" y="220" width="680" height="200" rx="8" fill="rgba(255,255,255,.04)"/>
-            <text x="90" y="160" fill="rgba(255,255,255,.2)" font-family="monospace" font-size="14">&gt; npm run build</text>
-            <text x="90" y="185" fill="rgba(255,255,255,.1)" font-family="monospace" font-size="14">✓ Build complete. 12 modules in 3.2s</text>
-            <rect x="90" y="250" width="120" height="16" rx="4" fill="rgba(255,200,100,.15)"/>
-            <rect x="220" y="250" width="80" height="16" rx="4" fill="rgba(100,200,255,.15)"/>
-          </svg>
-          <div class="card-overlay">
-            <span class="card-tag">全栈开发</span>
-            <h3 class="card-title">实时协作白板应用</h3>
-          </div>
-        </div>
-
-        <div class="work-card reveal" data-cat="code" data-full="images/placeholder.svg">
-          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#16213e"/></linearGradient></defs>
-            <rect width="800" height="600" fill="url(#g4)"/>
-            <circle cx="400" cy="260" r="120" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="20" stroke-dasharray="80 20"/>
-            <circle cx="400" cy="260" r="60" fill="rgba(255,255,255,.06)"/>
-            <text x="400" y="440" text-anchor="middle" fill="rgba(255,255,255,.15)" font-family="monospace" font-size="12">api.chulife.top/v2/graph</text>
-          </svg>
-          <div class="card-overlay">
-            <span class="card-tag">后端架构</span>
-            <h3 class="card-title">高性能 API 网关服务</h3>
-          </div>
-        </div>
-
         <!-- Photo -->
         <div class="work-card reveal" data-cat="photo" data-full="images/photo/IMG_20250807_151850_1784626771606edit.jpg">
           <img class="card-img" src="images/photo/IMG_20250807_151850_1784626771606edit.jpg" alt="城市天际线" loading="lazy">
@@ -162,6 +99,10 @@
             <h3 class="card-title">街头瞬间</h3>
           </div>
         </div>
+      </div>
+
+      <div class="empty-state reveal" id="emptyState" style="display:none;">
+        <p>暂无更多</p>
       </div>
 
       <div class="reveal" style="text-align:center;" id="morePhotoLink">
@@ -276,6 +217,7 @@
         btn.classList.add('active');
         const filter = btn.dataset.filter;
 
+        const emptyState = document.getElementById('emptyState');
         let visibleCount = 0;
         workCards.forEach((card, i) => {
           if (filter === 'all' || card.dataset.cat === filter) {
@@ -288,7 +230,16 @@
           }
         });
 
-        // Show "more" link only when 摄影 filter is active (or all)
+        // Empty state
+        if (visibleCount === 0) {
+          emptyState.style.display = '';
+          emptyState.classList.add('visible');
+        } else {
+          emptyState.style.display = 'none';
+          emptyState.classList.remove('visible');
+        }
+
+        // Show "more" link only when 摄影 filter is active
         if (filter === 'photo') {
           morePhotoLink.style.display = '';
         } else {
