@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>模块化日记 — CHU.LIFE</title>
   <link rel="stylesheet" href="../css/style.css">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -45,25 +45,6 @@
     </div>
   </footer>
 
-  <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    if (localStorage.getItem('theme') === 'light') html.classList.add('light');
-    themeToggle.addEventListener('click', () => {
-      html.classList.toggle('light');
-      localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
-    });
-
-    const glow = document.getElementById('cursorGlow');
-    let mx = -500, my = -500, cx = -500, cy = -500;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function anim() {
-      cx += (mx - cx) * 0.08; cy += (my - cy) * 0.08;
-      glow.style.left = cx + 'px'; glow.style.top = cy + 'px';
-      requestAnimationFrame(anim);
-    })();
-    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
-    document.addEventListener('mouseenter', () => glow.style.opacity = '1');
-  </script>
+  <script src="../js/common.js"></script>
 </body>
 </html>

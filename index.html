@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CHU.LIFE — Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -197,123 +197,7 @@
     <img src="" alt="" id="lightboxImg">
   </div>
 
-  <script>
-    // ===== Cursor Glow =====
-    const glow = document.getElementById('cursorGlow');
-    let mouseX = -500, mouseY = -500;
-    let currentX = -500, currentY = -500;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    function animateGlow() {
-      currentX += (mouseX - currentX) * 0.08;
-      currentY += (mouseY - currentY) * 0.08;
-      glow.style.left = currentX + 'px';
-      glow.style.top = currentY + 'px';
-      requestAnimationFrame(animateGlow);
-    }
-    animateGlow();
-
-    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
-
-    // ===== Scroll Reveal =====
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // ===== Filter Tabs =====
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const workCards = document.querySelectorAll('.work-card');
-
-    const morePhotoLink = document.getElementById('morePhotoLink');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-
-        const emptyState = document.getElementById('emptyState');
-        let visibleCount = 0;
-        workCards.forEach((card, i) => {
-          if (filter === 'all' || card.dataset.cat === filter) {
-            card.style.display = '';
-            card.style.animation = `fadeInUp .5s cubic-bezier(.22,1,.36,1) ${visibleCount * 0.06}s both`;
-            visibleCount++;
-          } else {
-            card.style.display = 'none';
-            card.style.animation = '';
-          }
-        });
-
-        // Empty state
-        if (visibleCount === 0) {
-          emptyState.style.display = '';
-          emptyState.classList.add('visible');
-        } else {
-          emptyState.style.display = 'none';
-          emptyState.classList.remove('visible');
-        }
-
-        // Show "more" link only when 摄影 filter is active
-        if (filter === 'photo') {
-          morePhotoLink.style.display = '';
-        } else {
-          morePhotoLink.style.display = 'none';
-        }
-      });
-    });
-
-    // ===== Lightbox =====
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-
-    document.querySelectorAll('.work-card[data-full]').forEach(card => {
-      card.addEventListener('click', () => {
-        lightboxImg.src = card.dataset.full;
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
-    // ===== Theme Toggle =====
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') html.classList.add('light');
-
-    themeToggle.addEventListener('click', () => {
-      html.classList.toggle('light');
-      localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
-    });
-
-    // Add fadeInUp keyframe dynamically
-    const style = document.createElement('style');
-    style.textContent = `@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}`;
-    document.head.appendChild(style);
-  </script>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
