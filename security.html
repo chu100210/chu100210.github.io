@@ -27,102 +27,140 @@
     </div>
   </header>
 
-  <main class="container" style="padding-top:calc(var(--nav-h) + 4rem); padding-bottom:4rem;">
-    <div class="reveal visible">
-      <div class="section-label">Security Verification</div>
-      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1rem;">网站安全认证</h1>
-      <p class="section-desc" style="max-width:600px;">本站已通过以下五家国内外权威安全机构的独立检测。每一份报告均可点击查看完整截图。</p>
-    </div>
+  <!-- Hero -->
+  <section class="sec-hero">
+    <div class="container">
+      <div class="sec-hero-badge reveal">Security · Verified</div>
+      <h1 class="sec-hero-title reveal">网站安全认证</h1>
+      <p class="sec-hero-sub reveal">五家国际及国内权威安全机构独立检测，全部通过，零风险。</p>
 
-    <div class="certs-grid">
+      <!-- Score Banner -->
+      <div class="sec-score-banner reveal">
+        <div class="sec-score-item">
+          <div class="sec-score-num">5 <span>家</span></div>
+          <div class="sec-score-label">权威检测机构</div>
+        </div>
+        <div class="sec-score-divider"></div>
+        <div class="sec-score-item">
+          <div class="sec-score-num">0 <span>项</span></div>
+          <div class="sec-score-label">安全风险</div>
+        </div>
+        <div class="sec-score-divider"></div>
+        <div class="sec-score-item">
+          <div class="sec-score-num">100<span>%</span></div>
+          <div class="sec-score-label">检测通过率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certs -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
 
       <!-- VirusTotal -->
-      <div class="cert-card reveal">
-        <div class="cert-badge cert-badge--global">国际权威</div>
-        <div class="cert-logo">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#3B82F6"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">VT</text></svg>
+      <div class="cert-block reveal">
+        <div class="cert-block-img">
+          <div class="cert-block-tag tag-global">国际权威</div>
+          <img src="images/reports/www.virustotal.com.jpeg" alt="VirusTotal 检测报告" loading="lazy">
         </div>
-        <h2>VirusTotal</h2>
-        <p class="cert-org">Google 旗下 · 全球最大在线病毒检测平台</p>
-        <p class="cert-desc">VirusTotal 是网络安全行业的事实标准。它聚合了卡巴斯基、赛门铁克、McAfee 等<strong>超过 60 个杀毒引擎</strong>同时扫描，被全球安全研究者和企业安全团队作为首选判定工具。</p>
-        <ul class="cert-meta">
-          <li>检测引擎数：60+</li>
-          <li>所属：Google (Alphabet Inc.)</li>
-          <li>判定：全部引擎未检测到恶意内容</li>
-        </ul>
-        <a href="images/reports/www.virustotal.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+        <div class="cert-block-body">
+          <div class="cert-block-icon"><span>🛡️</span></div>
+          <h2>VirusTotal</h2>
+          <p class="cert-block-sub">Google 旗下 · 全球最大在线病毒检测平台</p>
+          <p class="cert-block-desc">VirusTotal 聚合了卡巴斯基、赛门铁克、McAfee、Bitdefender 等<strong>超过 60 款杀毒引擎</strong>，是全球网络安全行业的事实标准。Google 于 2012 年将其收购，至今仍独立运营。</p>
+          <div class="cert-block-result">
+            <span class="cert-block-check">✓</span> 全部引擎未检测到恶意内容
+          </div>
+        </div>
       </div>
 
-      <!-- Mozilla Observatory -->
-      <div class="cert-card reveal">
-        <div class="cert-badge cert-badge--global">国际权威</div>
-        <div class="cert-logo">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#FF6B35"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">MZ</text></svg>
+      <!-- Mozilla -->
+      <div class="cert-block reveal">
+        <div class="cert-block-img">
+          <div class="cert-block-tag tag-global">国际权威</div>
+          <img src="images/reports/developer.mozilla.org.jpeg" alt="Mozilla Observatory 检测报告" loading="lazy">
         </div>
-        <h2>Mozilla Observatory</h2>
-        <p class="cert-org">Mozilla 基金会 · Firefox 浏览器开发商</p>
-        <p class="cert-desc">Mozilla 是全球互联网标准的重要推动者，其 Observatory 工具<strong>被全球开发者视为网站安全配置的黄金标准</strong>。它检测 HTTP 安全头、CSP 策略、TLS 配置等多个维度的安全实践。</p>
-        <ul class="cert-meta">
-          <li>检测维度：CSP / HSTS / TLS / XSS防护 / 点击劫持防护</li>
-          <li>所属：Mozilla Foundation（非营利组织）</li>
-          <li>判定：安全配置评分达标</li>
-        </ul>
-        <a href="images/reports/developer.mozilla.org.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+        <div class="cert-block-body">
+          <div class="cert-block-icon"><span>🦊</span></div>
+          <h2>Mozilla Observatory</h2>
+          <p class="cert-block-sub">Mozilla 基金会 · Firefox 浏览器开发商</p>
+          <p class="cert-block-desc">Mozilla 是互联网开放标准的守护者，其 Observatory 工具<strong>被全球开发者视为网站安全配置的黄金标准</strong>，检测 CSP、HSTS、TLS、XSS 防护、点击劫持防护等多个维度。</p>
+          <div class="cert-block-result">
+            <span class="cert-block-check">✓</span> 安全配置评分达标
+          </div>
+        </div>
       </div>
 
-      <!-- HSTS Preload -->
-      <div class="cert-card reveal">
-        <div class="cert-badge cert-badge--global">国际权威</div>
-        <div class="cert-logo">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#34A853"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="900">HSTS</text></svg>
+      <!-- HSTS -->
+      <div class="cert-block reveal">
+        <div class="cert-block-img">
+          <div class="cert-block-tag tag-global">国际权威</div>
+          <img src="images/reports/hstspreload.org.jpeg" alt="HSTS Preload 检测报告" loading="lazy">
         </div>
-        <h2>HSTS Preload</h2>
-        <p class="cert-org">Google 维护 · 浏览器强制加密列表</p>
-        <p class="cert-desc">HSTS Preload 列表由 Google 维护，<strong>内置于 Chrome、Edge、Firefox 等所有主流浏览器核心代码中</strong>。进入该列表后，浏览器将强制使用 HTTPS 访问，从底层杜绝中间人攻击和 SSL 剥离攻击。</p>
-        <ul class="cert-meta">
-          <li>维护方：Google Chrome Team</li>
-          <li>覆盖范围：Chrome / Edge / Firefox / Safari 全平台</li>
-          <li>判定：HSTS 配置合规</li>
-        </ul>
-        <a href="images/reports/hstspreload.org.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+        <div class="cert-block-body">
+          <div class="cert-block-icon"><span>🔒</span></div>
+          <h2>HSTS Preload</h2>
+          <p class="cert-block-sub">Google Chrome Team 维护 · 浏览器核心安全机制</p>
+          <p class="cert-block-desc">HSTS Preload 列表<strong>直接内置于 Chrome、Edge、Firefox、Safari 等所有主流浏览器的源代码中</strong>。进入此列表意味着浏览器从底层强制 HTTPS，彻底杜绝中间人攻击。</p>
+          <div class="cert-block-result">
+            <span class="cert-block-check">✓</span> HSTS 配置合规
+          </div>
+        </div>
       </div>
 
       <!-- Tencent -->
-      <div class="cert-card reveal">
-        <div class="cert-badge cert-badge--cn">国内权威</div>
-        <div class="cert-logo">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#0052D9"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">腾</text></svg>
+      <div class="cert-block reveal">
+        <div class="cert-block-img">
+          <div class="cert-block-tag tag-cn">国内权威</div>
+          <img src="images/reports/secsdk.qq.com.jpeg" alt="腾讯安全检测报告" loading="lazy">
         </div>
-        <h2>腾讯安全检测</h2>
-        <p class="cert-org">腾讯 · 国内互联网安全领军</p>
-        <p class="cert-desc">腾讯安全团队是<strong>国内最大的互联网安全力量之一</strong>，为微信、QQ 等数十亿用户提供安全防护。其站点检测引擎基于腾讯自研的恶意 URL 识别模型，对国内网络威胁有最精准的识别能力。</p>
-        <ul class="cert-meta">
-          <li>安全团队：腾讯安全（Tencent Security）</li>
-          <li>覆盖场景：恶意链接 / 钓鱼检测 / 病毒木马</li>
-          <li>判定：安全，无可疑内容</li>
-        </ul>
-        <a href="images/reports/secsdk.qq.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+        <div class="cert-block-body">
+          <div class="cert-block-icon"><span>🐧</span></div>
+          <h2>腾讯安全</h2>
+          <p class="cert-block-sub">腾讯 · 国民级互联网安全力量</p>
+          <p class="cert-block-desc">腾讯安全为微信、QQ 等<strong>超过 13 亿用户</strong>提供安全防护。其站点安全检测引擎基于海量恶意 URL 数据训练，对国内网络环境中各类威胁有最精准的识别能力。</p>
+          <div class="cert-block-result">
+            <span class="cert-block-check">✓</span> 安全，无可疑内容
+          </div>
+        </div>
       </div>
 
       <!-- Baidu -->
-      <div class="cert-card reveal">
-        <div class="cert-badge cert-badge--cn">国内权威</div>
-        <div class="cert-logo">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#DE2F2F"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">百</text></svg>
+      <div class="cert-block reveal">
+        <div class="cert-block-img">
+          <div class="cert-block-tag tag-cn">国内权威</div>
+          <img src="images/reports/bsb.baidu.com.jpeg" alt="百度安全检测报告" loading="lazy">
         </div>
-        <h2>百度安全检测</h2>
-        <p class="cert-org">百度 · 中国最大搜索引擎</p>
-        <p class="cert-desc">百度安全检测依托<strong>百度搜索引擎的海量数据积累</strong>，每天扫描数十亿网页。作为中文互联网最大的流量入口，百度对网站安全性的判断标准被国内用户广泛信赖。</p>
-        <ul class="cert-meta">
-          <li>数据基础：覆盖数百亿中文网页</li>
-          <li>检测能力：恶意代码 / 漏洞扫描 / 安全评级</li>
-          <li>判定：安全，无风险</li>
-        </ul>
-        <a href="images/reports/bsb.baidu.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+        <div class="cert-block-body">
+          <div class="cert-block-icon"><span>🔍</span></div>
+          <h2>百度安全</h2>
+          <p class="cert-block-sub">百度 · 中国最大搜索引擎</p>
+          <p class="cert-block-desc">依托<strong>中文互联网最大的网页索引库</strong>，百度安全检测每天扫描数十亿页面。作为中国互联网流量第一入口，其安全判定标准被数亿用户所信赖。</p>
+          <div class="cert-block-result">
+            <span class="cert-block-check">✓</span> 安全，无风险
+          </div>
+        </div>
       </div>
 
     </div>
-  </main>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section" style="text-align:center;padding-top:0;padding-bottom:6rem;">
+    <div class="container reveal">
+      <p class="section-desc" style="max-width:600px;margin:0 auto 2rem;">
+        本站为纯静态站点，无数据库、无后台、无用户输入，<br>全部源代码公开在 GitHub，任何人可审计。
+      </p>
+      <a href="https://github.com/chu100210/chu100210.github.io" target="_blank" rel="noopener" class="contact-link" style="display:inline-flex;">📦 查看开源代码</a>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+  </div>
 
   <footer class="site-footer">
     <div class="container">
@@ -131,5 +169,18 @@
   </footer>
 
   <script src="js/common.js"></script>
+  <script>
+    // cert-block image click → lightbox
+    document.querySelectorAll('.cert-block-img').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var img = el.querySelector('img');
+        if (img) {
+          document.getElementById('lightboxImg').src = img.src;
+          document.getElementById('lightbox').classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
