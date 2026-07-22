@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安全认证 — CHU.LIFE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="site-header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">CHU<span>.</span>LIFE</a>
+      <nav class="site-nav">
+        <a href="index.html#works">作品</a>
+        <a href="index.html#awards">奖项</a>
+        <a href="index.html#about">关于</a>
+        <a href="index.html#contact">联系</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:calc(var(--nav-h) + 4rem); padding-bottom:4rem;">
+    <div class="reveal visible">
+      <div class="section-label">Security Verification</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1rem;">网站安全认证</h1>
+      <p class="section-desc" style="max-width:600px;">本站已通过以下五家国内外权威安全机构的独立检测。每一份报告均可点击查看完整截图。</p>
+    </div>
+
+    <div class="certs-grid">
+
+      <!-- VirusTotal -->
+      <div class="cert-card reveal">
+        <div class="cert-badge cert-badge--global">国际权威</div>
+        <div class="cert-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#3B82F6"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">VT</text></svg>
+        </div>
+        <h2>VirusTotal</h2>
+        <p class="cert-org">Google 旗下 · 全球最大在线病毒检测平台</p>
+        <p class="cert-desc">VirusTotal 是网络安全行业的事实标准。它聚合了卡巴斯基、赛门铁克、McAfee 等<strong>超过 60 个杀毒引擎</strong>同时扫描，被全球安全研究者和企业安全团队作为首选判定工具。</p>
+        <ul class="cert-meta">
+          <li>检测引擎数：60+</li>
+          <li>所属：Google (Alphabet Inc.)</li>
+          <li>判定：全部引擎未检测到恶意内容</li>
+        </ul>
+        <a href="images/reports/www.virustotal.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+      </div>
+
+      <!-- Mozilla Observatory -->
+      <div class="cert-card reveal">
+        <div class="cert-badge cert-badge--global">国际权威</div>
+        <div class="cert-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#FF6B35"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">MZ</text></svg>
+        </div>
+        <h2>Mozilla Observatory</h2>
+        <p class="cert-org">Mozilla 基金会 · Firefox 浏览器开发商</p>
+        <p class="cert-desc">Mozilla 是全球互联网标准的重要推动者，其 Observatory 工具<strong>被全球开发者视为网站安全配置的黄金标准</strong>。它检测 HTTP 安全头、CSP 策略、TLS 配置等多个维度的安全实践。</p>
+        <ul class="cert-meta">
+          <li>检测维度：CSP / HSTS / TLS / XSS防护 / 点击劫持防护</li>
+          <li>所属：Mozilla Foundation（非营利组织）</li>
+          <li>判定：安全配置评分达标</li>
+        </ul>
+        <a href="images/reports/developer.mozilla.org.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+      </div>
+
+      <!-- HSTS Preload -->
+      <div class="cert-card reveal">
+        <div class="cert-badge cert-badge--global">国际权威</div>
+        <div class="cert-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#34A853"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="900">HSTS</text></svg>
+        </div>
+        <h2>HSTS Preload</h2>
+        <p class="cert-org">Google 维护 · 浏览器强制加密列表</p>
+        <p class="cert-desc">HSTS Preload 列表由 Google 维护，<strong>内置于 Chrome、Edge、Firefox 等所有主流浏览器核心代码中</strong>。进入该列表后，浏览器将强制使用 HTTPS 访问，从底层杜绝中间人攻击和 SSL 剥离攻击。</p>
+        <ul class="cert-meta">
+          <li>维护方：Google Chrome Team</li>
+          <li>覆盖范围：Chrome / Edge / Firefox / Safari 全平台</li>
+          <li>判定：HSTS 配置合规</li>
+        </ul>
+        <a href="images/reports/hstspreload.org.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+      </div>
+
+      <!-- Tencent -->
+      <div class="cert-card reveal">
+        <div class="cert-badge cert-badge--cn">国内权威</div>
+        <div class="cert-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#0052D9"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">腾</text></svg>
+        </div>
+        <h2>腾讯安全检测</h2>
+        <p class="cert-org">腾讯 · 国内互联网安全领军</p>
+        <p class="cert-desc">腾讯安全团队是<strong>国内最大的互联网安全力量之一</strong>，为微信、QQ 等数十亿用户提供安全防护。其站点检测引擎基于腾讯自研的恶意 URL 识别模型，对国内网络威胁有最精准的识别能力。</p>
+        <ul class="cert-meta">
+          <li>安全团队：腾讯安全（Tencent Security）</li>
+          <li>覆盖场景：恶意链接 / 钓鱼检测 / 病毒木马</li>
+          <li>判定：安全，无可疑内容</li>
+        </ul>
+        <a href="images/reports/secsdk.qq.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+      </div>
+
+      <!-- Baidu -->
+      <div class="cert-card reveal">
+        <div class="cert-badge cert-badge--cn">国内权威</div>
+        <div class="cert-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="12" fill="#DE2F2F"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="900">百</text></svg>
+        </div>
+        <h2>百度安全检测</h2>
+        <p class="cert-org">百度 · 中国最大搜索引擎</p>
+        <p class="cert-desc">百度安全检测依托<strong>百度搜索引擎的海量数据积累</strong>，每天扫描数十亿网页。作为中文互联网最大的流量入口，百度对网站安全性的判断标准被国内用户广泛信赖。</p>
+        <ul class="cert-meta">
+          <li>数据基础：覆盖数百亿中文网页</li>
+          <li>检测能力：恶意代码 / 漏洞扫描 / 安全评级</li>
+          <li>判定：安全，无风险</li>
+        </ul>
+        <a href="images/reports/bsb.baidu.com.jpeg" target="_blank" class="cert-link">查看完整报告 →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 CHU.LIFE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+</body>
+</html>
