@@ -1,0 +1,4 @@
+Contact: mailto:chu114445514@gmail.com
+Expires: 2027-12-31T23:59:59Z
+Preferred-Languages: zh, en
+Canonical: https://chulife.top/.well-known/security.txt
