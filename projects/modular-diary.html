@@ -197,6 +197,49 @@
       .cd-stats { grid-template-columns: repeat(2, 1fr); }
     }
 
+    /* ===== 下载区块 ===== */
+    .cd-download {
+      max-width: 660px; margin: 2.5rem auto 0;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .cd-dl-btn {
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      padding: 1.25rem 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--cd-border);
+      background: var(--cd-surface);
+      box-shadow: var(--cd-shadow);
+      cursor: pointer; text-decoration: none;
+      transition: all .3s cubic-bezier(.22,1,.36,1);
+      font-family: var(--font);
+    }
+    .cd-dl-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--cd-border-h);
+      box-shadow: var(--cd-shadow-lg);
+    }
+    .cd-dl-btn .dl-icon {
+      font-size: 1.6rem; line-height: 1;
+    }
+    .cd-dl-btn .dl-label {
+      font-size: .82rem; font-weight: 700; color: var(--cd-text);
+      letter-spacing: -.01em;
+    }
+    .cd-dl-btn .dl-hint {
+      font-size: .65rem; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .cd-dl-btn.available .dl-hint { color: var(--cd-mid); }
+    .cd-dl-btn.coming .dl-hint { color: var(--cd-text3); }
+    .cd-dl-btn.coming {
+      opacity: .6; cursor: default; pointer-events: none;
+    }
+    .cd-dl-btn.coming:hover { transform: none; border-color: var(--cd-border); box-shadow: var(--cd-shadow); }
+    @media (max-width: 640px) {
+      .cd-download { grid-template-columns: 1fr; max-width: 280px; }
+    }
+
     /* ===== 区块标题 ===== */
     .cd-section-hd { text-align: center; margin-bottom: 2.5rem; }
     .cd-section-label {
@@ -498,6 +541,26 @@
           <div class="cd-stat-lbl">数据上传</div>
         </div>
       </div>
+
+      <!-- 下载 -->
+      <div class="cd-download reveal">
+        <a href="#" class="cd-dl-btn available" id="dlAndroid">
+          <span class="dl-icon">🤖</span>
+          <span class="dl-label">Android</span>
+          <span class="dl-hint">网盘下载</span>
+        </a>
+        <div class="cd-dl-btn coming">
+          <span class="dl-icon">🔷</span>
+          <span class="dl-label">HarmonyOS</span>
+          <span class="dl-hint">敬请期待</span>
+        </div>
+        <div class="cd-dl-btn coming">
+          <span class="dl-icon">🍎</span>
+          <span class="dl-label">iOS</span>
+          <span class="dl-hint">敬请期待</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -752,5 +815,26 @@
   </footer>
 
   <script src="../js/common.js"></script>
+
+  <!-- Android 下载链接（替换 # 为实际网盘地址） -->
+  <script>
+  (function() {
+    var dl = document.getElementById('dlAndroid');
+    var url = '#'; // <-- 替换为网盘链接
+    if (dl && url !== '#') {
+      dl.href = url;
+      dl.target = '_blank';
+      dl.rel = 'noopener';
+    } else if (dl && url === '#') {
+      dl.addEventListener('click', function(e) {
+        e.preventDefault();
+        dl.querySelector('.dl-hint').textContent = '即将上线';
+        setTimeout(function() {
+          dl.querySelector('.dl-hint').textContent = '网盘下载';
+        }, 2000);
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
