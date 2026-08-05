@@ -542,7 +542,7 @@
       <div class="cd-download reveal">
         <a href="#" class="cd-dl-btn available" id="dlAndroid">
           <span class="dl-label">Android</span>
-          <span class="dl-hint">网盘下载 ↓</span>
+          <span class="dl-hint">网盘下载 · 密码 ezoc</span>
         </a>
         <div class="cd-dl-btn coming">
           <span class="dl-label">HarmonyOS</span>
@@ -813,19 +813,11 @@
   <script>
   (function() {
     var dl = document.getElementById('dlAndroid');
-    var url = '#'; // <-- 替换为网盘链接
-    if (dl && url !== '#') {
+    var url = 'https://wwbnt.lanzoul.com/ib7Lp40qer4b';
+    if (dl) {
       dl.href = url;
       dl.target = '_blank';
       dl.rel = 'noopener';
-    } else if (dl && url === '#') {
-      dl.addEventListener('click', function(e) {
-        e.preventDefault();
-        dl.querySelector('.dl-hint').textContent = '即将上线';
-        setTimeout(function() {
-          dl.querySelector('.dl-hint').textContent = '网盘下载';
-        }, 2000);
-      });
     }
   })();
   </script>
