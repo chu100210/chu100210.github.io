@@ -11,185 +11,435 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="color-scheme" content="dark light">
   <style>
-    /* ===== codiary 页面专属样式 ===== */
-    .cd-hero {
-      padding: calc(var(--nav-h) + 4rem) 0 3rem;
-      text-align: center;
-    }
-    .cd-badge {
-      display: inline-block;
-      font-size: .7rem; font-weight: 700; letter-spacing: .25em;
-      color: #3FB950; text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      padding: .4em 1.2em;
-      border: 1px solid rgba(63,185,80,.3);
-      border-radius: 99px;
-      background: rgba(63,185,80,.06);
-    }
-    .cd-version {
-      font-size: .75rem; color: var(--text3); letter-spacing: .08em;
-      margin-top: .5rem;
-    }
-    .cd-tags {
-      display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-    .cd-tags span {
-      font-size: .68rem; font-weight: 600; letter-spacing: .06em;
-      padding: .35em .9em; border-radius: 99px;
-      border: 1px solid var(--border); color: var(--text2);
-      background: var(--surface);
+    /* ============================================
+       codiary · 莫兰迪青灰设计系统
+       深色为默认（跟随站点），html.light 切亮色
+       ============================================ */
+
+    /* ----- 深色主题（默认，午夜模式） ----- */
+    :root {
+      --cd-deep:   #4a858c;
+      --cd-mid:    #5a7882;
+      --cd-bg:     #121f22;
+      --cd-surface:#192b2f;
+      --cd-accent: #7daab4;
+
+      --cd-text:     #dce6e7;
+      --cd-text2:    #92a4a7;
+      --cd-text3:    #5d6f73;
+      --cd-border:   rgba(136,160,168,.12);
+      --cd-border-h: rgba(136,160,168,.28);
+      --cd-shadow:   0 1px 3px rgba(0,0,0,.20), 0 8px 32px rgba(0,0,0,.25);
+      --cd-shadow-lg:0 2px 6px rgba(0,0,0,.18), 0 20px 60px rgba(0,0,0,.30);
+      --cd-glow:     rgba(74,133,140,.25);
+      --cd-badge-bg: rgba(136,160,168,.08);
+      --cd-badge-bd: rgba(136,160,168,.18);
+      --cd-table-stripe: rgba(18,31,34,.40);
+
+      /* 深色时 header 融入 */
+      --cd-header-bg: rgba(18,31,34,.85);
     }
 
-    /* 功能卡片网格 */
+    /* ----- 亮色主题 ----- */
+    html.light {
+      --cd-deep:   #98DFE7;
+      --cd-mid:    #88A0A8;
+      --cd-bg:     #D6EFF0;
+      --cd-surface:#FEFDF9;
+      --cd-accent: #88A0A8;
+
+      --cd-text:     #2c3a3d;
+      --cd-text2:    #5a6e72;
+      --cd-text3:    #8a9a9e;
+      --cd-border:   rgba(136,160,168,.22);
+      --cd-border-h: rgba(136,160,168,.40);
+      --cd-shadow:   0 1px 3px rgba(44,58,61,.06), 0 8px 32px rgba(44,58,61,.07);
+      --cd-shadow-lg:0 2px 6px rgba(44,58,61,.05), 0 20px 60px rgba(44,58,61,.10);
+      --cd-glow:     rgba(152,223,231,.30);
+      --cd-badge-bg: rgba(136,160,168,.10);
+      --cd-badge-bd: rgba(136,160,168,.25);
+      --cd-table-stripe: rgba(214,239,240,.40);
+
+      --cd-header-bg: rgba(214,239,240,.80);
+    }
+
+    /* ===== 页面容器（覆盖背景为莫兰迪色） ===== */
+    .cd-page {
+      background: var(--cd-bg);
+      transition: background .4s ease;
+    }
+    /* 全局深色/亮色需要同步触发 .dark-theme */
+    body { transition: background .4s ease; }
+
+    /* ===== Hero ===== */
+    .cd-hero {
+      position: relative;
+      padding: calc(var(--nav-h) + 5rem) 0 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cd-hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, var(--cd-glow) 0%, transparent 100%),
+        radial-gradient(circle at 20% 80%, rgba(136,160,168,.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 75%, rgba(152,223,231,.10) 0%, transparent 50%);
+    }
+    .cd-hero > .container { position: relative; z-index: 1; }
+
+    /* Hero 装饰几何 */
+    .cd-hero-deco {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .cd-hero-deco .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--cd-border);
+      opacity: .5;
+    }
+    .cd-hero-deco .ring:nth-child(1) {
+      width: 520px; height: 520px; top: -180px; left: 50%;
+      transform: translateX(-50%);
+    }
+    .cd-hero-deco .ring:nth-child(2) {
+      width: 380px; height: 380px; top: -100px; left: 50%;
+      transform: translateX(-50%);
+      border-style: dashed;
+      opacity: .3;
+    }
+
+    /* Badge */
+    .cd-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .68rem; font-weight: 600; letter-spacing: .18em;
+      color: var(--cd-mid); text-transform: uppercase;
+      padding: .45em 1.3em;
+      border: 1px solid var(--cd-badge-bd);
+      border-radius: 99px;
+      background: var(--cd-badge-bg);
+      backdrop-filter: blur(8px);
+      margin-bottom: 1.5rem;
+    }
+    .cd-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cd-mid); opacity: .7;
+    }
+
+    /* 标题 */
+    .cd-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 900; letter-spacing: -.04em;
+      line-height: 1.05; margin-bottom: 1rem;
+      color: var(--cd-text);
+    }
+    .cd-hero-title span { color: var(--cd-mid); }
+    .cd-hero-sub {
+      font-size: 1.1rem; color: var(--cd-text2);
+      max-width: 540px; margin: 0 auto; line-height: 1.6;
+    }
+    .cd-hero-meta {
+      margin-top: 1.25rem;
+      display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+    }
+    .cd-hero-meta span {
+      font-size: .73rem; font-weight: 500; letter-spacing: .06em;
+      color: var(--cd-text3);
+      display: flex; align-items: center; gap: .35rem;
+    }
+    .cd-hero-meta span::before {
+      content: ""; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--cd-mid); opacity: .5;
+    }
+
+    /* Hero 标签 */
+    .cd-tags {
+      display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+    .cd-tags span {
+      font-size: .7rem; font-weight: 600; letter-spacing: .05em;
+      padding: .4em .95em; border-radius: 99px;
+      border: 1px solid var(--cd-border); color: var(--cd-text2);
+      background: var(--cd-surface);
+      box-shadow: var(--cd-shadow);
+      transition: all .25s;
+    }
+    .cd-tags span:hover { border-color: var(--cd-border-h); color: var(--cd-text); }
+
+    /* ===== 数据条 ===== */
+    .cd-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      max-width: 720px; margin: 3rem auto 0;
+      background: var(--cd-border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .cd-stat {
+      background: var(--cd-surface);
+      padding: 1.5rem 1rem; text-align: center;
+      transition: background .3s;
+    }
+    .cd-stat:hover { background: var(--cd-badge-bg); }
+    .cd-stat-val {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 900; letter-spacing: -.03em;
+      color: var(--cd-mid); line-height: 1.1;
+    }
+    .cd-stat-val small { font-size: .8rem; font-weight: 500; color: var(--cd-text2); }
+    .cd-stat-lbl {
+      font-size: .68rem; color: var(--cd-text3);
+      text-transform: uppercase; letter-spacing: .1em; margin-top: .3rem;
+    }
+    @media (max-width: 640px) {
+      .cd-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ===== 区块标题 ===== */
+    .cd-section-hd { text-align: center; margin-bottom: 2.5rem; }
+    .cd-section-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .35em;
+      color: var(--cd-mid); text-transform: uppercase; margin-bottom: .6rem;
+    }
+    .cd-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; letter-spacing: -.02em;
+      color: var(--cd-text); line-height: 1.15; margin-bottom: .5rem;
+    }
+    .cd-section-desc {
+      font-size: .95rem; color: var(--cd-text2); max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ===== 功能卡片网格 ===== */
     .cd-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.25rem;
     }
     .cd-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      position: relative;
+      background: var(--cd-surface);
+      border: 1px solid var(--cd-border);
+      border-radius: 18px;
       padding: 1.75rem;
-      transition: all .3s;
+      box-shadow: var(--cd-shadow);
+      transition: all .35s cubic-bezier(.22,1,.36,1);
     }
-    .cd-card:hover { border-color: var(--border-hover); }
+    .cd-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cd-border-h);
+      box-shadow: var(--cd-shadow-lg);
+    }
+    .cd-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, var(--cd-mid), transparent);
+      opacity: 0; transition: opacity .35s;
+    }
+    .cd-card:hover::before { opacity: .4; }
+
     .cd-card-icon {
-      font-size: 1.8rem; margin-bottom: .75rem; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--cd-badge-bg), transparent);
+      font-size: 1.3rem; margin-bottom: 1rem;
+      border: 1px solid var(--cd-border);
     }
-    .cd-card h3 {
-      font-size: 1.1rem; font-weight: 700; letter-spacing: -.01em;
-      margin-bottom: .3rem;
+    .cd-card h4 {
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em;
+      color: var(--cd-text); margin-bottom: .15rem;
     }
     .cd-card .cd-card-sub {
-      font-size: .75rem; color: var(--accent); font-weight: 500;
-      margin-bottom: .85rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      color: var(--cd-mid); text-transform: uppercase; margin-bottom: .75rem;
     }
-    .cd-card .cd-card-desc {
-      font-size: .88rem; color: var(--text2); line-height: 1.7;
+    .cd-card p {
+      font-size: .85rem; color: var(--cd-text2); line-height: 1.75;
     }
 
-    /* 功能详情块 (cert-block 复刻) */
+    /* ===== 大块内容卡片 ===== */
     .cd-block {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: var(--cd-surface);
+      border: 1px solid var(--cd-border);
+      border-radius: 18px;
       overflow: hidden;
-      margin-bottom: 1.25rem;
-      transition: all .3s;
+      box-shadow: var(--cd-shadow);
+      transition: all .35s;
     }
-    .cd-block:hover { border-color: var(--border-hover); }
-    .cd-block-body { padding: 1.75rem; }
+    .cd-block:hover { border-color: var(--cd-border-h); box-shadow: var(--cd-shadow-lg); }
+    .cd-block-body { padding: 2rem; }
     .cd-block-body h3 {
-      font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em;
-      margin-bottom: .25rem;
+      font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em;
+      color: var(--cd-text); margin-bottom: .2rem;
+      display: flex; align-items: center; gap: .5rem;
     }
-    .cd-block-body h3 .emoji { margin-right: .4rem; }
+    .cd-block-body h3 .ico { font-size: 1.3rem; }
     .cd-block-sub {
-      font-size: .78rem; color: var(--accent); font-weight: 500;
-      margin-bottom: 1rem;
+      font-size: .78rem; font-weight: 600; letter-spacing: .03em;
+      color: var(--cd-mid); margin-bottom: 1.25rem;
     }
 
-    /* 列表项样式 */
+    /* 列表 */
     .cd-list { list-style: none; padding: 0; margin: 0; }
     .cd-list li {
-      padding: .55rem 0; padding-left: 1.2rem;
-      font-size: .88rem; color: var(--text2); line-height: 1.6;
-      border-bottom: 1px solid var(--border);
+      padding: .6rem 0 .6rem 1.4rem;
+      font-size: .88rem; color: var(--cd-text2); line-height: 1.65;
+      border-bottom: 1px solid var(--cd-border);
       position: relative;
     }
     .cd-list li:last-child { border-bottom: none; }
     .cd-list li::before {
-      content: ""; position: absolute; left: 0; top: 1rem;
+      content: ""; position: absolute; left: .2rem; top: 1.05rem;
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent);
+      background: var(--cd-mid); opacity: .6;
     }
 
     /* 积分表格 */
-    .cd-table-wrap {
-      overflow-x: auto; margin: .75rem 0 1rem;
-    }
+    .cd-table-wrap { overflow-x: auto; margin: .5rem 0 1.25rem; }
     .cd-table {
-      width: 100%; border-collapse: collapse;
-      font-size: .85rem;
+      width: 100%; border-collapse: collapse; font-size: .85rem;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--cd-border);
     }
-    .cd-table th {
-      text-align: left; font-weight: 600; color: var(--text);
-      padding: .55rem .75rem; background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      font-size: .78rem; letter-spacing: .04em;
-      text-transform: uppercase;
+    .cd-table thead th {
+      text-align: left; font-weight: 600; color: var(--cd-text);
+      padding: .65rem 1rem; background: var(--cd-table-stripe);
+      border-bottom: 1px solid var(--cd-border);
+      font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
     }
-    .cd-table td {
-      padding: .5rem .75rem; color: var(--text2);
-      border-bottom: 1px solid var(--border);
+    .cd-table tbody td {
+      padding: .6rem 1rem; color: var(--cd-text2);
+      border-bottom: 1px solid var(--cd-border);
     }
-    .cd-table tr:last-child td { border-bottom: none; }
-    .cd-table .cd-pts {
-      font-weight: 700; color: var(--accent); font-family: var(--font-display);
+    .cd-table tbody tr:last-child td { border-bottom: none; }
+    .cd-table tbody tr:nth-child(even) { background: var(--cd-table-stripe); }
+    .cd-pts {
+      font-weight: 800; color: var(--cd-mid);
+      font-family: var(--font-display); font-size: .9rem;
     }
 
-    /* 皮肤色系 */
+    /* ===== 皮肤色系 ===== */
     .cd-skin-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: .75rem;
-      margin-top: .75rem;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: .75rem; margin-top: .5rem;
     }
     .cd-skin-item {
-      padding: .85rem 1rem; border-radius: 10px;
-      border: 1px solid var(--border);
-      font-size: .82rem; font-weight: 600;
+      padding: 1rem 1.1rem; border-radius: 14px;
+      border: 1px solid var(--cd-border);
+      background: var(--cd-surface);
+      transition: all .3s;
+      position: relative; overflow: hidden;
     }
-    .cd-skin-item .name { color: var(--text); }
+    .cd-skin-item::after {
+      content: ""; position: absolute; top: 0; right: 0;
+      width: 40px; height: 40px; border-radius: 0 0 0 40px;
+      opacity: .15; transition: opacity .3s;
+    }
+    .cd-skin-item:hover::after { opacity: .3; }
+
+    .cd-skin-item.s-blue  { border-left: 3px solid #5b9bd5; }
+    .cd-skin-item.s-blue::after  { background: #5b9bd5; }
+    .cd-skin-item.s-green { border-left: 3px solid #6aab7c; }
+    .cd-skin-item.s-green::after { background: #6aab7c; }
+    .cd-skin-item.s-orange{ border-left: 3px solid #d4956b; }
+    .cd-skin-item.s-orange::after{ background: #d4956b; }
+    .cd-skin-item.s-pink  { border-left: 3px solid #c98db9; }
+    .cd-skin-item.s-pink::after  { background: #c98db9; }
+    .cd-skin-item.s-grey  { border-left: 3px solid #9da8a8; }
+    .cd-skin-item.s-grey::after  { background: #9da8a8; }
+
+    .cd-skin-item .name {
+      font-size: .85rem; font-weight: 700; color: var(--cd-text);
+      display: block;
+    }
     .cd-skin-item .count {
-      display: block; font-size: .7rem; color: var(--text3);
-      font-weight: 400; margin-top: .15rem;
+      font-size: .68rem; color: var(--cd-text3); margin-top: .15rem; display: block;
     }
 
-    /* 统计 */
-    .cd-stat-row {
-      display: flex; gap: 1rem; flex-wrap: wrap;
+    /* ===== 统计 ===== */
+    .cd-stat-chips {
+      display: flex; gap: .65rem; flex-wrap: wrap; margin-top: .5rem;
     }
-    .cd-stat-badge {
-      display: inline-flex; align-items: center; gap: .4rem;
-      padding: .4rem .9rem; border-radius: 8px;
-      font-size: .8rem; font-weight: 600; color: var(--text);
-      background: var(--bg2); border: 1px solid var(--border);
+    .cd-stat-chip {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .6rem 1rem;
+      border-radius: 12px;
+      font-size: .8rem; font-weight: 600; color: var(--cd-text);
+      background: var(--cd-surface);
+      border: 1px solid var(--cd-border);
+    }
+    .cd-stat-chip .dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
     }
 
-    /* 成就徽章架 */
+    /* ===== 成就徽章架 ===== */
     .cd-badge-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: .75rem;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: .75rem; margin-top: .5rem;
     }
     .cd-achieve {
-      text-align: center; padding: 1rem .5rem;
-      border-radius: 12px;
-      background: var(--bg2); border: 1px solid var(--border);
+      text-align: center;
+      padding: 1.2rem .5rem;
+      border-radius: 14px;
+      background: var(--cd-surface);
+      border: 1px solid var(--cd-border);
       transition: all .3s;
     }
-    .cd-achieve.unlocked { border-color: rgba(212,168,83,.25); background: rgba(212,168,83,.04); }
-    .cd-achieve .ico { font-size: 1.6rem; margin-bottom: .35rem; }
-    .cd-achieve .label { font-size: .72rem; font-weight: 600; color: var(--text); }
-    .cd-achieve.locked .label { color: var(--text3); }
-    .cd-achieve.locked .ico { opacity: .35; }
+    .cd-achieve:hover { transform: translateY(-2px); }
+    .cd-achieve.locked {
+      opacity: .5; filter: grayscale(.5);
+    }
+    .cd-achieve.unlocked {
+      border-color: rgba(136,160,168,.35);
+      background: linear-gradient(180deg, var(--cd-badge-bg), var(--cd-surface));
+    }
+    .cd-achieve .ico { font-size: 1.5rem; margin-bottom: .3rem; display: block; }
+    .cd-achieve .label {
+      font-size: .65rem; font-weight: 600;
+      color: var(--cd-text); line-height: 1.2;
+    }
+    .cd-achieve.locked .label { color: var(--cd-text3); }
 
-    /* 响应式 */
+    /* ===== 底部 ===== */
+    .cd-footer {
+      text-align: center; padding: 3rem 0 5rem;
+    }
+    .cd-footer p {
+      color: var(--cd-text2); max-width: 460px; margin: 0 auto 1.5rem;
+      font-size: .9rem; line-height: 1.7;
+    }
+    .cd-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+      color: var(--cd-mid); transition: gap .25s, color .25s;
+    }
+    .cd-back:hover { gap: .8rem; color: var(--cd-text); }
+    .cd-back .arrow { transition: transform .25s; }
+    .cd-back:hover .arrow { transform: translateX(-3px); }
+
+    /* ===== 响应式 ===== */
     @media (max-width: 768px) {
       .cd-grid { grid-template-columns: 1fr; }
       .cd-skin-grid { grid-template-columns: repeat(2, 1fr); }
-      .cd-badge-grid { grid-template-columns: repeat(3, 1fr); }
-      .cd-stat-row { flex-direction: column; }
+      .cd-badge-grid { grid-template-columns: repeat(4, 1fr); }
+      .cd-block-body { padding: 1.5rem; }
+      .cd-hero { padding: calc(var(--nav-h) + 3rem) 0 2.5rem; }
+      .cd-hero-deco { display: none; }
+    }
+
+    /* ===== 深色模式下的 header 协调 ===== */
+    .site-header {
+      background: var(--cd-header-bg) !important;
+      transition: background .4s ease;
     }
   </style>
 </head>
-<body>
+<body class="cd-page">
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <header class="site-header" id="header">
@@ -208,109 +458,94 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ===== Hero ===== -->
   <section class="cd-hero">
+    <div class="cd-hero-deco">
+      <div class="ring"></div>
+      <div class="ring"></div>
+    </div>
     <div class="container">
       <div class="reveal">
-        <div class="cd-badge">v1.0.0 &nbsp;·&nbsp; 完全离线 &nbsp;·&nbsp; 无账号 &nbsp;·&nbsp; 无云同步</div>
-        <h1 class="sec-hero-title">codiary</h1>
-        <p class="sec-hero-sub">一款纯粹、精致的日常记录应用。<br>模块化的卡片交互，让记录变得像搭积木一样自然。</p>
-        <div class="cd-version">离线优先 · 纯本地存储 · 无需网络权限</div>
+        <div class="cd-badge">
+          <span class="cd-badge-dot"></span> v1.0.0 &nbsp;·&nbsp; 离线 &nbsp;·&nbsp; 无账号 &nbsp;·&nbsp; 无云同步
+        </div>
+        <h1 class="cd-hero-title">codi<span>ary</span></h1>
+        <p class="cd-hero-sub">一款纯粹、精致的日常记录应用。模块化的卡片交互，<br>让记录变得像搭积木一样自然。</p>
+        <div class="cd-hero-meta">
+          <span>离线优先</span><span>纯本地存储</span><span>无需网络权限</span>
+        </div>
         <div class="cd-tags">
-          <span>📅 日记/随笔</span><span>✅ 待办 & 打卡</span><span>📊 数据统计</span>
+          <span>📅 日记 / 随笔</span><span>✅ 待办 & 打卡</span><span>📊 数据统计</span>
           <span>🎨 24 套皮肤</span><span>⭐ 积分成就</span><span>🔒 隐私优先</span>
         </div>
       </div>
 
-      <!-- Key Stats -->
-      <div class="sec-score-banner reveal">
-        <div class="sec-score-item">
-          <div class="sec-score-num">4 <span>大</span></div>
-          <div class="sec-score-label">卡片模块</div>
+      <div class="cd-stats reveal">
+        <div class="cd-stat">
+          <div class="cd-stat-val">4 <small>大</small></div>
+          <div class="cd-stat-lbl">卡片模块</div>
         </div>
-        <div class="sec-score-divider"></div>
-        <div class="sec-score-item">
-          <div class="sec-score-num">24 <span>套</span></div>
-          <div class="sec-score-label">精选皮肤</div>
+        <div class="cd-stat">
+          <div class="cd-stat-val">24 <small>套</small></div>
+          <div class="cd-stat-lbl">精选皮肤</div>
         </div>
-        <div class="sec-score-divider"></div>
-        <div class="sec-score-item">
-          <div class="sec-score-num">17 <span>枚</span></div>
-          <div class="sec-score-label">成就徽章</div>
+        <div class="cd-stat">
+          <div class="cd-stat-val">17 <small>枚</small></div>
+          <div class="cd-stat-lbl">成就徽章</div>
         </div>
-        <div class="sec-score-divider"></div>
-        <div class="sec-score-item">
-          <div class="sec-score-num">0 <span>KB</span></div>
-          <div class="sec-score-label">数据上传</div>
+        <div class="cd-stat">
+          <div class="cd-stat-val">0 <small>KB</small></div>
+          <div class="cd-stat-lbl">数据上传</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 今日（首页） ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 今日 ===== -->
+  <section style="padding: 5rem 0 3rem;">
     <div class="container">
-
-      <div class="reveal" style="margin-bottom:1.5rem;">
-        <div class="section-label">核心体验</div>
-        <h2 class="section-title">📅 今日（首页）</h2>
-        <p class="section-desc">以卡片流展示当天所有内容，直接在卡片上完成交互，无需跳转。</p>
+      <div class="cd-section-hd reveal">
+        <div class="cd-section-label">核心体验</div>
+        <h2 class="cd-section-title">📅 今日</h2>
+        <p class="cd-section-desc">以卡片流展示当天所有内容，直接在卡片上完成交互，无需跳转。</p>
       </div>
 
       <div class="cd-grid">
-
-        <!-- 打卡 -->
         <div class="cd-card reveal">
           <div class="cd-card-icon">✅</div>
-          <h3>打卡项</h3>
+          <h4>打卡项</h4>
           <div class="cd-card-sub">Daily Habits</div>
-          <div class="cd-card-desc">
-            创建每日/每周习惯，设定频率（如"每周 5 次"）。点击卡片完成打卡，伴有弹性缩放动效和触感反馈。显示当日完成进度，支持长按编辑。
-          </div>
+          <p>创建每日/每周习惯，设定频率（如"每周 5 次"）。点击卡片完成打卡，伴有弹性缩放动效和触感反馈，当日进度一目了然。</p>
         </div>
-
-        <!-- 待办 -->
         <div class="cd-card reveal">
           <div class="cd-card-icon">📋</div>
-          <h3>待办事项</h3>
+          <h4>待办事项</h4>
           <div class="cd-card-sub">Long-term Tasks</div>
-          <div class="cd-card-desc">
-            添加无截止日的长期任务。勾选完成自动划除并置底，可随时取消完成。卡片内嵌快速添加输入框，回车即保存。
-          </div>
+          <p>无截止日的长期任务，勾选完成自动划除并置底。卡片内嵌快速添加输入框，回车即保存，体验流畅。</p>
         </div>
-
-        <!-- 日程 -->
         <div class="cd-card reveal">
           <div class="cd-card-icon">🕐</div>
-          <h3>日程</h3>
+          <h4>日程</h4>
           <div class="cd-card-sub">Timed Events</div>
-          <div class="cd-card-desc">
-            添加带时间点的事件（如"14:30 牙医预约"），时间轴样式展示。过期日程自动淡化，支持提前 5/15/30 分钟提醒。
-          </div>
+          <p>添加带时间点的事件，时间轴样式展示。过期日程自动淡化，支持提前 5 / 15 / 30 分钟提醒。</p>
         </div>
-
-        <!-- 日记 -->
         <div class="cd-card reveal">
           <div class="cd-card-icon">✍️</div>
-          <h3>日记 / 随笔</h3>
+          <h4>日记 / 随笔</h4>
           <div class="cd-card-sub">Block Editor</div>
-          <div class="cd-card-desc">
-            块编辑器：每段文字一块、每张图片一块，像搭积木一样编排。支持插入本地图片，图文自然混排。自动保存草稿，预览模式展示完整图文，干净如纸张。
-          </div>
+          <p>块编辑器：每段文字一块、每张图片一块，像搭积木一样编排。自动保存草稿，预览模式如纸张般干净。</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===== 积分系统 ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 积分 ===== -->
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">⭐</span>积分系统</h3>
-          <div class="cd-block-sub">完成行为自动获得积分，可在设置中随时关闭回归纯粹记录</div>
-
+          <h3><span class="ico">⭐</span>积分系统</h3>
+          <div class="cd-block-sub">完成行为自动获得积分 · 可随时在设置中关闭</div>
           <div class="cd-table-wrap">
             <table class="cd-table">
               <thead><tr><th>行为</th><th style="text-align:right;">积分</th></tr></thead>
@@ -324,42 +559,39 @@
               </tbody>
             </table>
           </div>
-
-          <p style="font-size:.88rem;color:var(--text2);line-height:1.6;">
-            <strong style="color:var(--text);">积分用途：</strong>补签卡（50 分）、自定义主题色、专注模式背景等轻量成就解锁。<br>
-            完成行为时 "+5" 飘出动画，2 秒自然消失。
+          <p style="font-size:.85rem;color:var(--cd-text2);line-height:1.7;">
+            积分可兑换<strong style="color:var(--cd-text);">补签卡（50 分）、自定义主题色、专注模式背景</strong>等轻量成就。完成行为时 "+5" 飘出动画，2 秒自然消失。
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 皮肤系统 ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 皮肤 ===== -->
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">🎨</span>皮肤系统</h3>
-          <div class="cd-block-sub">内置 24 套皮肤，覆盖 5 个色系。每套均配套深色版本，切换时 0.3 秒柔和渐变过渡。支持跟随系统 / 手动锁定深色模式。</div>
-
+          <h3><span class="ico">🎨</span>皮肤系统</h3>
+          <div class="cd-block-sub">24 套皮肤 · 5 个色系 · 每套均配深色版本 · 0.3s 柔和过渡</div>
           <div class="cd-skin-grid">
-            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,179,237,.08));">
+            <div class="cd-skin-item s-blue">
               <span class="name">🔵 蓝色系</span>
-              <span class="count">8 套 · 渐变/双色，科技清爽</span>
+              <span class="count">8 套 · 渐变 / 双色，科技清爽</span>
             </div>
-            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(52,168,83,.12), rgba(134,194,50,.08));">
+            <div class="cd-skin-item s-green">
               <span class="name">🌿 绿色系</span>
               <span class="count">5 套 · 森系自然、薄荷撞色</span>
             </div>
-            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(232,150,40,.12), rgba(255,180,60,.08));">
+            <div class="cd-skin-item s-orange">
               <span class="name">🌅 暖橙色系</span>
               <span class="count">3 套 · 落日阳光、治愈双色</span>
             </div>
-            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(216,130,200,.12), rgba(240,170,220,.08));">
+            <div class="cd-skin-item s-pink">
               <span class="name">🌸 粉紫马卡龙</span>
               <span class="count">8 套 · 樱花梦幻、温柔少女</span>
             </div>
-            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(148,148,160,.12), rgba(180,180,190,.08));">
+            <div class="cd-skin-item s-grey">
               <span class="name">🪨 莫兰迪</span>
               <span class="count">4 套 · 高级灰调、静物简约</span>
             </div>
@@ -370,106 +602,101 @@
   </section>
 
   <!-- ===== 统计 ===== -->
-  <section class="section" style="padding-top:0;">
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">📊</span>统计</h3>
-          <div class="cd-block-sub">多维度可视化你的记录习惯</div>
-
-          <div class="cd-stat-row" style="margin-top:.75rem;">
-            <div class="cd-stat-badge">🥧 环形图：打卡完成率可视化</div>
-            <div class="cd-stat-badge">📊 柱状图：近两周每日活跃趋势</div>
-            <div class="cd-stat-badge">🔥 年历热力图：全年打卡分布，颜色深浅表示活跃度</div>
-            <div class="cd-stat-badge">📈 时光折线图：综合活跃分（打卡+2/待办+1/日记+3，日上限 20）</div>
+          <h3><span class="ico">📊</span>统计</h3>
+          <div class="cd-block-sub">多维度可视化 · 周 / 月 / 年自由切换</div>
+          <div class="cd-stat-chips">
+            <div class="cd-stat-chip"><span class="dot" style="background:#88A0A8;"></span> 环形图 · 打卡完成率</div>
+            <div class="cd-stat-chip"><span class="dot" style="background:#98DFE7;"></span> 柱状图 · 两周活跃趋势</div>
+            <div class="cd-stat-chip"><span class="dot" style="background:#6d8a90;"></span> 年历热力图 · 全年分布</div>
+            <div class="cd-stat-chip"><span class="dot" style="background:#5a7882;"></span> 折线图 · 综合活跃分</div>
           </div>
-
-          <p style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-top:1rem;">
-            支持<strong style="color:var(--text);">周/月/年</strong>视图切换，底部自动总结：<em>"过去 30 天，你有 X 天保持活跃"</em>。
+          <p style="font-size:.82rem;color:var(--cd-text3);margin-top:1rem;font-style:italic;">
+            "过去 30 天，你有 X 天保持活跃"
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 搜索 & 标签 ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 搜索 ===== -->
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">🔍</span>搜索与标签</h3>
-          <div class="cd-block-sub">全局检索，精准定位</div>
+          <h3><span class="ico">🔍</span>搜索与标签</h3>
+          <div class="cd-block-sub">全局检索 · 精准定位 · 标签管理</div>
           <ul class="cd-list">
             <li>全局搜索打卡项、待办、日程、日记正文</li>
             <li>模糊匹配 + 关键词高亮，结果按类别分组</li>
-            <li>自定义标签，支持颜色标记</li>
-            <li>标签筛选栏快速过滤内容</li>
+            <li>自定义标签，支持颜色标记与筛选栏快速过滤</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 每日回顾 & 那年今日 ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 回顾 & 那年今日 ===== -->
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-grid">
         <div class="cd-card reveal">
           <div class="cd-card-icon">📖</div>
-          <h3>每日回顾</h3>
+          <h4>每日回顾</h4>
           <div class="cd-card-sub">Daily Review</div>
-          <div class="cd-card-desc">
-            日历选择任意日期，查看当天全部记录。按分类展示：已完成的打卡、待办、日程、日记全文。前后天切换，一键跳回今天。
-          </div>
+          <p>日历选择任意日期，查看当天全部记录。按分类展示打卡、待办、日程、日记，前后天切换，一键回到今天。</p>
         </div>
         <div class="cd-card reveal">
           <div class="cd-card-icon">💌</div>
-          <h3>那年今日</h3>
+          <h4>那年今日</h4>
           <div class="cd-card-sub">On This Day</div>
-          <div class="cd-card-desc">
-            首页顶栏小时钟图标进入，随机展示过去某年同一天的记录。左右滑动切换不同年份，空日期配温柔文案。
-          </div>
+          <p>首页时钟图标进入，随机展示过去某年同一天的记录。左右滑动切换年份，空日期配温柔文案。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== 每周一信 ===== -->
-  <section class="section" style="padding-top:0;">
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">✉️</span>每周一信</h3>
-          <div class="cd-block-sub">Weekly Letter</div>
-          <p style="font-size:.88rem;color:var(--text2);line-height:1.7;">
-            每周日自动生成一封回顾信，内容包括本周打卡次数、日记篇数、最多标签等。温和第二人称语气，随机内置结语。
+          <h3><span class="ico">✉️</span>每周一信</h3>
+          <div class="cd-block-sub">Weekly Letter · 每周日自动生成</div>
+          <p style="font-size:.88rem;color:var(--cd-text2);line-height:1.8;">
+            一封温和的回顾信：本周打卡次数、日记篇数、最多标签……以第二人称娓娓道来，随机内置一句温柔结语。
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 成就徽章 ===== -->
-  <section class="section" style="padding-top:0;">
+  <!-- ===== 成就 ===== -->
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-block reveal">
         <div class="cd-block-body">
-          <h3><span class="emoji">🏆</span>成就徽章</h3>
-          <div class="cd-block-sub">17 枚徽章静默解锁，不推送不弹窗</div>
-
-          <div class="cd-badge-grid" style="margin-top:.75rem;">
-            <div class="cd-achieve unlocked"><div class="ico">🌱</div><div class="label">初次记录</div></div>
-            <div class="cd-achieve unlocked"><div class="ico">🔥</div><div class="label">连续 7 天</div></div>
-            <div class="cd-achieve unlocked"><div class="ico">✍️</div><div class="label">百篇日记</div></div>
-            <div class="cd-achieve unlocked"><div class="ico">⭐</div><div class="label">积分过百</div></div>
-            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
-            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
-            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
-            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
+          <h3><span class="ico">🏆</span>成就徽章</h3>
+          <div class="cd-block-sub">17 枚徽章 · 静默解锁 · 不推送不弹窗</div>
+          <div class="cd-badge-grid">
+            <div class="cd-achieve unlocked"><span class="ico">🌱</span><span class="label">初次记录</span></div>
+            <div class="cd-achieve unlocked"><span class="ico">🔥</span><span class="label">连续 7 天</span></div>
+            <div class="cd-achieve unlocked"><span class="ico">✍️</span><span class="label">百篇日记</span></div>
+            <div class="cd-achieve unlocked"><span class="ico">⭐</span><span class="label">积分过百</span></div>
+            <div class="cd-achieve unlocked"><span class="ico">📅</span><span class="label">满月用户</span></div>
+            <div class="cd-achieve unlocked"><span class="ico">🎯</span><span class="label">全勤一周</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
+            <div class="cd-achieve locked"><span class="ico">❓</span><span class="label">???</span></div>
           </div>
-
-          <p style="font-size:.82rem;color:var(--text3);margin-top:.85rem;line-height:1.5;">
-            解锁时仅在设置入口显示小红点，点击进入徽章收藏架查看。已解锁彩色展示，未解锁以 "???" 保持神秘。
+          <p style="font-size:.78rem;color:var(--cd-text3);margin-top:.85rem;">
+            解锁时仅在设置入口显示小红点 · 点击进入徽章收藏架 · 未解锁以 "???" 保持神秘
           </p>
         </div>
       </div>
@@ -477,50 +704,46 @@
   </section>
 
   <!-- ===== 设置 & 隐私 ===== -->
-  <section class="section" style="padding-top:0;">
+  <section style="padding: 2rem 0;">
     <div class="container">
       <div class="cd-grid">
         <div class="cd-card reveal">
           <div class="cd-card-icon">⚙️</div>
-          <h3>设置</h3>
+          <h4>设置</h4>
           <div class="cd-card-sub">Settings</div>
           <ul class="cd-list">
-            <li><strong style="color:var(--text);">皮肤 Beta：</strong>24 套皮肤自由切换</li>
-            <li><strong style="color:var(--text);">深色模式：</strong>跟随系统 / 浅色 / 深色</li>
-            <li><strong style="color:var(--text);">积分开关：</strong>随时关闭，回归纯粹记录</li>
-            <li><strong style="color:var(--text);">提醒设置：</strong>自定义晚间未完成提醒时间</li>
-            <li><strong style="color:var(--text);">数据导出：</strong>完整 JSON 备份</li>
-            <li><strong style="color:var(--text);">清空数据：</strong>需输入 yes 确认，防误触</li>
+            <li><b style="color:var(--cd-text);">皮肤 Beta</b> · 24 套皮肤切换</li>
+            <li><b style="color:var(--cd-text);">深色模式</b> · 跟随系统 / 浅色 / 深色</li>
+            <li><b style="color:var(--cd-text);">积分开关</b> · 随时关闭回归纯粹</li>
+            <li><b style="color:var(--cd-text);">提醒设置</b> · 自定义提醒时间</li>
+            <li><b style="color:var(--cd-text);">数据导出</b> · 完整 JSON 备份</li>
+            <li><b style="color:var(--cd-text);">清空数据</b> · 需输入 yes 确认</li>
           </ul>
         </div>
         <div class="cd-card reveal">
           <div class="cd-card-icon">🔒</div>
-          <h3>隐私</h3>
+          <h4>隐私</h4>
           <div class="cd-card-sub">Privacy</div>
-          <div class="cd-card-desc">
-            <ul class="cd-list">
-              <li>所有数据纯本地 Room 数据库存储</li>
-              <li>无账号体系、无云同步、不上传任何信息</li>
-              <li>无需网络权限，完全离线运行</li>
-            </ul>
-            <p style="margin-top:.75rem;font-size:.82rem;color:var(--text3);">
-              你的数据只属于你，永远停留在这台设备上。
-            </p>
-          </div>
+          <ul class="cd-list">
+            <li>所有数据纯本地 Room 数据库存储</li>
+            <li>无账号体系、无云同步、不上传任何信息</li>
+            <li>无需网络权限，完全离线运行</li>
+          </ul>
+          <p style="font-size:.8rem;color:var(--cd-text3);margin-top:.75rem;font-style:italic;">
+            你的数据只属于你，永远停留在这台设备上。
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Bottom CTA -->
-  <section class="section" style="text-align:center;padding-top:0;padding-bottom:6rem;">
+  <!-- Footer -->
+  <div class="cd-footer">
     <div class="container reveal">
-      <p style="color:var(--text2);max-width:500px;margin:0 auto 1.5rem;line-height:1.6;">
-        codiary 是一款完全离线的个人记录工具，<br>不依赖任何云服务，永远尊重你的数据主权。
-      </p>
-      <a href="../index.html" class="photo-back" style="display:inline-flex;">← 返回作品集</a>
+      <p>codiary 是一款完全离线的个人记录工具，不依赖任何云服务，永远尊重你的数据主权。</p>
+      <a href="../index.html" class="cd-back"><span class="arrow">←</span> 返回作品集</a>
     </div>
-  </section>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
