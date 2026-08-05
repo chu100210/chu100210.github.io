@@ -3,13 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>模块化日记 — CHU.LIFE</title>
+  <title>codiary — CHU.LIFE</title>
   <link rel="stylesheet" href="../css/style.css">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="color-scheme" content="dark light">
+  <style>
+    /* ===== codiary 页面专属样式 ===== */
+    .cd-hero {
+      padding: calc(var(--nav-h) + 4rem) 0 3rem;
+      text-align: center;
+    }
+    .cd-badge {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700; letter-spacing: .25em;
+      color: #3FB950; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding: .4em 1.2em;
+      border: 1px solid rgba(63,185,80,.3);
+      border-radius: 99px;
+      background: rgba(63,185,80,.06);
+    }
+    .cd-version {
+      font-size: .75rem; color: var(--text3); letter-spacing: .08em;
+      margin-top: .5rem;
+    }
+    .cd-tags {
+      display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .cd-tags span {
+      font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+      padding: .35em .9em; border-radius: 99px;
+      border: 1px solid var(--border); color: var(--text2);
+      background: var(--surface);
+    }
+
+    /* 功能卡片网格 */
+    .cd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+    .cd-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: all .3s;
+    }
+    .cd-card:hover { border-color: var(--border-hover); }
+    .cd-card-icon {
+      font-size: 1.8rem; margin-bottom: .75rem; line-height: 1;
+    }
+    .cd-card h3 {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: -.01em;
+      margin-bottom: .3rem;
+    }
+    .cd-card .cd-card-sub {
+      font-size: .75rem; color: var(--accent); font-weight: 500;
+      margin-bottom: .85rem;
+    }
+    .cd-card .cd-card-desc {
+      font-size: .88rem; color: var(--text2); line-height: 1.7;
+    }
+
+    /* 功能详情块 (cert-block 复刻) */
+    .cd-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      transition: all .3s;
+    }
+    .cd-block:hover { border-color: var(--border-hover); }
+    .cd-block-body { padding: 1.75rem; }
+    .cd-block-body h3 {
+      font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em;
+      margin-bottom: .25rem;
+    }
+    .cd-block-body h3 .emoji { margin-right: .4rem; }
+    .cd-block-sub {
+      font-size: .78rem; color: var(--accent); font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    /* 列表项样式 */
+    .cd-list { list-style: none; padding: 0; margin: 0; }
+    .cd-list li {
+      padding: .55rem 0; padding-left: 1.2rem;
+      font-size: .88rem; color: var(--text2); line-height: 1.6;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .cd-list li:last-child { border-bottom: none; }
+    .cd-list li::before {
+      content: ""; position: absolute; left: 0; top: 1rem;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* 积分表格 */
+    .cd-table-wrap {
+      overflow-x: auto; margin: .75rem 0 1rem;
+    }
+    .cd-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .85rem;
+    }
+    .cd-table th {
+      text-align: left; font-weight: 600; color: var(--text);
+      padding: .55rem .75rem; background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      font-size: .78rem; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .cd-table td {
+      padding: .5rem .75rem; color: var(--text2);
+      border-bottom: 1px solid var(--border);
+    }
+    .cd-table tr:last-child td { border-bottom: none; }
+    .cd-table .cd-pts {
+      font-weight: 700; color: var(--accent); font-family: var(--font-display);
+    }
+
+    /* 皮肤色系 */
+    .cd-skin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .75rem;
+      margin-top: .75rem;
+    }
+    .cd-skin-item {
+      padding: .85rem 1rem; border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: .82rem; font-weight: 600;
+    }
+    .cd-skin-item .name { color: var(--text); }
+    .cd-skin-item .count {
+      display: block; font-size: .7rem; color: var(--text3);
+      font-weight: 400; margin-top: .15rem;
+    }
+
+    /* 统计 */
+    .cd-stat-row {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .cd-stat-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .4rem .9rem; border-radius: 8px;
+      font-size: .8rem; font-weight: 600; color: var(--text);
+      background: var(--bg2); border: 1px solid var(--border);
+    }
+
+    /* 成就徽章架 */
+    .cd-badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: .75rem;
+    }
+    .cd-achieve {
+      text-align: center; padding: 1rem .5rem;
+      border-radius: 12px;
+      background: var(--bg2); border: 1px solid var(--border);
+      transition: all .3s;
+    }
+    .cd-achieve.unlocked { border-color: rgba(212,168,83,.25); background: rgba(212,168,83,.04); }
+    .cd-achieve .ico { font-size: 1.6rem; margin-bottom: .35rem; }
+    .cd-achieve .label { font-size: .72rem; font-weight: 600; color: var(--text); }
+    .cd-achieve.locked .label { color: var(--text3); }
+    .cd-achieve.locked .ico { opacity: .35; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .cd-grid { grid-template-columns: 1fr; }
+      .cd-skin-grid { grid-template-columns: repeat(2, 1fr); }
+      .cd-badge-grid { grid-template-columns: repeat(3, 1fr); }
+      .cd-stat-row { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
   <div class="cursor-glow" id="cursorGlow"></div>
@@ -30,14 +208,319 @@
     </div>
   </header>
 
-  <main class="container" style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;">
-    <div class="reveal visible">
-      <div class="section-label">模块化日记</div>
-      <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:900;letter-spacing:-.03em;margin-bottom:1rem;">敬请期待</h1>
-      <p style="color:var(--text2);font-size:1.1rem;max-width:400px;margin:0 auto 2rem;">正在努力开发中，很快就能和你见面。</p>
-      <a href="../index.html" class="photo-back">← 返回作品集</a>
+  <!-- Hero -->
+  <section class="cd-hero">
+    <div class="container">
+      <div class="reveal">
+        <div class="cd-badge">v1.0.0 &nbsp;·&nbsp; 完全离线 &nbsp;·&nbsp; 无账号 &nbsp;·&nbsp; 无云同步</div>
+        <h1 class="sec-hero-title">codiary</h1>
+        <p class="sec-hero-sub">一款纯粹、精致的日常记录应用。<br>模块化的卡片交互，让记录变得像搭积木一样自然。</p>
+        <div class="cd-version">离线优先 · 纯本地存储 · 无需网络权限</div>
+        <div class="cd-tags">
+          <span>📅 日记/随笔</span><span>✅ 待办 & 打卡</span><span>📊 数据统计</span>
+          <span>🎨 24 套皮肤</span><span>⭐ 积分成就</span><span>🔒 隐私优先</span>
+        </div>
+      </div>
+
+      <!-- Key Stats -->
+      <div class="sec-score-banner reveal">
+        <div class="sec-score-item">
+          <div class="sec-score-num">4 <span>大</span></div>
+          <div class="sec-score-label">卡片模块</div>
+        </div>
+        <div class="sec-score-divider"></div>
+        <div class="sec-score-item">
+          <div class="sec-score-num">24 <span>套</span></div>
+          <div class="sec-score-label">精选皮肤</div>
+        </div>
+        <div class="sec-score-divider"></div>
+        <div class="sec-score-item">
+          <div class="sec-score-num">17 <span>枚</span></div>
+          <div class="sec-score-label">成就徽章</div>
+        </div>
+        <div class="sec-score-divider"></div>
+        <div class="sec-score-item">
+          <div class="sec-score-num">0 <span>KB</span></div>
+          <div class="sec-score-label">数据上传</div>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- ===== 今日（首页） ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <div class="reveal" style="margin-bottom:1.5rem;">
+        <div class="section-label">核心体验</div>
+        <h2 class="section-title">📅 今日（首页）</h2>
+        <p class="section-desc">以卡片流展示当天所有内容，直接在卡片上完成交互，无需跳转。</p>
+      </div>
+
+      <div class="cd-grid">
+
+        <!-- 打卡 -->
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">✅</div>
+          <h3>打卡项</h3>
+          <div class="cd-card-sub">Daily Habits</div>
+          <div class="cd-card-desc">
+            创建每日/每周习惯，设定频率（如"每周 5 次"）。点击卡片完成打卡，伴有弹性缩放动效和触感反馈。显示当日完成进度，支持长按编辑。
+          </div>
+        </div>
+
+        <!-- 待办 -->
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">📋</div>
+          <h3>待办事项</h3>
+          <div class="cd-card-sub">Long-term Tasks</div>
+          <div class="cd-card-desc">
+            添加无截止日的长期任务。勾选完成自动划除并置底，可随时取消完成。卡片内嵌快速添加输入框，回车即保存。
+          </div>
+        </div>
+
+        <!-- 日程 -->
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">🕐</div>
+          <h3>日程</h3>
+          <div class="cd-card-sub">Timed Events</div>
+          <div class="cd-card-desc">
+            添加带时间点的事件（如"14:30 牙医预约"），时间轴样式展示。过期日程自动淡化，支持提前 5/15/30 分钟提醒。
+          </div>
+        </div>
+
+        <!-- 日记 -->
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">✍️</div>
+          <h3>日记 / 随笔</h3>
+          <div class="cd-card-sub">Block Editor</div>
+          <div class="cd-card-desc">
+            块编辑器：每段文字一块、每张图片一块，像搭积木一样编排。支持插入本地图片，图文自然混排。自动保存草稿，预览模式展示完整图文，干净如纸张。
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 积分系统 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">⭐</span>积分系统</h3>
+          <div class="cd-block-sub">完成行为自动获得积分，可在设置中随时关闭回归纯粹记录</div>
+
+          <div class="cd-table-wrap">
+            <table class="cd-table">
+              <thead><tr><th>行为</th><th style="text-align:right;">积分</th></tr></thead>
+              <tbody>
+                <tr><td>完成一次打卡</td><td style="text-align:right;"><span class="cd-pts">+5</span></td></tr>
+                <tr><td>勾选一项待办</td><td style="text-align:right;"><span class="cd-pts">+3</span></td></tr>
+                <tr><td>完成一项日程</td><td style="text-align:right;"><span class="cd-pts">+5</span></td></tr>
+                <tr><td>日记超 20 字</td><td style="text-align:right;"><span class="cd-pts">+5</span></td></tr>
+                <tr><td>连续打卡 7 天</td><td style="text-align:right;"><span class="cd-pts">+15</span></td></tr>
+                <tr><td>当日全部完成</td><td style="text-align:right;"><span class="cd-pts">+10</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:.88rem;color:var(--text2);line-height:1.6;">
+            <strong style="color:var(--text);">积分用途：</strong>补签卡（50 分）、自定义主题色、专注模式背景等轻量成就解锁。<br>
+            完成行为时 "+5" 飘出动画，2 秒自然消失。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 皮肤系统 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">🎨</span>皮肤系统</h3>
+          <div class="cd-block-sub">内置 24 套皮肤，覆盖 5 个色系。每套均配套深色版本，切换时 0.3 秒柔和渐变过渡。支持跟随系统 / 手动锁定深色模式。</div>
+
+          <div class="cd-skin-grid">
+            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(59,130,246,.12), rgba(99,179,237,.08));">
+              <span class="name">🔵 蓝色系</span>
+              <span class="count">8 套 · 渐变/双色，科技清爽</span>
+            </div>
+            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(52,168,83,.12), rgba(134,194,50,.08));">
+              <span class="name">🌿 绿色系</span>
+              <span class="count">5 套 · 森系自然、薄荷撞色</span>
+            </div>
+            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(232,150,40,.12), rgba(255,180,60,.08));">
+              <span class="name">🌅 暖橙色系</span>
+              <span class="count">3 套 · 落日阳光、治愈双色</span>
+            </div>
+            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(216,130,200,.12), rgba(240,170,220,.08));">
+              <span class="name">🌸 粉紫马卡龙</span>
+              <span class="count">8 套 · 樱花梦幻、温柔少女</span>
+            </div>
+            <div class="cd-skin-item" style="background:linear-gradient(135deg, rgba(148,148,160,.12), rgba(180,180,190,.08));">
+              <span class="name">🪨 莫兰迪</span>
+              <span class="count">4 套 · 高级灰调、静物简约</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 统计 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">📊</span>统计</h3>
+          <div class="cd-block-sub">多维度可视化你的记录习惯</div>
+
+          <div class="cd-stat-row" style="margin-top:.75rem;">
+            <div class="cd-stat-badge">🥧 环形图：打卡完成率可视化</div>
+            <div class="cd-stat-badge">📊 柱状图：近两周每日活跃趋势</div>
+            <div class="cd-stat-badge">🔥 年历热力图：全年打卡分布，颜色深浅表示活跃度</div>
+            <div class="cd-stat-badge">📈 时光折线图：综合活跃分（打卡+2/待办+1/日记+3，日上限 20）</div>
+          </div>
+
+          <p style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-top:1rem;">
+            支持<strong style="color:var(--text);">周/月/年</strong>视图切换，底部自动总结：<em>"过去 30 天，你有 X 天保持活跃"</em>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 搜索 & 标签 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">🔍</span>搜索与标签</h3>
+          <div class="cd-block-sub">全局检索，精准定位</div>
+          <ul class="cd-list">
+            <li>全局搜索打卡项、待办、日程、日记正文</li>
+            <li>模糊匹配 + 关键词高亮，结果按类别分组</li>
+            <li>自定义标签，支持颜色标记</li>
+            <li>标签筛选栏快速过滤内容</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 每日回顾 & 那年今日 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-grid">
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">📖</div>
+          <h3>每日回顾</h3>
+          <div class="cd-card-sub">Daily Review</div>
+          <div class="cd-card-desc">
+            日历选择任意日期，查看当天全部记录。按分类展示：已完成的打卡、待办、日程、日记全文。前后天切换，一键跳回今天。
+          </div>
+        </div>
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">💌</div>
+          <h3>那年今日</h3>
+          <div class="cd-card-sub">On This Day</div>
+          <div class="cd-card-desc">
+            首页顶栏小时钟图标进入，随机展示过去某年同一天的记录。左右滑动切换不同年份，空日期配温柔文案。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 每周一信 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">✉️</span>每周一信</h3>
+          <div class="cd-block-sub">Weekly Letter</div>
+          <p style="font-size:.88rem;color:var(--text2);line-height:1.7;">
+            每周日自动生成一封回顾信，内容包括本周打卡次数、日记篇数、最多标签等。温和第二人称语气，随机内置结语。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 成就徽章 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-block reveal">
+        <div class="cd-block-body">
+          <h3><span class="emoji">🏆</span>成就徽章</h3>
+          <div class="cd-block-sub">17 枚徽章静默解锁，不推送不弹窗</div>
+
+          <div class="cd-badge-grid" style="margin-top:.75rem;">
+            <div class="cd-achieve unlocked"><div class="ico">🌱</div><div class="label">初次记录</div></div>
+            <div class="cd-achieve unlocked"><div class="ico">🔥</div><div class="label">连续 7 天</div></div>
+            <div class="cd-achieve unlocked"><div class="ico">✍️</div><div class="label">百篇日记</div></div>
+            <div class="cd-achieve unlocked"><div class="ico">⭐</div><div class="label">积分过百</div></div>
+            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
+            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
+            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
+            <div class="cd-achieve locked"><div class="ico">❓</div><div class="label">???</div></div>
+          </div>
+
+          <p style="font-size:.82rem;color:var(--text3);margin-top:.85rem;line-height:1.5;">
+            解锁时仅在设置入口显示小红点，点击进入徽章收藏架查看。已解锁彩色展示，未解锁以 "???" 保持神秘。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 设置 & 隐私 ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cd-grid">
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">⚙️</div>
+          <h3>设置</h3>
+          <div class="cd-card-sub">Settings</div>
+          <ul class="cd-list">
+            <li><strong style="color:var(--text);">皮肤 Beta：</strong>24 套皮肤自由切换</li>
+            <li><strong style="color:var(--text);">深色模式：</strong>跟随系统 / 浅色 / 深色</li>
+            <li><strong style="color:var(--text);">积分开关：</strong>随时关闭，回归纯粹记录</li>
+            <li><strong style="color:var(--text);">提醒设置：</strong>自定义晚间未完成提醒时间</li>
+            <li><strong style="color:var(--text);">数据导出：</strong>完整 JSON 备份</li>
+            <li><strong style="color:var(--text);">清空数据：</strong>需输入 yes 确认，防误触</li>
+          </ul>
+        </div>
+        <div class="cd-card reveal">
+          <div class="cd-card-icon">🔒</div>
+          <h3>隐私</h3>
+          <div class="cd-card-sub">Privacy</div>
+          <div class="cd-card-desc">
+            <ul class="cd-list">
+              <li>所有数据纯本地 Room 数据库存储</li>
+              <li>无账号体系、无云同步、不上传任何信息</li>
+              <li>无需网络权限，完全离线运行</li>
+            </ul>
+            <p style="margin-top:.75rem;font-size:.82rem;color:var(--text3);">
+              你的数据只属于你，永远停留在这台设备上。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section" style="text-align:center;padding-top:0;padding-bottom:6rem;">
+    <div class="container reveal">
+      <p style="color:var(--text2);max-width:500px;margin:0 auto 1.5rem;line-height:1.6;">
+        codiary 是一款完全离线的个人记录工具，<br>不依赖任何云服务，永远尊重你的数据主权。
+      </p>
+      <a href="../index.html" class="photo-back" style="display:inline-flex;">← 返回作品集</a>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container">
