@@ -13,74 +13,196 @@
   <style>
     /* ===== MJ 页面 ===== */
     .mj-main {
+      position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+      padding: calc(var(--nav-h) + 2rem) 1.5rem 5rem;
+      overflow: hidden;
     }
-    .mj-card {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 3rem 3.5rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
-      transition: border-color .3s;
-    }
-    .mj-card:hover { border-color: var(--border-hover); }
 
-    /* 图标 */
+    /* 背景氛围 */
+    .mj-bg {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .mj-bg .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(60px); opacity: .5;
+    }
+    .mj-bg .orb-1 {
+      width: 420px; height: 420px;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      animation: mjOrbFloat 8s ease-in-out infinite;
+    }
+    .mj-bg .orb-2 {
+      width: 300px; height: 300px;
+      bottom: -60px; right: 15%;
+      background: radial-gradient(circle, rgba(140,120,220,.14), transparent 70%);
+      animation: mjOrbFloat 10s ease-in-out infinite reverse;
+    }
+    .mj-bg .orb-3 {
+      width: 260px; height: 260px;
+      bottom: 5%; left: 12%;
+      background: radial-gradient(circle, rgba(90,180,220,.12), transparent 70%);
+      animation: mjOrbFloat 12s ease-in-out infinite;
+    }
+    @keyframes mjOrbFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(24px); }
+    }
+    .mj-bg .orb-2 { animation-name: mjOrbFloat2; }
+    .mj-bg .orb-3 { animation-name: mjOrbFloat2; }
+    @keyframes mjOrbFloat2 {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(28px); }
+    }
+
+    /* 网格纹理 */
+    .mj-grid-pattern {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, black 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, black 0%, transparent 70%);
+      opacity: .5;
+    }
+
+    /* 主卡片 */
+    .mj-stage {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 4rem;
+      animation: mjStageIn .9s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes mjStageIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 图标 + 光环 */
+    .mj-icon-wrap {
+      position: relative; flex-shrink: 0;
+      animation: mjIconFloat 5s ease-in-out infinite;
+    }
+    @keyframes mjIconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
     .mj-icon {
-      width: 180px; height: 180px;
-      border-radius: 28px;
+      width: 200px; height: 200px;
+      border-radius: 32px;
       object-fit: cover;
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
-      flex-shrink: 0;
+      box-shadow:
+        0 24px 80px rgba(0,0,0,.45),
+        0 0 0 1px rgba(255,255,255,.08) inset;
+      position: relative; z-index: 2;
+      display: block;
+    }
+    /* 光环 */
+    .mj-halo {
+      position: absolute; inset: -18px;
+      border-radius: 42px;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        var(--accent) 80deg,
+        transparent 140deg,
+        transparent 200deg,
+        rgba(140,120,220,.5) 260deg,
+        transparent 320deg
+      );
+      opacity: .55;
+      animation: mjHaloSpin 8s linear infinite;
+      z-index: 1;
+    }
+    @keyframes mjHaloSpin {
+      to { transform: rotate(360deg); }
+    }
+    .mj-halo-static {
+      position: absolute; inset: -26px;
+      border-radius: 46px;
+      border: 1px solid var(--border-hover);
+      z-index: 0;
     }
 
     /* 右侧信息 */
     .mj-info {
       display: flex; flex-direction: column; align-items: flex-start;
-      gap: 1.25rem;
+      gap: 1.5rem;
+    }
+    .mj-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .mj-label::before {
+      content: ""; width: 24px; height: 1px; background: var(--accent);
+      opacity: .6;
     }
     .mj-name {
       font-family: var(--font-display);
-      font-size: 3rem; font-weight: 900; letter-spacing: -.03em;
+      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-weight: 900; letter-spacing: -.04em;
       line-height: 1;
+      background: linear-gradient(135deg, var(--text) 40%, var(--accent) 130%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .mj-desc {
+      font-size: .95rem; color: var(--text2);
+      letter-spacing: .02em;
+    }
+
+    /* 下载按钮组 */
+    .mj-actions {
+      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
     }
     .mj-dl-btn {
+      position: relative;
       display: inline-flex; align-items: center; gap: .6rem;
-      padding: .85rem 2.2rem;
+      padding: 1rem 2.6rem;
       border-radius: 99px;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #111;
-      font-weight: 700; font-size: .95rem; letter-spacing: .02em;
+      font-weight: 700; font-size: 1rem; letter-spacing: .02em;
       text-decoration: none;
-      transition: all .3s;
+      transition: all .35s cubic-bezier(.22,1,.36,1);
       border: none; cursor: pointer;
       font-family: var(--font);
+      box-shadow: 0 8px 28px var(--accent-glow);
     }
     .mj-dl-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--accent-glow);
-      background: var(--accent2);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 40px var(--accent-glow);
     }
+    .mj-dl-btn:active { transform: translateY(0) scale(.98); }
+    .mj-dl-btn .arr { transition: transform .3s; font-size: .9em; }
+    .mj-dl-btn:hover .arr { transform: translateY(3px); }
+
+    /* 密码胶囊 */
     .mj-pwd {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .55rem 1.2rem;
+      border-radius: 99px;
+      border: 1px dashed var(--border-hover);
+      background: var(--surface);
       font-size: .8rem; color: var(--text2); letter-spacing: .03em;
     }
-    .mj-pwd b { color: var(--accent); font-weight: 700; }
+    .mj-pwd b { color: var(--accent); font-weight: 800; letter-spacing: .08em; }
 
     /* 响应式 */
-    @media (max-width: 640px) {
-      .mj-card {
-        flex-direction: column; text-align: center;
-        padding: 2.5rem 2rem; gap: 2rem;
+    @media (max-width: 720px) {
+      .mj-stage {
+        flex-direction: column; gap: 2.5rem; text-align: center;
       }
       .mj-info { align-items: center; }
-      .mj-icon { width: 140px; height: 140px; border-radius: 22px; }
+      .mj-icon { width: 160px; height: 160px; border-radius: 26px; }
+      .mj-actions { justify-content: center; }
+      .mj-label::before { display: none; }
     }
   </style>
 </head>
@@ -104,12 +226,32 @@
   </header>
 
   <main class="mj-main">
-    <div class="mj-card reveal visible">
-      <img class="mj-icon" src="../images/mj.jpg" alt="MJ 应用图标">
+    <div class="mj-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="mj-grid-pattern"></div>
+
+    <div class="mj-stage">
+      <!-- 左：图标 -->
+      <div class="mj-icon-wrap">
+        <div class="mj-halo-static"></div>
+        <div class="mj-halo"></div>
+        <img class="mj-icon" src="../images/mj.jpg" alt="MJ 应用图标">
+      </div>
+
+      <!-- 右：名称 + 下载 -->
       <div class="mj-info">
+        <div class="mj-label">New App</div>
         <h1 class="mj-name">MJ</h1>
-        <a class="mj-dl-btn" href="https://wwbnt.lanzoul.com/iha5o44puqrc" target="_blank" rel="noopener">⬇ 立即下载</a>
-        <p class="mj-pwd">下载密码：<b>1145</b></p>
+        <p class="mj-desc">轻触即启，一切刚好。</p>
+        <div class="mj-actions">
+          <a class="mj-dl-btn" href="https://wwbnt.lanzoul.com/iha5o44puqrc" target="_blank" rel="noopener">
+            下载应用 <span class="arr">↓</span>
+          </a>
+          <span class="mj-pwd">密码 <b>1145</b></span>
+        </div>
       </div>
     </div>
   </main>
