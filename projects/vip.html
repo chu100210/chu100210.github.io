@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members Only — CHU.LIFE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="color-scheme" content="dark light">
+  <style>
+    /* ===== VIP 通道 ===== */
+    .vip-main {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      padding: calc(var(--nav-h) + 1.5rem) 1.5rem 3rem;
+    }
+
+    /* 顶部搜索框 */
+    .vip-topbar {
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .vip-search {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: .4rem .4rem .4rem 1.2rem;
+      width: min(420px, 100%);
+      transition: border-color .3s;
+    }
+    .vip-search:focus-within { border-color: var(--border-hover); }
+    .vip-search input {
+      flex: 1; background: none; border: none; outline: none;
+      color: var(--text); font-family: var(--font); font-size: .9rem;
+      letter-spacing: .04em;
+    }
+    .vip-search input::placeholder { color: var(--text3); }
+    .vip-search button {
+      background: var(--accent); color: #111; border: none;
+      padding: .5rem 1.1rem; border-radius: 99px;
+      font-family: var(--font); font-weight: 700; font-size: .8rem;
+      cursor: pointer; transition: all .25s; letter-spacing: .02em;
+    }
+    .vip-search button:hover { background: var(--accent2); }
+    .vip-search-err {
+      margin-top: .5rem; text-align: center;
+      font-size: .78rem; color: #e05d5d; min-height: 1.2em;
+      letter-spacing: .05em;
+    }
+
+    /* 中间验证区 */
+    .vip-gate {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 1.5rem;
+      padding-bottom: 4rem;
+    }
+    .vip-emblem {
+      font-size: 2.6rem; line-height: 1;
+      animation: vipEmblemFloat 4s ease-in-out infinite;
+    }
+    @keyframes vipEmblemFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .vip-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800; letter-spacing: .08em;
+      color: var(--text);
+    }
+    .vip-title small {
+      display: block; font-size: .62rem; font-weight: 600;
+      letter-spacing: .4em; color: var(--text3); margin-top: .4rem;
+      text-transform: uppercase;
+    }
+    .vip-input-row {
+      display: flex; gap: .5rem; align-items: center;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .vip-input-row input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .8rem 1.2rem;
+      color: var(--text); font-family: var(--font); font-size: 1rem;
+      outline: none; width: min(260px, 70vw);
+      transition: border-color .3s; letter-spacing: .06em;
+      text-align: center;
+    }
+    .vip-input-row input:focus { border-color: var(--accent); }
+    .vip-input-row button {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #111; border: none; border-radius: 12px;
+      padding: .8rem 1.6rem;
+      font-family: var(--font); font-weight: 700; font-size: .9rem;
+      cursor: pointer; letter-spacing: .08em;
+      transition: all .3s; box-shadow: 0 6px 20px var(--accent-glow);
+    }
+    .vip-input-row button:hover { transform: translateY(-2px); }
+    .vip-hint {
+      font-size: .75rem; color: var(--text3); letter-spacing: .15em;
+    }
+    /* 错误抖动 */
+    .vip-shake { animation: vipShake .45s ease; }
+    @keyframes vipShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+    .vip-gate-err {
+      font-size: .8rem; color: #e05d5d; min-height: 1.2em; letter-spacing: .05em;
+    }
+
+    /* PIN 弹出面板 */
+    .vip-pin-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem 2.25rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      animation: vipPinIn .5s cubic-bezier(.22,1,.36,1) both;
+    }
+    .vip-pin-panel.show { display: block; }
+    @keyframes vipPinIn {
+      from { opacity: 0; transform: translateY(16px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .vip-pin-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .3em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: .7rem;
+    }
+    .vip-pin-code {
+      font-family: var(--font-display);
+      font-size: 1.9rem; font-weight: 900; letter-spacing: .22em;
+      color: var(--text);
+      padding: .5rem 1.2rem;
+      border: 1px dashed var(--border-hover);
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: .7rem;
+      background: var(--bg2);
+    }
+    .vip-pin-tip {
+      font-size: .72rem; color: var(--text3); letter-spacing: .06em;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- 顶部搜索框 -->
+  <main class="vip-main">
+    <div class="vip-topbar">
+      <form class="vip-search" id="pinSearch">
+        <input type="text" id="pinInput" placeholder="输入访问密钥 · PIN" autocomplete="off">
+        <button type="submit">进入</button>
+      </form>
+    </div>
+    <p class="vip-search-err" id="pinErr"></p>
+
+    <!-- 验证区 -->
+    <div class="vip-gate">
+      <div class="vip-emblem">🔐</div>
+      <h1 class="vip-title">Members Only<small>V I P &nbsp; E N T R A N C E</small></h1>
+      <div class="vip-input-row">
+        <input type="text" id="nameInput" placeholder="你的名字？" autocomplete="off">
+        <button type="button" id="nameBtn">验 证</button>
+      </div>
+      <p class="vip-gate-err" id="nameErr"></p>
+      <p class="vip-hint">— 仅限受邀成员 —</p>
+
+      <!-- PIN 弹出 -->
+      <div class="vip-pin-panel" id="pinPanel">
+        <div class="vip-pin-label">Access Granted</div>
+        <div class="vip-pin-code" id="pinCode">··········</div>
+        <div class="vip-pin-tip">请在上方搜索框输入此密钥</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/vip.js"></script>
+</body>
+</html>
