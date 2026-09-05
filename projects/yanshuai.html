@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>闫帅 · VIP — CHU.LIFE</title>
+  <title>闫帅 · 全站唯一 VIP — CHU.LIFE</title>
   <link rel="stylesheet" href="../css/style.css">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
@@ -11,33 +11,38 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="color-scheme" content="dark light">
   <style>
-    /* ===== 闫帅专属页 ===== */
+    /* ===== 闫帅专属页（恶搞版）===== */
     .ys-main {
-      position: relative;
-      min-height: 100vh;
+      position: relative; min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: calc(var(--nav-h) + 2rem) 1.5rem 3rem;
+      padding: 3rem 1.2rem 2.5rem;
       overflow: hidden;
     }
 
-    /* 背景光晕 */
-    .ys-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-    .ys-bg .glow {
-      position: absolute; border-radius: 50%; filter: blur(70px); opacity: .45;
-      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+    /* 彩带雨 */
+    .confetti-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .confetti {
+      position: absolute; top: -3%;
+      width: 9px; height: 15px; border-radius: 3px;
+      animation: confFall linear infinite;
     }
-    .ys-bg .g1 { width: 480px; height: 480px; top: 12%; left: 50%; transform: translateX(-50%); }
-    .ys-bg .g2 { width: 320px; height: 320px; bottom: 8%; right: 18%; opacity: .3; }
+    @keyframes confFall {
+      to { transform: translateY(115vh) rotate(720deg); }
+    }
 
-    /* 头部徽标 */
+    /* 徽章 */
     .ys-badge {
       position: relative; z-index: 3;
-      font-size: .65rem; font-weight: 700; letter-spacing: .35em;
-      text-transform: uppercase; color: var(--accent);
-      border: 1px solid var(--border-hover);
-      padding: .45em 1.4em; border-radius: 99px;
-      background: var(--surface);
-      margin-bottom: 2.5rem;
+      font-size: .82rem; font-weight: 700; color: #fff;
+      padding: .55em 1.3em; border-radius: 99px;
+      background: linear-gradient(90deg, #ff6b81, #ffa94d, #ffd43b);
+      box-shadow: 0 6px 24px rgba(255,107,129,.35);
+      margin-bottom: 1.6rem;
+      animation: badgeBounce 2s ease-in-out infinite;
+    }
+    @keyframes badgeBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     /* 舞台：大字在后，头像在前 */
@@ -45,63 +50,95 @@
       position: relative; z-index: 1;
       display: flex; align-items: center; justify-content: center;
     }
-
-    /* 背后的“闫帅”大字 */
     .ys-giant {
       position: relative; z-index: 0;
-      display: flex; gap: .35em;
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(9rem, 26vw, 17rem);
-      line-height: 1;
-      letter-spacing: -.05em;
-      color: var(--accent);
-      opacity: .18;
+      font-size: clamp(8rem, 24vw, 16rem);
+      line-height: 1; letter-spacing: -.05em;
+      background: linear-gradient(90deg, #ff6b81, #ffa94d, #ffd43b, #69db7c, #4dabf7);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      opacity: .55;
+      transform: rotate(-4deg);
       user-select: none;
-      -webkit-text-stroke: 1px var(--accent);
-      text-shadow: 0 0 80px var(--accent-glow);
-      animation: ysGiantBreathe 6s ease-in-out infinite;
+      animation: ysWiggle 4s ease-in-out infinite;
     }
-    @keyframes ysGiantBreathe {
-      0%, 100% { opacity: .16; transform: scale(1); }
-      50% { opacity: .24; transform: scale(1.03); }
-    }
-    html.light .ys-giant {
-      opacity: .22;
-      color: var(--accent);
+    @keyframes ysWiggle {
+      0%, 100% { transform: rotate(-4deg) scale(1); }
+      50% { transform: rotate(-7deg) scale(1.04); }
     }
 
-    /* 头像：居中叠在字上，背景透明 */
-    .ys-avatar {
-      position: absolute; z-index: 2;
-      left: 50%; top: 50%;
+    .ys-avatar-wrap {
+      position: absolute; z-index: 2; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
-      width: clamp(170px, 34vw, 250px);
-      filter: drop-shadow(0 18px 50px rgba(0,0,0,.5));
-      animation: ysAvatarFloat 5.5s ease-in-out infinite;
-      pointer-events: none;
+      animation: ysFloat 5.5s ease-in-out infinite;
+      text-align: center;
     }
-    @keyframes ysAvatarFloat {
+    @keyframes ysFloat {
       0%, 100% { transform: translate(-50%, -50%); }
       50% { transform: translate(-50%, calc(-50% - 10px)); }
     }
+    .ys-crown {
+      display: block; font-size: clamp(2.2rem, 6vw, 3rem); line-height: 1;
+      margin-bottom: -1.1rem; transform: rotate(10deg);
+      animation: crownBob 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 4px 10px rgba(255,212,59,.5));
+    }
+    @keyframes crownBob {
+      0%, 100% { transform: rotate(10deg) translateY(0); }
+      50% { transform: rotate(-6deg) translateY(-7px); }
+    }
+    .ys-avatar {
+      display: block; margin: 0 auto;
+      width: clamp(170px, 34vw, 250px);
+      filter: drop-shadow(0 16px 44px rgba(0,0,0,.5));
+      pointer-events: none;
+    }
 
-    /* 底部签名 */
-    .ys-sign {
+    /* 恭喜标题 */
+    .ys-congrats {
       position: relative; z-index: 3;
-      margin-top: 2.8rem; text-align: center;
-    }
-    .ys-sign .line {
-      width: 56px; height: 1px; margin: 0 auto .9rem;
-      background: linear-gradient(to right, transparent, var(--accent), transparent);
-    }
-    .ys-sign p {
-      font-size: .72rem; letter-spacing: .3em; color: var(--text3);
-      text-transform: uppercase;
+      margin: 1.8rem 0 0;
+      font-size: clamp(1.15rem, 4vw, 1.5rem); font-weight: 800;
     }
 
-    @media (max-width: 640px) {
-      .ys-giant { font-size: clamp(6rem, 34vw, 10rem); }
+    /* 特权卡片 */
+    .ys-cards {
+      position: relative; z-index: 3;
+      display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center;
+      margin-top: 1.6rem; max-width: 620px;
+    }
+    .ys-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: .75rem 1.05rem;
+      font-size: .8rem; color: var(--text2); text-align: center;
+      min-width: 118px;
+      transition: transform .25s;
+    }
+    .ys-card:hover { transform: translateY(-4px) rotate(-2deg); }
+    .ys-card b { display: block; font-size: .95rem; color: var(--accent); margin-bottom: .15rem; }
+
+    /* 今日特权 */
+    .ys-tip {
+      position: relative; z-index: 3;
+      margin: 1.4rem 0 0; font-size: .82rem; color: var(--text3);
+    }
+
+    /* 跑马灯 */
+    .ys-marquee {
+      position: relative; z-index: 3;
+      width: 100%; overflow: hidden; margin-top: 1.8rem;
+      border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border);
+      padding: .55rem 0;
+    }
+    .ys-marquee-inner { display: flex; width: max-content; animation: marq 13s linear infinite; }
+    .ys-marquee-inner span { white-space: nowrap; font-size: .82rem; color: var(--text2); padding-right: 1.5rem; }
+    @keyframes marq { to { transform: translateX(-50%); } }
+
+    .ys-foot {
+      position: relative; z-index: 3;
+      margin-top: 1.6rem; font-size: .72rem; color: var(--text3); text-align: center;
     }
   </style>
 </head>
@@ -109,24 +146,55 @@
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <main class="ys-main">
-    <div class="ys-bg">
-      <div class="glow g1"></div>
-      <div class="glow g2"></div>
+    <!-- 彩带雨 -->
+    <div class="confetti-wrap" aria-hidden="true">
+      <span class="confetti" style="left:4%; background:#ff6b81; animation-duration:5.2s; animation-delay:0s;"></span>
+      <span class="confetti" style="left:9%; background:#ffd43b; animation-duration:6.4s; animation-delay:1.2s;"></span>
+      <span class="confetti" style="left:15%; background:#69db7c; animation-duration:4.6s; animation-delay:2.1s;"></span>
+      <span class="confetti" style="left:21%; background:#4dabf7; animation-duration:7s; animation-delay:.6s;"></span>
+      <span class="confetti" style="left:27%; background:#ffa94d; animation-duration:5.6s; animation-delay:3s;"></span>
+      <span class="confetti" style="left:34%; background:#ff6b81; animation-duration:6.8s; animation-delay:1.8s;"></span>
+      <span class="confetti" style="left:40%; background:#ffd43b; animation-duration:4.8s; animation-delay:.3s;"></span>
+      <span class="confetti" style="left:46%; background:#69db7c; animation-duration:6s; animation-delay:2.6s;"></span>
+      <span class="confetti" style="left:52%; background:#4dabf7; animation-duration:5.4s; animation-delay:1.5s;"></span>
+      <span class="confetti" style="left:58%; background:#ffa94d; animation-duration:7.2s; animation-delay:.9s;"></span>
+      <span class="confetti" style="left:64%; background:#ff6b81; animation-duration:5s; animation-delay:3.4s;"></span>
+      <span class="confetti" style="left:70%; background:#ffd43b; animation-duration:6.6s; animation-delay:2.4s;"></span>
+      <span class="confetti" style="left:76%; background:#69db7c; animation-duration:4.4s; animation-delay:.5s;"></span>
+      <span class="confetti" style="left:82%; background:#4dabf7; animation-duration:6.2s; animation-delay:1s;"></span>
+      <span class="confetti" style="left:88%; background:#ffa94d; animation-duration:5.8s; animation-delay:2.9s;"></span>
+      <span class="confetti" style="left:94%; background:#ff6b81; animation-duration:7.4s; animation-delay:.2s;"></span>
     </div>
 
-    <div class="ys-badge">V I P &nbsp;·&nbsp; M E M B E R</div>
+    <div class="ys-badge">🎉 全站最高荣誉 · 唯一 VIP 🎉</div>
 
     <div class="ys-stage">
-      <!-- 背后大字 -->
       <div class="ys-giant">闫帅</div>
-      <!-- 头像（透明背景） -->
-      <img class="ys-avatar" src="../yanshuai/avatar.png" alt="闫帅">
+      <div class="ys-avatar-wrap">
+        <span class="ys-crown">👑</span>
+        <img class="ys-avatar" src="../yanshuai/avatar.png" alt="闫帅">
+      </div>
     </div>
 
-    <div class="ys-sign">
-      <div class="line"></div>
-      <p>Y a n &nbsp; S h u a i</p>
+    <h1 class="ys-congrats">恭喜闫帅！成为本网站唯一 VIP！🎊</h1>
+
+    <div class="ys-cards">
+      <div class="ys-card"><b>😎 帅气值</b>100%（满分）</div>
+      <div class="ys-card"><b>🏆 VIP 等级</b>至尊唯一</div>
+      <div class="ys-card"><b>🎁 专属特权</b>无（但很牛）</div>
+      <div class="ys-card"><b>💰 钱包余额</b>保密 🤐</div>
     </div>
+
+    <p class="ys-tip" id="ysTip">今日特权：可以随时访问本页</p>
+
+    <div class="ys-marquee" aria-hidden="true">
+      <div class="ys-marquee-inner">
+        <span>🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏</span>
+        <span>🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏</span>
+      </div>
+    </div>
+
+    <p class="ys-foot">本页面由褚俊熙倾情打造 · 仅供闫帅一人欣赏 · 其他人看到请装作没看见 🤫</p>
   </main>
 
   <script src="../js/yanshuai.js"></script>
