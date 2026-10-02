@@ -1,0 +1,3507 @@
+{
+  "version": 1,
+  "generated": "2026-09-05T13:19:51.453Z",
+  "docx": "CHU.LIFE-网站文字整理.docx",
+  "entries": {
+    "T0001": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "CHU.LIFE — Portfolio",
+      "raw": "CHU.LIFE — Portfolio",
+      "start": 155,
+      "end": 175
+    },
+    "T0002": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "CHU",
+      "raw": "CHU",
+      "start": 1230,
+      "end": 1233
+    },
+    "T0003": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE",
+      "start": 1247,
+      "end": 1251
+    },
+    "T0004": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "作品",
+      "raw": "作品",
+      "start": 1312,
+      "end": 1314
+    },
+    "T0005": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "奖项",
+      "raw": "奖项",
+      "start": 1346,
+      "end": 1348
+    },
+    "T0006": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "关于",
+      "raw": "关于",
+      "start": 1379,
+      "end": 1381
+    },
+    "T0007": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "联系",
+      "raw": "联系",
+      "start": 1414,
+      "end": 1416
+    },
+    "T0008": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "认证",
+      "raw": "认证",
+      "start": 1454,
+      "end": 1456
+    },
+    "T0009": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "button#themeToggle.theme-toggle",
+      "attr": "aria-label",
+      "text": "切换主题",
+      "raw": "切换主题",
+      "start": 1539,
+      "end": 1543
+    },
+    "T0010": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.hero-eyebrow",
+      "attr": "",
+      "text": "Design · Code · Photography",
+      "raw": "Design · Code · Photography",
+      "start": 1824,
+      "end": 1851
+    },
+    "T0011": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h1.hero-title",
+      "attr": "",
+      "text": "CHU",
+      "raw": "\r\n          CHU",
+      "start": 1890,
+      "end": 1905
+    },
+    "T0012": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h1.hero-title",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE\r\n        ",
+      "start": 1931,
+      "end": 1945
+    },
+    "T0013": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p.hero-sub",
+      "attr": "",
+      "text": "hi，欢迎来到我的个人网站。",
+      "raw": "\r\n          hi，欢迎来到我的个人网站。\r\n        ",
+      "start": 2019,
+      "end": 2055
+    },
+    "T0014": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "Scroll",
+      "raw": "Scroll",
+      "start": 2130,
+      "end": 2136
+    },
+    "T0015": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.section-label",
+      "attr": "",
+      "text": "Portfolio",
+      "raw": "Portfolio",
+      "start": 2362,
+      "end": 2371
+    },
+    "T0016": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h2.section-title",
+      "attr": "",
+      "text": "精选作品",
+      "raw": "精选作品",
+      "start": 2413,
+      "end": 2417
+    },
+    "T0017": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p.section-desc",
+      "attr": "",
+      "text": "每一个项目都是一次对美与功能的探索。",
+      "raw": "每一个项目都是一次对美与功能的探索。",
+      "start": 2456,
+      "end": 2474
+    },
+    "T0018": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "button.filter-btn",
+      "attr": "",
+      "text": "全部",
+      "raw": "全部",
+      "start": 2595,
+      "end": 2597
+    },
+    "T0019": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "button.filter-btn",
+      "attr": "",
+      "text": "设计",
+      "raw": "设计",
+      "start": 2664,
+      "end": 2666
+    },
+    "T0020": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "button.filter-btn",
+      "attr": "",
+      "text": "编程",
+      "raw": "编程",
+      "start": 2731,
+      "end": 2733
+    },
+    "T0021": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "button.filter-btn",
+      "attr": "",
+      "text": "摄影",
+      "raw": "摄影",
+      "start": 2799,
+      "end": 2801
+    },
+    "T0022": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "Android 应用",
+      "raw": "Android 应用",
+      "start": 5843,
+      "end": 5853
+    },
+    "T0023": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "codiary",
+      "raw": "codiary",
+      "start": 5897,
+      "end": 5904
+    },
+    "T0024": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img.card-img",
+      "attr": "alt",
+      "text": "MJ 应用图标",
+      "raw": "MJ 应用图标",
+      "start": 6354,
+      "end": 6361
+    },
+    "T0025": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "Android 应用",
+      "raw": "Android 应用",
+      "start": 6637,
+      "end": 6647
+    },
+    "T0026": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "MJ",
+      "raw": "MJ",
+      "start": 6691,
+      "end": 6693
+    },
+    "T0027": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img.card-img",
+      "attr": "alt",
+      "text": "城市天际线",
+      "raw": "城市天际线",
+      "start": 6983,
+      "end": 6988
+    },
+    "T0028": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 7081,
+      "end": 7085
+    },
+    "T0029": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "城市天际线",
+      "raw": "城市天际线",
+      "start": 7129,
+      "end": 7134
+    },
+    "T0030": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img.card-img",
+      "attr": "alt",
+      "text": "建筑光影",
+      "raw": "建筑光影",
+      "start": 7370,
+      "end": 7374
+    },
+    "T0031": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "建筑空间",
+      "raw": "建筑空间",
+      "start": 7467,
+      "end": 7471
+    },
+    "T0032": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "几何光影",
+      "raw": "几何光影",
+      "start": 7515,
+      "end": 7519
+    },
+    "T0033": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img.card-img",
+      "attr": "alt",
+      "text": "自然时刻",
+      "raw": "自然时刻",
+      "start": 7749,
+      "end": 7753
+    },
+    "T0034": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "光影瞬间",
+      "raw": "光影瞬间",
+      "start": 7846,
+      "end": 7850
+    },
+    "T0035": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "暮色时分",
+      "raw": "暮色时分",
+      "start": 7894,
+      "end": 7898
+    },
+    "T0036": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img.card-img",
+      "attr": "alt",
+      "text": "街头瞬间",
+      "raw": "街头瞬间",
+      "start": 8134,
+      "end": 8138
+    },
+    "T0037": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "span.card-tag",
+      "attr": "",
+      "text": "人文纪实",
+      "raw": "人文纪实",
+      "start": 8231,
+      "end": 8235
+    },
+    "T0038": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3.card-title",
+      "attr": "",
+      "text": "街头瞬间",
+      "raw": "街头瞬间",
+      "start": 8279,
+      "end": 8283
+    },
+    "T0039": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "暂无更多",
+      "raw": "暂无更多",
+      "start": 8429,
+      "end": 8433
+    },
+    "T0040": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a.more-link",
+      "attr": "",
+      "text": "查看更多摄影作品",
+      "raw": "查看更多摄影作品 ",
+      "start": 8576,
+      "end": 8585
+    },
+    "T0041": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.section-label",
+      "attr": "",
+      "text": "Honors",
+      "raw": "Honors",
+      "start": 8813,
+      "end": 8819
+    },
+    "T0042": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h2.section-title",
+      "attr": "",
+      "text": "荣誉奖项",
+      "raw": "荣誉奖项",
+      "start": 8861,
+      "end": 8865
+    },
+    "T0043": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p.section-desc",
+      "attr": "",
+      "text": "每一份认可都是继续前行的动力。",
+      "raw": "每一份认可都是继续前行的动力。",
+      "start": 8904,
+      "end": 8919
+    },
+    "T0044": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.award-year",
+      "attr": "",
+      "text": "2025",
+      "raw": "2025",
+      "start": 9049,
+      "end": 9053
+    },
+    "T0045": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "科学知识竞赛二等奖",
+      "raw": "科学知识竞赛二等奖",
+      "start": 9113,
+      "end": 9122
+    },
+    "T0046": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.award-badge",
+      "attr": "",
+      "text": "校级",
+      "raw": "校级",
+      "start": 9182,
+      "end": 9184
+    },
+    "T0047": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "关于我",
+      "raw": "关于我",
+      "start": 9452,
+      "end": 9455
+    },
+    "T0048": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.section-label",
+      "attr": "",
+      "text": "About",
+      "raw": "About",
+      "start": 9554,
+      "end": 9559
+    },
+    "T0049": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "关于我",
+      "raw": "关于我",
+      "start": 9581,
+      "end": 9584
+    },
+    "T0050": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "本人褚俊熙，男生，10后。",
+      "raw": "本人褚俊熙，男生，10后。",
+      "start": 9604,
+      "end": 9617
+    },
+    "T0051": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "div.section-label",
+      "attr": "",
+      "text": "Contact",
+      "raw": "Contact",
+      "start": 9851,
+      "end": 9858
+    },
+    "T0052": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "h2.section-title",
+      "attr": "",
+      "text": "欢迎联系",
+      "raw": "欢迎联系",
+      "start": 9900,
+      "end": 9904
+    },
+    "T0053": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p.section-desc",
+      "attr": "",
+      "text": "合作、交流，或者只是想打个招呼 👋",
+      "raw": "合作、交流，或者只是想打个招呼 👋",
+      "start": 9966,
+      "end": 9984
+    },
+    "T0054": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a.contact-link",
+      "attr": "",
+      "text": "✉️ chu114445514@gmail.com",
+      "raw": "✉️ chu114445514@gmail.com",
+      "start": 10115,
+      "end": 10140
+    },
+    "T0055": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "a.contact-link",
+      "attr": "",
+      "text": "💻 GitHub",
+      "raw": "💻 GitHub",
+      "start": 10245,
+      "end": 10254
+    },
+    "T0056": {
+      "file": "index.html",
+      "kind": "attr",
+      "loc": "a.vip-door",
+      "attr": "title",
+      "text": "嘘，秘密通道",
+      "raw": "嘘，秘密通道",
+      "start": 10462,
+      "end": 10468
+    },
+    "T0057": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "© 2026 CHU.LIFE. All rights reserved.",
+      "raw": "© 2026 CHU.LIFE. All rights reserved.",
+      "start": 10391,
+      "end": 10428
+    },
+    "T0058": {
+      "file": "index.html",
+      "kind": "text",
+      "loc": "button#lightboxClose.lightbox-close",
+      "attr": "",
+      "text": "&times;",
+      "raw": "&times;",
+      "start": 10641,
+      "end": 10648
+    },
+    "T0059": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "摄影作品 — CHU.LIFE",
+      "raw": "摄影作品 — CHU.LIFE",
+      "start": 155,
+      "end": 170
+    },
+    "T0060": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "CHU",
+      "raw": "CHU",
+      "start": 1115,
+      "end": 1118
+    },
+    "T0061": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE",
+      "start": 1132,
+      "end": 1136
+    },
+    "T0062": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "作品",
+      "raw": "作品",
+      "start": 1207,
+      "end": 1209
+    },
+    "T0063": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "奖项",
+      "raw": "奖项",
+      "start": 1251,
+      "end": 1253
+    },
+    "T0064": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "关于",
+      "raw": "关于",
+      "start": 1294,
+      "end": 1296
+    },
+    "T0065": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "联系",
+      "raw": "联系",
+      "start": 1339,
+      "end": 1341
+    },
+    "T0066": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "认证",
+      "raw": "认证",
+      "start": 1379,
+      "end": 1381
+    },
+    "T0067": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "button#themeToggle.theme-toggle",
+      "attr": "aria-label",
+      "text": "切换主题",
+      "raw": "切换主题",
+      "start": 1464,
+      "end": 1468
+    },
+    "T0068": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "div.photo-tag",
+      "attr": "",
+      "text": "Photography",
+      "raw": "Photography",
+      "start": 1911,
+      "end": 1922
+    },
+    "T0069": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h1",
+      "attr": "",
+      "text": "用镜头",
+      "raw": "用镜头",
+      "start": 1940,
+      "end": 1943
+    },
+    "T0070": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h1",
+      "attr": "",
+      "text": "捕捉光的形状",
+      "raw": "捕捉光的形状",
+      "start": 1947,
+      "end": 1953
+    },
+    "T0071": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "每一次按下快门，都是与世界的对话。",
+      "raw": "每一次按下快门，都是与世界的对话。",
+      "start": 1969,
+      "end": 1986
+    },
+    "T0072": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "光影之间，记录那些转瞬即逝的真实。",
+      "raw": "光影之间，记录那些转瞬即逝的真实。",
+      "start": 1990,
+      "end": 2007
+    },
+    "T0073": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "下滑探索",
+      "raw": "下滑探索",
+      "start": 2074,
+      "end": 2078
+    },
+    "T0074": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "a.photo-back",
+      "attr": "",
+      "text": "← 返回作品集",
+      "raw": "← 返回作品集",
+      "start": 2297,
+      "end": 2304
+    },
+    "T0075": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "全部摄影作品",
+      "raw": "全部摄影作品",
+      "start": 2371,
+      "end": 2377
+    },
+    "T0076": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "街拍 · 风光 · 人文 · 生活碎片",
+      "raw": "街拍 · 风光 · 人文 · 生活碎片",
+      "start": 2395,
+      "end": 2414
+    },
+    "T0077": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h3.gallery-cat-title",
+      "attr": "",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 2540,
+      "end": 2544
+    },
+    "T0078": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 2670,
+      "end": 2674
+    },
+    "T0079": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 2805,
+      "end": 2809
+    },
+    "T0080": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 2924,
+      "end": 2928
+    },
+    "T0081": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 3041,
+      "end": 3045
+    },
+    "T0082": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "城市掠影",
+      "raw": "城市掠影",
+      "start": 3160,
+      "end": 3164
+    },
+    "T0083": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h3.gallery-cat-title",
+      "attr": "",
+      "text": "光影瞬间",
+      "raw": "光影瞬间",
+      "start": 3326,
+      "end": 3330
+    },
+    "T0084": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "光影瞬间",
+      "raw": "光影瞬间",
+      "start": 3458,
+      "end": 3462
+    },
+    "T0085": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "光影瞬间",
+      "raw": "光影瞬间",
+      "start": 3575,
+      "end": 3579
+    },
+    "T0086": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "光影瞬间",
+      "raw": "光影瞬间",
+      "start": 3692,
+      "end": 3696
+    },
+    "T0087": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h3.gallery-cat-title",
+      "attr": "",
+      "text": "人文纪实",
+      "raw": "人文纪实",
+      "start": 3858,
+      "end": 3862
+    },
+    "T0088": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "人文纪实",
+      "raw": "人文纪实",
+      "start": 3993,
+      "end": 3997
+    },
+    "T0089": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "人文纪实",
+      "raw": "人文纪实",
+      "start": 4113,
+      "end": 4117
+    },
+    "T0090": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "人文纪实",
+      "raw": "人文纪实",
+      "start": 4233,
+      "end": 4237
+    },
+    "T0091": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "h3.gallery-cat-title",
+      "attr": "",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 4399,
+      "end": 4403
+    },
+    "T0092": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 4534,
+      "end": 4538
+    },
+    "T0093": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 4654,
+      "end": 4658
+    },
+    "T0094": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 4774,
+      "end": 4778
+    },
+    "T0095": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 4894,
+      "end": 4898
+    },
+    "T0096": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 5014,
+      "end": 5018
+    },
+    "T0097": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 5134,
+      "end": 5138
+    },
+    "T0098": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 5254,
+      "end": 5258
+    },
+    "T0099": {
+      "file": "photo.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "生活碎片",
+      "raw": "生活碎片",
+      "start": 5374,
+      "end": 5378
+    },
+    "T0100": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "© 2026 CHU.LIFE. All rights reserved.",
+      "raw": "© 2026 CHU.LIFE. All rights reserved.",
+      "start": 5551,
+      "end": 5588
+    },
+    "T0101": {
+      "file": "photo.html",
+      "kind": "text",
+      "loc": "button#lightboxClose.lightbox-close",
+      "attr": "",
+      "text": "&times;",
+      "raw": "&times;",
+      "start": 5736,
+      "end": 5743
+    },
+    "T0102": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "安全认证 — CHU.LIFE",
+      "raw": "安全认证 — CHU.LIFE",
+      "start": 150,
+      "end": 165
+    },
+    "T0103": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "CHU",
+      "raw": "CHU",
+      "start": 874,
+      "end": 877
+    },
+    "T0104": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE",
+      "start": 891,
+      "end": 895
+    },
+    "T0105": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "作品",
+      "raw": "作品",
+      "start": 964,
+      "end": 966
+    },
+    "T0106": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "奖项",
+      "raw": "奖项",
+      "start": 1007,
+      "end": 1009
+    },
+    "T0107": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "关于",
+      "raw": "关于",
+      "start": 1049,
+      "end": 1051
+    },
+    "T0108": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "联系",
+      "raw": "联系",
+      "start": 1093,
+      "end": 1095
+    },
+    "T0109": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "button#themeToggle.theme-toggle",
+      "attr": "aria-label",
+      "text": "切换主题",
+      "raw": "切换主题",
+      "start": 1176,
+      "end": 1180
+    },
+    "T0110": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-hero-badge",
+      "attr": "",
+      "text": "Security · Verified",
+      "raw": "Security · Verified",
+      "start": 1421,
+      "end": 1440
+    },
+    "T0111": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h1.sec-hero-title",
+      "attr": "",
+      "text": "网站安全认证",
+      "raw": "网站安全认证",
+      "start": 1487,
+      "end": 1493
+    },
+    "T0112": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.sec-hero-sub",
+      "attr": "",
+      "text": "五家国际及国内权威安全机构独立检测，全部通过，零风险。",
+      "raw": "五家国际及国内权威安全机构独立检测，全部通过，零风险。",
+      "start": 1536,
+      "end": 1563
+    },
+    "T0113": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "家",
+      "raw": "家",
+      "start": 1723,
+      "end": 1724
+    },
+    "T0114": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-num",
+      "attr": "",
+      "text": "5",
+      "raw": "5 ",
+      "start": 1715,
+      "end": 1717
+    },
+    "T0115": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-label",
+      "attr": "",
+      "text": "权威检测机构",
+      "raw": "权威检测机构",
+      "start": 1777,
+      "end": 1783
+    },
+    "T0116": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "项",
+      "raw": "项",
+      "start": 1933,
+      "end": 1934
+    },
+    "T0117": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-num",
+      "attr": "",
+      "text": "0",
+      "raw": "0 ",
+      "start": 1925,
+      "end": 1927
+    },
+    "T0118": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-label",
+      "attr": "",
+      "text": "安全风险",
+      "raw": "安全风险",
+      "start": 1987,
+      "end": 1991
+    },
+    "T0119": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-num",
+      "attr": "",
+      "text": "100",
+      "raw": "100",
+      "start": 2133,
+      "end": 2136
+    },
+    "T0120": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.sec-score-label",
+      "attr": "",
+      "text": "检测通过率",
+      "raw": "检测通过率",
+      "start": 2196,
+      "end": 2201
+    },
+    "T0121": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-tag",
+      "attr": "",
+      "text": "国际权威",
+      "raw": "国际权威",
+      "start": 2508,
+      "end": 2512
+    },
+    "T0122": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "VirusTotal 检测报告",
+      "raw": "VirusTotal 检测报告",
+      "start": 2583,
+      "end": 2598
+    },
+    "T0123": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "VirusTotal",
+      "raw": "VirusTotal",
+      "start": 2746,
+      "end": 2756
+    },
+    "T0124": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-sub",
+      "attr": "",
+      "text": "Google 旗下 · 全球最大在线病毒检测平台",
+      "raw": "Google 旗下 · 全球最大在线病毒检测平台",
+      "start": 2798,
+      "end": 2822
+    },
+    "T0125": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "超过 60 款杀毒引擎",
+      "raw": "超过 60 款杀毒引擎",
+      "start": 2916,
+      "end": 2927
+    },
+    "T0126": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "VirusTotal 聚合了卡巴斯基、赛门铁克、McAfee、Bitdefender 等",
+      "raw": "VirusTotal 聚合了卡巴斯基、赛门铁克、McAfee、Bitdefender 等",
+      "start": 2864,
+      "end": 2908
+    },
+    "T0127": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "，是全球网络安全行业的事实标准。Google 于 2012 年将其收购，至今仍独立运营。",
+      "raw": "，是全球网络安全行业的事实标准。Google 于 2012 年将其收购，至今仍独立运营。",
+      "start": 2936,
+      "end": 2980
+    },
+    "T0128": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-result",
+      "attr": "",
+      "text": "全部引擎未检测到恶意内容",
+      "raw": " 全部引擎未检测到恶意内容\n          ",
+      "start": 3078,
+      "end": 3102
+    },
+    "T0129": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-tag",
+      "attr": "",
+      "text": "国际权威",
+      "raw": "国际权威",
+      "start": 3285,
+      "end": 3289
+    },
+    "T0130": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "Mozilla Observatory 检测报告",
+      "raw": "Mozilla Observatory 检测报告",
+      "start": 3363,
+      "end": 3387
+    },
+    "T0131": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "Mozilla Observatory",
+      "raw": "Mozilla Observatory",
+      "start": 3534,
+      "end": 3553
+    },
+    "T0132": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-sub",
+      "attr": "",
+      "text": "Mozilla 基金会 · Firefox 浏览器开发商",
+      "raw": "Mozilla 基金会 · Firefox 浏览器开发商",
+      "start": 3595,
+      "end": 3623
+    },
+    "T0133": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "被全球开发者视为网站安全配置的黄金标准",
+      "raw": "被全球开发者视为网站安全配置的黄金标准",
+      "start": 3710,
+      "end": 3729
+    },
+    "T0134": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "Mozilla 是互联网开放标准的守护者，其 Observatory 工具",
+      "raw": "Mozilla 是互联网开放标准的守护者，其 Observatory 工具",
+      "start": 3665,
+      "end": 3702
+    },
+    "T0135": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "，检测 CSP、HSTS、TLS、XSS 防护、点击劫持防护等多个维度。",
+      "raw": "，检测 CSP、HSTS、TLS、XSS 防护、点击劫持防护等多个维度。",
+      "start": 3738,
+      "end": 3774
+    },
+    "T0136": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-result",
+      "attr": "",
+      "text": "安全配置评分达标",
+      "raw": " 安全配置评分达标\n          ",
+      "start": 3872,
+      "end": 3892
+    },
+    "T0137": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-tag",
+      "attr": "",
+      "text": "国际权威",
+      "raw": "国际权威",
+      "start": 4072,
+      "end": 4076
+    },
+    "T0138": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "HSTS Preload 检测报告",
+      "raw": "HSTS Preload 检测报告",
+      "start": 4144,
+      "end": 4161
+    },
+    "T0139": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "HSTS Preload",
+      "raw": "HSTS Preload",
+      "start": 4308,
+      "end": 4320
+    },
+    "T0140": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-sub",
+      "attr": "",
+      "text": "Google Chrome Team 维护 · 浏览器核心安全机制",
+      "raw": "Google Chrome Team 维护 · 浏览器核心安全机制",
+      "start": 4362,
+      "end": 4395
+    },
+    "T0141": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "直接内置于 Chrome、Edge、Firefox、Safari 等所有主流浏览器的源代码中",
+      "raw": "直接内置于 Chrome、Edge、Firefox、Safari 等所有主流浏览器的源代码中",
+      "start": 4460,
+      "end": 4506
+    },
+    "T0142": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "HSTS Preload 列表",
+      "raw": "HSTS Preload 列表",
+      "start": 4437,
+      "end": 4452
+    },
+    "T0143": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "。进入此列表意味着浏览器从底层强制 HTTPS，彻底杜绝中间人攻击。",
+      "raw": "。进入此列表意味着浏览器从底层强制 HTTPS，彻底杜绝中间人攻击。",
+      "start": 4515,
+      "end": 4549
+    },
+    "T0144": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-result",
+      "attr": "",
+      "text": "HSTS 配置合规",
+      "raw": " HSTS 配置合规\n          ",
+      "start": 4647,
+      "end": 4668
+    },
+    "T0145": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-tag",
+      "attr": "",
+      "text": "国内权威",
+      "raw": "国内权威",
+      "start": 4847,
+      "end": 4851
+    },
+    "T0146": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "腾讯安全检测报告",
+      "raw": "腾讯安全检测报告",
+      "start": 4917,
+      "end": 4925
+    },
+    "T0147": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "腾讯安全",
+      "raw": "腾讯安全",
+      "start": 5072,
+      "end": 5076
+    },
+    "T0148": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-sub",
+      "attr": "",
+      "text": "腾讯 · 国民级互联网安全力量",
+      "raw": "腾讯 · 国民级互联网安全力量",
+      "start": 5118,
+      "end": 5133
+    },
+    "T0149": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "超过 13 亿用户",
+      "raw": "超过 13 亿用户",
+      "start": 5195,
+      "end": 5204
+    },
+    "T0150": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "腾讯安全为微信、QQ 等",
+      "raw": "腾讯安全为微信、QQ 等",
+      "start": 5175,
+      "end": 5187
+    },
+    "T0151": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "提供安全防护。其站点安全检测引擎基于海量恶意 URL 数据训练，对国内网络环境中各类威胁有最精准的识别能力。",
+      "raw": "提供安全防护。其站点安全检测引擎基于海量恶意 URL 数据训练，对国内网络环境中各类威胁有最精准的识别能力。",
+      "start": 5213,
+      "end": 5267
+    },
+    "T0152": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-result",
+      "attr": "",
+      "text": "安全，无可疑内容",
+      "raw": " 安全，无可疑内容\n          ",
+      "start": 5365,
+      "end": 5385
+    },
+    "T0153": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-tag",
+      "attr": "",
+      "text": "国内权威",
+      "raw": "国内权威",
+      "start": 5562,
+      "end": 5566
+    },
+    "T0154": {
+      "file": "security.html",
+      "kind": "attr",
+      "loc": "img",
+      "attr": "alt",
+      "text": "百度安全检测报告",
+      "raw": "百度安全检测报告",
+      "start": 5632,
+      "end": 5640
+    },
+    "T0155": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "h2",
+      "attr": "",
+      "text": "百度安全",
+      "raw": "百度安全",
+      "start": 5787,
+      "end": 5791
+    },
+    "T0156": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-sub",
+      "attr": "",
+      "text": "百度 · 中国最大搜索引擎",
+      "raw": "百度 · 中国最大搜索引擎",
+      "start": 5833,
+      "end": 5846
+    },
+    "T0157": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "中文互联网最大的网页索引库",
+      "raw": "中文互联网最大的网页索引库",
+      "start": 5898,
+      "end": 5911
+    },
+    "T0158": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "依托",
+      "raw": "依托",
+      "start": 5888,
+      "end": 5890
+    },
+    "T0159": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.cert-block-desc",
+      "attr": "",
+      "text": "，百度安全检测每天扫描数十亿页面。作为中国互联网流量第一入口，其安全判定标准被数亿用户所信赖。",
+      "raw": "，百度安全检测每天扫描数十亿页面。作为中国互联网流量第一入口，其安全判定标准被数亿用户所信赖。",
+      "start": 5920,
+      "end": 5967
+    },
+    "T0160": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "div.cert-block-result",
+      "attr": "",
+      "text": "安全，无风险",
+      "raw": " 安全，无风险\n          ",
+      "start": 6065,
+      "end": 6083
+    },
+    "T0161": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.section-desc",
+      "attr": "",
+      "text": "本站为纯静态站点，无数据库、无后台、无用户输入，",
+      "raw": "\n        本站为纯静态站点，无数据库、无后台、无用户输入，",
+      "start": 6364,
+      "end": 6397
+    },
+    "T0162": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p.section-desc",
+      "attr": "",
+      "text": "全部源代码公开在 GitHub，任何人可审计。",
+      "raw": "全部源代码公开在 GitHub，任何人可审计。\n      ",
+      "start": 6401,
+      "end": 6431
+    },
+    "T0163": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "a.contact-link",
+      "attr": "",
+      "text": "📦 查看开源代码",
+      "raw": "📦 查看开源代码",
+      "start": 6582,
+      "end": 6591
+    },
+    "T0164": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "button#lightboxClose.lightbox-close",
+      "attr": "",
+      "text": "&times;",
+      "raw": "&times;",
+      "start": 6734,
+      "end": 6741
+    },
+    "T0165": {
+      "file": "security.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "© 2026 CHU.LIFE. All rights reserved.",
+      "raw": "© 2026 CHU.LIFE. All rights reserved.",
+      "start": 6870,
+      "end": 6907
+    },
+    "T0166": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "codiary — CHU.LIFE",
+      "raw": "codiary — CHU.LIFE",
+      "start": 150,
+      "end": 168
+    },
+    "T0167": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "CHU",
+      "raw": "CHU",
+      "start": 17065,
+      "end": 17068
+    },
+    "T0168": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE",
+      "start": 17082,
+      "end": 17086
+    },
+    "T0169": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "作品",
+      "raw": "作品",
+      "start": 17158,
+      "end": 17160
+    },
+    "T0170": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "奖项",
+      "raw": "奖项",
+      "start": 17204,
+      "end": 17206
+    },
+    "T0171": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "关于",
+      "raw": "关于",
+      "start": 17249,
+      "end": 17251
+    },
+    "T0172": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "联系",
+      "raw": "联系",
+      "start": 17296,
+      "end": 17298
+    },
+    "T0173": {
+      "file": "projects/modular-diary.html",
+      "kind": "attr",
+      "loc": "button#themeToggle.theme-toggle",
+      "attr": "aria-label",
+      "text": "切换主题",
+      "raw": "切换主题",
+      "start": 17379,
+      "end": 17383
+    },
+    "T0174": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-badge",
+      "attr": "",
+      "text": "v1.0.0  ·  离线  ·  无账号  ·  无云同步",
+      "raw": " v1.0.0 &nbsp;·&nbsp; 离线 &nbsp;·&nbsp; 无账号 &nbsp;·&nbsp; 无云同步\n        ",
+      "start": 17800,
+      "end": 17870
+    },
+    "T0175": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "ary",
+      "raw": "ary",
+      "start": 17921,
+      "end": 17924
+    },
+    "T0176": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h1.cd-hero-title",
+      "attr": "",
+      "text": "codi",
+      "raw": "codi",
+      "start": 17911,
+      "end": 17915
+    },
+    "T0177": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p.cd-hero-sub",
+      "attr": "",
+      "text": "一款纯粹、精致的日常记录应用。模块化的卡片交互，",
+      "raw": "一款纯粹、精致的日常记录应用。模块化的卡片交互，",
+      "start": 17968,
+      "end": 17992
+    },
+    "T0178": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p.cd-hero-sub",
+      "attr": "",
+      "text": "让记录变得像搭积木一样自然。",
+      "raw": "让记录变得像搭积木一样自然。",
+      "start": 17996,
+      "end": 18010
+    },
+    "T0179": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "离线优先",
+      "raw": "离线优先",
+      "start": 18066,
+      "end": 18070
+    },
+    "T0180": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "纯本地存储",
+      "raw": "纯本地存储",
+      "start": 18083,
+      "end": 18088
+    },
+    "T0181": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "无需网络权限",
+      "raw": "无需网络权限",
+      "start": 18101,
+      "end": 18107
+    },
+    "T0182": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "📅 日记 / 随笔",
+      "raw": "📅 日记 / 随笔",
+      "start": 18176,
+      "end": 18186
+    },
+    "T0183": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "✅ 待办 & 打卡",
+      "raw": "✅ 待办 & 打卡",
+      "start": 18199,
+      "end": 18208
+    },
+    "T0184": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "📊 数据统计",
+      "raw": "📊 数据统计",
+      "start": 18221,
+      "end": 18228
+    },
+    "T0185": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "🎨 24 套皮肤",
+      "raw": "🎨 24 套皮肤",
+      "start": 18252,
+      "end": 18261
+    },
+    "T0186": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "⭐ 积分成就",
+      "raw": "⭐ 积分成就",
+      "start": 18274,
+      "end": 18280
+    },
+    "T0187": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "🔒 隐私优先",
+      "raw": "🔒 隐私优先",
+      "start": 18293,
+      "end": 18300
+    },
+    "T0188": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "small",
+      "attr": "",
+      "text": "大",
+      "raw": "大",
+      "start": 18447,
+      "end": 18448
+    },
+    "T0189": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-val",
+      "attr": "",
+      "text": "4",
+      "raw": "4 ",
+      "start": 18438,
+      "end": 18440
+    },
+    "T0190": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-lbl",
+      "attr": "",
+      "text": "卡片模块",
+      "raw": "卡片模块",
+      "start": 18498,
+      "end": 18502
+    },
+    "T0191": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "small",
+      "attr": "",
+      "text": "套",
+      "raw": "套",
+      "start": 18599,
+      "end": 18600
+    },
+    "T0192": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-val",
+      "attr": "",
+      "text": "24",
+      "raw": "24 ",
+      "start": 18589,
+      "end": 18592
+    },
+    "T0193": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-lbl",
+      "attr": "",
+      "text": "精选皮肤",
+      "raw": "精选皮肤",
+      "start": 18650,
+      "end": 18654
+    },
+    "T0194": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "small",
+      "attr": "",
+      "text": "枚",
+      "raw": "枚",
+      "start": 18751,
+      "end": 18752
+    },
+    "T0195": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-val",
+      "attr": "",
+      "text": "17",
+      "raw": "17 ",
+      "start": 18741,
+      "end": 18744
+    },
+    "T0196": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-lbl",
+      "attr": "",
+      "text": "成就徽章",
+      "raw": "成就徽章",
+      "start": 18802,
+      "end": 18806
+    },
+    "T0197": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "small",
+      "attr": "",
+      "text": "KB",
+      "raw": "KB",
+      "start": 18902,
+      "end": 18904
+    },
+    "T0198": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-val",
+      "attr": "",
+      "text": "0",
+      "raw": "0 ",
+      "start": 18893,
+      "end": 18895
+    },
+    "T0199": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-lbl",
+      "attr": "",
+      "text": "数据上传",
+      "raw": "数据上传",
+      "start": 18954,
+      "end": 18958
+    },
+    "T0200": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-label",
+      "attr": "",
+      "text": "Android",
+      "raw": "Android",
+      "start": 19201,
+      "end": 19208
+    },
+    "T0201": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-hint",
+      "attr": "",
+      "text": "网盘下载 · 密码 ezoc",
+      "raw": "网盘下载 · 密码 ezoc",
+      "start": 19248,
+      "end": 19262
+    },
+    "T0202": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-label",
+      "attr": "",
+      "text": "HarmonyOS",
+      "raw": "HarmonyOS",
+      "start": 19355,
+      "end": 19364
+    },
+    "T0203": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-hint",
+      "attr": "",
+      "text": "敬请期待",
+      "raw": "敬请期待",
+      "start": 19404,
+      "end": 19408
+    },
+    "T0204": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-label",
+      "attr": "",
+      "text": "iOS",
+      "raw": "iOS",
+      "start": 19503,
+      "end": 19506
+    },
+    "T0205": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.dl-hint",
+      "attr": "",
+      "text": "敬请期待",
+      "raw": "敬请期待",
+      "start": 19546,
+      "end": 19550
+    },
+    "T0206": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-section-label",
+      "attr": "",
+      "text": "核心体验",
+      "raw": "核心体验",
+      "start": 19787,
+      "end": 19791
+    },
+    "T0207": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h2.cd-section-title",
+      "attr": "",
+      "text": "📅 今日",
+      "raw": "📅 今日",
+      "start": 19835,
+      "end": 19840
+    },
+    "T0208": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p.cd-section-desc",
+      "attr": "",
+      "text": "以卡片流展示当天所有内容，直接在卡片上完成交互，无需跳转。",
+      "raw": "以卡片流展示当天所有内容，直接在卡片上完成交互，无需跳转。",
+      "start": 19881,
+      "end": 19910
+    },
+    "T0209": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "打卡项",
+      "raw": "打卡项",
+      "start": 20052,
+      "end": 20055
+    },
+    "T0210": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Daily Habits",
+      "raw": "Daily Habits",
+      "start": 20096,
+      "end": 20108
+    },
+    "T0211": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "创建每日/每周习惯，设定频率（如\"每周 5 次\"）。点击卡片完成打卡，伴有弹性缩放动效和触感反馈，当日进度一目了然。",
+      "raw": "创建每日/每周习惯，设定频率（如\"每周 5 次\"）。点击卡片完成打卡，伴有弹性缩放动效和触感反馈，当日进度一目了然。",
+      "start": 20128,
+      "end": 20186
+    },
+    "T0212": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "待办事项",
+      "raw": "待办事项",
+      "start": 20302,
+      "end": 20306
+    },
+    "T0213": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Long-term Tasks",
+      "raw": "Long-term Tasks",
+      "start": 20347,
+      "end": 20362
+    },
+    "T0214": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "无截止日的长期任务，勾选完成自动划除并置底。卡片内嵌快速添加输入框，回车即保存，体验流畅。",
+      "raw": "无截止日的长期任务，勾选完成自动划除并置底。卡片内嵌快速添加输入框，回车即保存，体验流畅。",
+      "start": 20382,
+      "end": 20427
+    },
+    "T0215": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "日程",
+      "raw": "日程",
+      "start": 20543,
+      "end": 20545
+    },
+    "T0216": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Timed Events",
+      "raw": "Timed Events",
+      "start": 20586,
+      "end": 20598
+    },
+    "T0217": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "添加带时间点的事件，时间轴样式展示。过期日程自动淡化，支持提前 5 / 15 / 30 分钟提醒。",
+      "raw": "添加带时间点的事件，时间轴样式展示。过期日程自动淡化，支持提前 5 / 15 / 30 分钟提醒。",
+      "start": 20618,
+      "end": 20667
+    },
+    "T0218": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "日记 / 随笔",
+      "raw": "日记 / 随笔",
+      "start": 20783,
+      "end": 20790
+    },
+    "T0219": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Block Editor",
+      "raw": "Block Editor",
+      "start": 20831,
+      "end": 20843
+    },
+    "T0220": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "块编辑器：每段文字一块、每张图片一块，像搭积木一样编排。自动保存草稿，预览模式如纸张般干净。",
+      "raw": "块编辑器：每段文字一块、每张图片一块，像搭积木一样编排。自动保存草稿，预览模式如纸张般干净。",
+      "start": 20863,
+      "end": 20909
+    },
+    "T0221": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "积分系统",
+      "raw": "积分系统",
+      "start": 21170,
+      "end": 21174
+    },
+    "T0222": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "完成行为自动获得积分 · 可随时在设置中关闭",
+      "raw": "完成行为自动获得积分 · 可随时在设置中关闭",
+      "start": 21216,
+      "end": 21238
+    },
+    "T0223": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "th",
+      "attr": "",
+      "text": "行为",
+      "raw": "行为",
+      "start": 21349,
+      "end": 21351
+    },
+    "T0224": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "th",
+      "attr": "",
+      "text": "积分",
+      "raw": "积分",
+      "start": 21386,
+      "end": 21388
+    },
+    "T0225": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "完成一次打卡",
+      "raw": "完成一次打卡",
+      "start": 21453,
+      "end": 21459
+    },
+    "T0226": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+5",
+      "raw": "+5",
+      "start": 21515,
+      "end": 21517
+    },
+    "T0227": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "勾选一项待办",
+      "raw": "勾选一项待办",
+      "start": 21559,
+      "end": 21565
+    },
+    "T0228": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+3",
+      "raw": "+3",
+      "start": 21621,
+      "end": 21623
+    },
+    "T0229": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "完成一项日程",
+      "raw": "完成一项日程",
+      "start": 21665,
+      "end": 21671
+    },
+    "T0230": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+5",
+      "raw": "+5",
+      "start": 21727,
+      "end": 21729
+    },
+    "T0231": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "日记超 20 字",
+      "raw": "日记超 20 字",
+      "start": 21771,
+      "end": 21779
+    },
+    "T0232": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+5",
+      "raw": "+5",
+      "start": 21835,
+      "end": 21837
+    },
+    "T0233": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "连续打卡 7 天",
+      "raw": "连续打卡 7 天",
+      "start": 21879,
+      "end": 21887
+    },
+    "T0234": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+15",
+      "raw": "+15",
+      "start": 21943,
+      "end": 21946
+    },
+    "T0235": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "td",
+      "attr": "",
+      "text": "当日全部完成",
+      "raw": "当日全部完成",
+      "start": 21988,
+      "end": 21994
+    },
+    "T0236": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.cd-pts",
+      "attr": "",
+      "text": "+10",
+      "raw": "+10",
+      "start": 22050,
+      "end": 22053
+    },
+    "T0237": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "strong",
+      "attr": "",
+      "text": "补签卡（50 分）、自定义主题色、专注模式背景",
+      "raw": "补签卡（50 分）、自定义主题色、专注模式背景",
+      "start": 22265,
+      "end": 22288
+    },
+    "T0238": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "积分可兑换",
+      "raw": "\n            积分可兑换",
+      "start": 22209,
+      "end": 22227
+    },
+    "T0239": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "等轻量成就。完成行为时 \"+5\" 飘出动画，2 秒自然消失。",
+      "raw": "等轻量成就。完成行为时 \"+5\" 飘出动画，2 秒自然消失。\n          ",
+      "start": 22297,
+      "end": 22338
+    },
+    "T0240": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "皮肤系统",
+      "raw": "皮肤系统",
+      "start": 22600,
+      "end": 22604
+    },
+    "T0241": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "24 套皮肤 · 5 个色系 · 每套均配深色版本 · 0.3s 柔和过渡",
+      "raw": "24 套皮肤 · 5 个色系 · 每套均配深色版本 · 0.3s 柔和过渡",
+      "start": 22646,
+      "end": 22683
+    },
+    "T0242": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.name",
+      "attr": "",
+      "text": "🔵 蓝色系",
+      "raw": "🔵 蓝色系",
+      "start": 22806,
+      "end": 22812
+    },
+    "T0243": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.count",
+      "attr": "",
+      "text": "8 套 · 渐变 / 双色，科技清爽",
+      "raw": "8 套 · 渐变 / 双色，科技清爽",
+      "start": 22854,
+      "end": 22872
+    },
+    "T0244": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.name",
+      "attr": "",
+      "text": "🌿 绿色系",
+      "raw": "🌿 绿色系",
+      "start": 22979,
+      "end": 22985
+    },
+    "T0245": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.count",
+      "attr": "",
+      "text": "5 套 · 森系自然、薄荷撞色",
+      "raw": "5 套 · 森系自然、薄荷撞色",
+      "start": 23027,
+      "end": 23042
+    },
+    "T0246": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.name",
+      "attr": "",
+      "text": "🌅 暖橙色系",
+      "raw": "🌅 暖橙色系",
+      "start": 23150,
+      "end": 23157
+    },
+    "T0247": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.count",
+      "attr": "",
+      "text": "3 套 · 落日阳光、治愈双色",
+      "raw": "3 套 · 落日阳光、治愈双色",
+      "start": 23199,
+      "end": 23214
+    },
+    "T0248": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.name",
+      "attr": "",
+      "text": "🌸 粉紫马卡龙",
+      "raw": "🌸 粉紫马卡龙",
+      "start": 23320,
+      "end": 23328
+    },
+    "T0249": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.count",
+      "attr": "",
+      "text": "8 套 · 樱花梦幻、温柔少女",
+      "raw": "8 套 · 樱花梦幻、温柔少女",
+      "start": 23370,
+      "end": 23385
+    },
+    "T0250": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.name",
+      "attr": "",
+      "text": "🪨 莫兰迪",
+      "raw": "🪨 莫兰迪",
+      "start": 23491,
+      "end": 23497
+    },
+    "T0251": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.count",
+      "attr": "",
+      "text": "4 套 · 高级灰调、静物简约",
+      "raw": "4 套 · 高级灰调、静物简约",
+      "start": 23539,
+      "end": 23554
+    },
+    "T0252": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "统计",
+      "raw": "统计",
+      "start": 23855,
+      "end": 23857
+    },
+    "T0253": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "多维度可视化 · 周 / 月 / 年自由切换",
+      "raw": "多维度可视化 · 周 / 月 / 年自由切换",
+      "start": 23899,
+      "end": 23921
+    },
+    "T0254": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-chip",
+      "attr": "",
+      "text": "环形图 · 打卡完成率",
+      "raw": " 环形图 · 打卡完成率",
+      "start": 24057,
+      "end": 24069
+    },
+    "T0255": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-chip",
+      "attr": "",
+      "text": "柱状图 · 两周活跃趋势",
+      "raw": " 柱状图 · 两周活跃趋势",
+      "start": 24167,
+      "end": 24180
+    },
+    "T0256": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-chip",
+      "attr": "",
+      "text": "年历热力图 · 全年分布",
+      "raw": " 年历热力图 · 全年分布",
+      "start": 24278,
+      "end": 24291
+    },
+    "T0257": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-stat-chip",
+      "attr": "",
+      "text": "折线图 · 综合活跃分",
+      "raw": " 折线图 · 综合活跃分",
+      "start": 24389,
+      "end": 24401
+    },
+    "T0258": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "\"过去 30 天，你有 X 天保持活跃\"",
+      "raw": "\n            \"过去 30 天，你有 X 天保持活跃\"\n          ",
+      "start": 24520,
+      "end": 24564
+    },
+    "T0259": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "搜索与标签",
+      "raw": "搜索与标签",
+      "start": 24826,
+      "end": 24831
+    },
+    "T0260": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "全局检索 · 精准定位 · 标签管理",
+      "raw": "全局检索 · 精准定位 · 标签管理",
+      "start": 24873,
+      "end": 24891
+    },
+    "T0261": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "全局搜索打卡项、待办、日程、日记正文",
+      "raw": "全局搜索打卡项、待办、日程、日记正文",
+      "start": 24945,
+      "end": 24963
+    },
+    "T0262": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "模糊匹配 + 关键词高亮，结果按类别分组",
+      "raw": "模糊匹配 + 关键词高亮，结果按类别分组",
+      "start": 24985,
+      "end": 25005
+    },
+    "T0263": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "自定义标签，支持颜色标记与筛选栏快速过滤",
+      "raw": "自定义标签，支持颜色标记与筛选栏快速过滤",
+      "start": 25027,
+      "end": 25047
+    },
+    "T0264": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "每日回顾",
+      "raw": "每日回顾",
+      "start": 25344,
+      "end": 25348
+    },
+    "T0265": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Daily Review",
+      "raw": "Daily Review",
+      "start": 25389,
+      "end": 25401
+    },
+    "T0266": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "日历选择任意日期，查看当天全部记录。按分类展示打卡、待办、日程、日记，前后天切换，一键回到今天。",
+      "raw": "日历选择任意日期，查看当天全部记录。按分类展示打卡、待办、日程、日记，前后天切换，一键回到今天。",
+      "start": 25421,
+      "end": 25469
+    },
+    "T0267": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "那年今日",
+      "raw": "那年今日",
+      "start": 25585,
+      "end": 25589
+    },
+    "T0268": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "On This Day",
+      "raw": "On This Day",
+      "start": 25630,
+      "end": 25641
+    },
+    "T0269": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "首页时钟图标进入，随机展示过去某年同一天的记录。左右滑动切换年份，空日期配温柔文案。",
+      "raw": "首页时钟图标进入，随机展示过去某年同一天的记录。左右滑动切换年份，空日期配温柔文案。",
+      "start": 25661,
+      "end": 25703
+    },
+    "T0270": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "每周一信",
+      "raw": "每周一信",
+      "start": 25967,
+      "end": 25971
+    },
+    "T0271": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "Weekly Letter · 每周日自动生成",
+      "raw": "Weekly Letter · 每周日自动生成",
+      "start": 26013,
+      "end": 26036
+    },
+    "T0272": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "一封温和的回顾信：本周打卡次数、日记篇数、最多标签……以第二人称娓娓道来，随机内置一句温柔结语。",
+      "raw": "\n            一封温和的回顾信：本周打卡次数、日记篇数、最多标签……以第二人称娓娓道来，随机内置一句温柔结语。\n          ",
+      "start": 26120,
+      "end": 26192
+    },
+    "T0273": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h3",
+      "attr": "",
+      "text": "成就徽章",
+      "raw": "成就徽章",
+      "start": 26454,
+      "end": 26458
+    },
+    "T0274": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-block-sub",
+      "attr": "",
+      "text": "17 枚徽章 · 静默解锁 · 不推送不弹窗",
+      "raw": "17 枚徽章 · 静默解锁 · 不推送不弹窗",
+      "start": 26500,
+      "end": 26522
+    },
+    "T0275": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "初次记录",
+      "raw": "初次记录",
+      "start": 26659,
+      "end": 26663
+    },
+    "T0276": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "连续 7 天",
+      "raw": "连续 7 天",
+      "start": 26769,
+      "end": 26775
+    },
+    "T0277": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "百篇日记",
+      "raw": "百篇日记",
+      "start": 26881,
+      "end": 26885
+    },
+    "T0278": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "积分过百",
+      "raw": "积分过百",
+      "start": 26990,
+      "end": 26994
+    },
+    "T0279": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "满月用户",
+      "raw": "满月用户",
+      "start": 27100,
+      "end": 27104
+    },
+    "T0280": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "span.label",
+      "attr": "",
+      "text": "全勤一周",
+      "raw": "全勤一周",
+      "start": 27210,
+      "end": 27214
+    },
+    "T0281": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "解锁时仅在设置入口显示小红点 · 点击进入徽章收藏架 · 未解锁以 \"???\" 保持神秘",
+      "raw": "\n            解锁时仅在设置入口显示小红点 · 点击进入徽章收藏架 · 未解锁以 \"???\" 保持神秘\n          ",
+      "start": 27960,
+      "end": 28028
+    },
+    "T0282": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "设置",
+      "raw": "设置",
+      "start": 28306,
+      "end": 28308
+    },
+    "T0283": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Settings",
+      "raw": "Settings",
+      "start": 28349,
+      "end": 28357
+    },
+    "T0284": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "皮肤 Beta",
+      "raw": "皮肤 Beta",
+      "start": 28444,
+      "end": 28451
+    },
+    "T0285": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 24 套皮肤切换",
+      "raw": " · 24 套皮肤切换",
+      "start": 28455,
+      "end": 28466
+    },
+    "T0286": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "深色模式",
+      "raw": "深色模式",
+      "start": 28521,
+      "end": 28525
+    },
+    "T0287": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 跟随系统 / 浅色 / 深色",
+      "raw": " · 跟随系统 / 浅色 / 深色",
+      "start": 28529,
+      "end": 28546
+    },
+    "T0288": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "积分开关",
+      "raw": "积分开关",
+      "start": 28601,
+      "end": 28605
+    },
+    "T0289": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 随时关闭回归纯粹",
+      "raw": " · 随时关闭回归纯粹",
+      "start": 28609,
+      "end": 28620
+    },
+    "T0290": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "提醒设置",
+      "raw": "提醒设置",
+      "start": 28675,
+      "end": 28679
+    },
+    "T0291": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 自定义提醒时间",
+      "raw": " · 自定义提醒时间",
+      "start": 28683,
+      "end": 28693
+    },
+    "T0292": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "数据导出",
+      "raw": "数据导出",
+      "start": 28748,
+      "end": 28752
+    },
+    "T0293": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 完整 JSON 备份",
+      "raw": " · 完整 JSON 备份",
+      "start": 28756,
+      "end": 28769
+    },
+    "T0294": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "清空数据",
+      "raw": "清空数据",
+      "start": 28824,
+      "end": 28828
+    },
+    "T0295": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "· 需输入 yes 确认",
+      "raw": " · 需输入 yes 确认",
+      "start": 28832,
+      "end": 28845
+    },
+    "T0296": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "h4",
+      "attr": "",
+      "text": "隐私",
+      "raw": "隐私",
+      "start": 28978,
+      "end": 28980
+    },
+    "T0297": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "div.cd-card-sub",
+      "attr": "",
+      "text": "Privacy",
+      "raw": "Privacy",
+      "start": 29021,
+      "end": 29028
+    },
+    "T0298": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "所有数据纯本地 Room 数据库存储",
+      "raw": "所有数据纯本地 Room 数据库存储",
+      "start": 29082,
+      "end": 29100
+    },
+    "T0299": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "无账号体系、无云同步、不上传任何信息",
+      "raw": "无账号体系、无云同步、不上传任何信息",
+      "start": 29122,
+      "end": 29140
+    },
+    "T0300": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "li",
+      "attr": "",
+      "text": "无需网络权限，完全离线运行",
+      "raw": "无需网络权限，完全离线运行",
+      "start": 29162,
+      "end": 29175
+    },
+    "T0301": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "你的数据只属于你，永远停留在这台设备上。",
+      "raw": "\n            你的数据只属于你，永远停留在这台设备上。\n          ",
+      "start": 29293,
+      "end": 29337
+    },
+    "T0302": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "codiary 是一款完全离线的个人记录工具，不依赖任何云服务，永远尊重你的数据主权。",
+      "raw": "codiary 是一款完全离线的个人记录工具，不依赖任何云服务，永远尊重你的数据主权。",
+      "start": 29483,
+      "end": 29526
+    },
+    "T0303": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "a.cd-back",
+      "attr": "",
+      "text": "返回作品集",
+      "raw": " 返回作品集",
+      "start": 29605,
+      "end": 29611
+    },
+    "T0304": {
+      "file": "projects/modular-diary.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "© 2026 CHU.LIFE. All rights reserved.",
+      "raw": "© 2026 CHU.LIFE. All rights reserved.",
+      "start": 29705,
+      "end": 29742
+    },
+    "T0305": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "MJ — CHU.LIFE",
+      "raw": "MJ — CHU.LIFE",
+      "start": 155,
+      "end": 168
+    },
+    "T0306": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "CHU",
+      "raw": "CHU",
+      "start": 7476,
+      "end": 7479
+    },
+    "T0307": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a.logo",
+      "attr": "",
+      "text": "LIFE",
+      "raw": "LIFE",
+      "start": 7493,
+      "end": 7497
+    },
+    "T0308": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "作品",
+      "raw": "作品",
+      "start": 7571,
+      "end": 7573
+    },
+    "T0309": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "奖项",
+      "raw": "奖项",
+      "start": 7618,
+      "end": 7620
+    },
+    "T0310": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "关于",
+      "raw": "关于",
+      "start": 7664,
+      "end": 7666
+    },
+    "T0311": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a",
+      "attr": "",
+      "text": "联系",
+      "raw": "联系",
+      "start": 7712,
+      "end": 7714
+    },
+    "T0312": {
+      "file": "projects/mj.html",
+      "kind": "attr",
+      "loc": "button#themeToggle.theme-toggle",
+      "attr": "aria-label",
+      "text": "切换主题",
+      "raw": "切换主题",
+      "start": 7797,
+      "end": 7801
+    },
+    "T0313": {
+      "file": "projects/mj.html",
+      "kind": "attr",
+      "loc": "img.mj-icon",
+      "attr": "alt",
+      "text": "MJ 应用图标",
+      "raw": "MJ 应用图标",
+      "start": 8372,
+      "end": 8379
+    },
+    "T0314": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "div.mj-label",
+      "attr": "",
+      "text": "New App",
+      "raw": "New App",
+      "start": 8485,
+      "end": 8492
+    },
+    "T0315": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "h1.mj-name",
+      "attr": "",
+      "text": "MJ",
+      "raw": "MJ",
+      "start": 8528,
+      "end": 8530
+    },
+    "T0316": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "p.mj-desc",
+      "attr": "",
+      "text": "轻触即启，一切刚好。",
+      "raw": "轻触即启，一切刚好。",
+      "start": 8564,
+      "end": 8574
+    },
+    "T0317": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "a.mj-dl-btn",
+      "attr": "",
+      "text": "下载应用",
+      "raw": "\r\n            下载应用 ",
+      "start": 8722,
+      "end": 8741
+    },
+    "T0318": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "1145",
+      "raw": "1145",
+      "start": 8822,
+      "end": 8826
+    },
+    "T0319": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "span.mj-pwd",
+      "attr": "",
+      "text": "密码",
+      "raw": "密码 ",
+      "start": 8816,
+      "end": 8819
+    },
+    "T0320": {
+      "file": "projects/mj.html",
+      "kind": "text",
+      "loc": "p",
+      "attr": "",
+      "text": "© 2026 CHU.LIFE. All rights reserved.",
+      "raw": "© 2026 CHU.LIFE. All rights reserved.",
+      "start": 8964,
+      "end": 9001
+    },
+    "T0321": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "神秘入口 — CHU.LIFE",
+      "raw": "神秘入口 — CHU.LIFE",
+      "start": 155,
+      "end": 170
+    },
+    "T0322": {
+      "file": "projects/vip.html",
+      "kind": "attr",
+      "loc": "input#pinInput.pin-input",
+      "attr": "placeholder",
+      "text": "🔑 输入通关暗号…",
+      "raw": "🔑 输入通关暗号…",
+      "start": 5682,
+      "end": 5692
+    },
+    "T0323": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "button.pin-btn",
+      "attr": "",
+      "text": "验证",
+      "raw": "验证",
+      "start": 5758,
+      "end": 5760
+    },
+    "T0324": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "h1.gate-title",
+      "attr": "",
+      "text": "神秘入口",
+      "raw": "神秘入口",
+      "start": 5914,
+      "end": 5918
+    },
+    "T0325": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "p.gate-sub",
+      "attr": "",
+      "text": "全站最神秘的通道，据说只有一个人能进去…",
+      "raw": "全站最神秘的通道，据说只有一个人能进去…",
+      "start": 5949,
+      "end": 5969
+    },
+    "T0326": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "label.gate-label",
+      "attr": "",
+      "text": "先报上名来！",
+      "raw": "先报上名来！",
+      "start": 6053,
+      "end": 6059
+    },
+    "T0327": {
+      "file": "projects/vip.html",
+      "kind": "attr",
+      "loc": "input#nameInput.gate-input",
+      "attr": "placeholder",
+      "text": "输入你的大名",
+      "raw": "输入你的大名",
+      "start": 6185,
+      "end": 6191
+    },
+    "T0328": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "button#nameBtn.gate-btn",
+      "attr": "",
+      "text": "我看看你是哪位",
+      "raw": "我看看你是哪位",
+      "start": 6275,
+      "end": 6282
+    },
+    "T0329": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "p.pin-congrats",
+      "attr": "",
+      "text": "🎉 恭喜恭喜！你就是天选之人！",
+      "raw": "🎉 恭喜恭喜！你就是天选之人！",
+      "start": 6490,
+      "end": 6506
+    },
+    "T0330": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "p.pin-label",
+      "attr": "",
+      "text": "你的专属通关暗号：",
+      "raw": "你的专属通关暗号：",
+      "start": 6539,
+      "end": 6548
+    },
+    "T0331": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "div#pinCode.pin-code",
+      "attr": "",
+      "text": "yanshuai666",
+      "raw": "yanshuai666",
+      "start": 6595,
+      "end": 6606
+    },
+    "T0332": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "p.pin-hint",
+      "attr": "",
+      "text": "↑ 把暗号复制下来，填到页面最上方的搜索框，就能开启你的专属页面 ↑",
+      "raw": "↑ 把暗号复制下来，填到页面最上方的搜索框，就能开启你的专属页面 ↑",
+      "start": 6640,
+      "end": 6674
+    },
+    "T0333": {
+      "file": "projects/vip.html",
+      "kind": "text",
+      "loc": "p.gate-foot",
+      "attr": "",
+      "text": "ps：此通道有洁癖，只认闫帅。",
+      "raw": "ps：此通道有洁癖，只认闫帅。",
+      "start": 6719,
+      "end": 6734
+    },
+    "T0334": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "title",
+      "attr": "",
+      "text": "闫帅 · 全站唯一 VIP — CHU.LIFE",
+      "raw": "闫帅 · 全站唯一 VIP — CHU.LIFE",
+      "start": 155,
+      "end": 179
+    },
+    "T0335": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-badge",
+      "attr": "",
+      "text": "🎉 全站最高荣誉 · 唯一 VIP 🎉",
+      "raw": "🎉 全站最高荣誉 · 唯一 VIP 🎉",
+      "start": 7653,
+      "end": 7674
+    },
+    "T0336": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-giant",
+      "attr": "",
+      "text": "闫帅",
+      "raw": "闫帅",
+      "start": 7740,
+      "end": 7742
+    },
+    "T0337": {
+      "file": "projects/yanshuai.html",
+      "kind": "attr",
+      "loc": "img.ys-avatar",
+      "attr": "alt",
+      "text": "闫帅",
+      "raw": "闫帅",
+      "start": 7892,
+      "end": 7894
+    },
+    "T0338": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "h1.ys-congrats",
+      "attr": "",
+      "text": "恭喜闫帅！成为本网站唯一 VIP！🎊",
+      "raw": "恭喜闫帅！成为本网站唯一 VIP！🎊",
+      "start": 7955,
+      "end": 7974
+    },
+    "T0339": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "😎 帅气值",
+      "raw": "😎 帅气值",
+      "start": 8041,
+      "end": 8047
+    },
+    "T0340": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-card",
+      "attr": "",
+      "text": "100%（满分）",
+      "raw": "100%（满分）",
+      "start": 8051,
+      "end": 8059
+    },
+    "T0341": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "🏆 VIP 等级",
+      "raw": "🏆 VIP 等级",
+      "start": 8097,
+      "end": 8106
+    },
+    "T0342": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-card",
+      "attr": "",
+      "text": "至尊唯一",
+      "raw": "至尊唯一",
+      "start": 8110,
+      "end": 8114
+    },
+    "T0343": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "🎁 专属特权",
+      "raw": "🎁 专属特权",
+      "start": 8152,
+      "end": 8159
+    },
+    "T0344": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-card",
+      "attr": "",
+      "text": "无（但很牛）",
+      "raw": "无（但很牛）",
+      "start": 8163,
+      "end": 8169
+    },
+    "T0345": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "b",
+      "attr": "",
+      "text": "💰 钱包余额",
+      "raw": "💰 钱包余额",
+      "start": 8207,
+      "end": 8214
+    },
+    "T0346": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "div.ys-card",
+      "attr": "",
+      "text": "保密 🤐",
+      "raw": "保密 🤐",
+      "start": 8218,
+      "end": 8223
+    },
+    "T0347": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "p#ysTip.ys-tip",
+      "attr": "",
+      "text": "今日特权：可以随时访问本页",
+      "raw": "今日特权：可以随时访问本页",
+      "start": 8278,
+      "end": 8291
+    },
+    "T0348": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏",
+      "raw": "🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏",
+      "start": 8400,
+      "end": 8438
+    },
+    "T0349": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "span",
+      "attr": "",
+      "text": "🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏",
+      "raw": "🎉 欢迎闫帅莅临本网站 🎉 全站最尊贵的客人来了，大家鼓掌 👏👏👏",
+      "start": 8461,
+      "end": 8499
+    },
+    "T0350": {
+      "file": "projects/yanshuai.html",
+      "kind": "text",
+      "loc": "p.ys-foot",
+      "attr": "",
+      "text": "本页面由褚俊熙倾情打造 · 仅供闫帅一人欣赏 · 其他人看到请装作没看见 🤫",
+      "raw": "本页面由褚俊熙倾情打造 · 仅供闫帅一人欣赏 · 其他人看到请装作没看见 🤫",
+      "start": 8559,
+      "end": 8598
+    }
+  }
+}

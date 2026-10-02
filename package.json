@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/chu100210/chu100210.github.io#readme",
   "dependencies": {
-    "sharp": "^0.35.3"
+    "docx": "^9.7.1",
+    "sharp": "^0.35.4"
   }
 }

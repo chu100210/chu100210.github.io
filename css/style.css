@@ -720,3 +720,13 @@ html.light .theme-toggle .icon-moon { display: none; }
   .site-nav { gap: .3rem; }
   .site-nav a { padding: .35rem .6rem; font-size: .72rem; }
 }
+
+/* ===== Particle Field（DeepSeek Harness 风格粒子背景）=====
+   鼠标经过时粒子散开、移开后弹回网格原位。
+   固定在页面最底层（z-index:-1），不拦截交互。 */
+canvas.particle-field {
+  position: fixed; inset: 0;
+  z-index: -1;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粒子散开 · Particle Field — CHU.LIFE</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="color-scheme" content="dark">
+  <style>
+    :root {
+      --accent: #d4a853;      /* 粒子颜色会读取这个变量 */
+      --accent2: #c7843a;
+      --text: #eef0f8;
+      --text2: #9aa0b5;
+      --panel: rgba(255, 255, 255, .045);
+      --border: rgba(255, 255, 255, .09);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+      background:
+        radial-gradient(1100px 750px at 50% -12%, rgba(90, 120, 255, .14) 0%, transparent 60%),
+        radial-gradient(900px 700px at 88% 112%, rgba(212, 168, 83, .10) 0%, transparent 60%),
+        linear-gradient(180deg, #090c17 0%, #05070d 100%);
+      color: var(--text);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    canvas.particle-field {
+      position: fixed; inset: 0;
+      z-index: -1;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    main {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.1rem;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .brand {
+      position: absolute; top: 1.6rem; left: 1.8rem;
+      font-weight: 700; letter-spacing: .12em;
+      color: var(--text); font-size: .95rem;
+      text-decoration: none;
+    }
+    .brand span { color: var(--accent); }
+    .badge {
+      display: inline-block;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent);
+      padding: .4em 1.1em;
+      border: 1px solid rgba(212, 168, 83, .35);
+      border-radius: 99px;
+    }
+    h1 {
+      font-size: clamp(2.1rem, 6vw, 4rem);
+      font-weight: 800; letter-spacing: -.02em;
+      line-height: 1.12;
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .sub { color: var(--text2); font-size: 1rem; max-width: 34rem; line-height: 1.8; }
+    .panel {
+      margin-top: 1.4rem;
+      display: flex; flex-wrap: wrap; gap: 1.1rem 1.6rem;
+      align-items: flex-end; justify-content: center;
+      padding: 1.3rem 1.6rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .ctrl {
+      display: flex; flex-direction: column; gap: .45rem;
+      text-align: left; min-width: 150px;
+    }
+    .ctrl > .label { font-size: .74rem; letter-spacing: .06em; color: var(--text2); }
+    .ctrl > .row { display: flex; align-items: center; gap: .5rem; }
+    .ctrl output {
+      font-variant-numeric: tabular-nums;
+      font-size: .85rem; color: var(--text);
+      min-width: 2.6rem; text-align: right;
+    }
+    .ctrl .unit { font-size: .72rem; color: var(--text2); }
+    input[type="range"] {
+      width: 130px; accent-color: var(--accent); cursor: pointer;
+    }
+    input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer;
+    }
+    .reset {
+      font-family: inherit;
+      font-size: .8rem; font-weight: 600;
+      color: var(--text);
+      padding: .55rem 1.3rem;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      transition: all .25s;
+      white-space: nowrap;
+    }
+    .reset:hover { border-color: var(--accent); color: var(--accent); }
+    .hint {
+      position: absolute; bottom: 1.4rem; left: 0; right: 0;
+      font-size: .72rem; letter-spacing: .12em;
+      color: rgba(154, 160, 181, .55);
+    }
+    @media (max-width: 720px) {
+      main { justify-content: flex-start; padding-top: 7rem; }
+      .panel { flex-direction: column; align-items: stretch; }
+      .ctrl { flex-direction: row; justify-content: space-between; align-items: center; }
+      input[type="range"] { width: 55vw; }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="particle-field" aria-hidden="true"></canvas>
+
+  <a class="brand" href="index.html">CHU<span>.</span>LIFE</a>
+
+  <main>
+    <p class="badge">DeepSeek Harness 风格 · 粒子背景</p>
+    <h1>鼠标经过，粒子<em>如水散开</em></h1>
+    <p class="sub">移动鼠标，粒子像被水轻轻拨开一样散开；移开后缓缓流回网格原位，没有任何弹跳。基于 Canvas 渲染，不拦截任何页面交互。</p>
+
+    <div class="panel">
+      <label class="ctrl">
+        <span class="label">粒子间距</span>
+        <span class="row">
+          <input type="range" data-pf="spacing" min="30" max="140" step="5" value="60">
+          <output data-pf-value="spacing">60</output><span class="unit">px</span>
+        </span>
+      </label>
+      <label class="ctrl">
+        <span class="label">散开范围</span>
+        <span class="row">
+          <input type="range" data-pf="radius" min="60" max="320" step="10" value="180">
+          <output data-pf-value="radius">180</output><span class="unit">px</span>
+        </span>
+      </label>
+      <label class="ctrl">
+        <span class="label">散开力度</span>
+        <span class="row">
+          <input type="range" data-pf="force" min="0.2" max="3" step="0.1" value="1.6">
+          <output data-pf-value="force">1.6</output>
+        </span>
+      </label>
+      <label class="ctrl">
+        <span class="label">回流速度</span>
+        <span class="row">
+          <input type="range" data-pf="spring" min="0.005" max="0.08" step="0.005" value="0.025">
+          <output data-pf-value="spring">0.025</output>
+        </span>
+      </label>
+      <label class="ctrl">
+        <span class="label">邻近连线</span>
+        <span class="row">
+          <input type="checkbox" data-pf="links" checked>
+          <output data-pf-value="links">开</output>
+        </span>
+      </label>
+      <button class="reset" data-pf-reset>恢复默认</button>
+    </div>
+  </main>
+
+  <p class="hint">桌面浏览器体验最佳 · 效果已接入首页背景</p>
+
+  <script src="js/particles.js"></script>
+</body>
+</html>
