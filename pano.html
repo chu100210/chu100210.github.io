@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>360° 全景 — CHU.LIFE</title>
+  <meta name="description" content="360° 全景照片浏览 — CHU.LIFE">
+  <link rel="stylesheet" href="css/pano.css">
+  <link rel="stylesheet" href="js/vendor/psv/core.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(self), gyroscope=(self), magnetometer=(self), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="dark">
+</head>
+<body>
+  <!-- 全景容器 -->
+  <div id="viewer"></div>
+
+  <!-- 顶部导航(覆盖在全景上) -->
+  <header class="pano-topbar">
+    <a href="index.html" class="pano-logo">CHU<span>.</span>LIFE</a>
+    <span class="pano-title">360° 全景</span>
+    <a href="photo.html" class="pano-back">← 返回摄影</a>
+  </header>
+
+  <!-- 加载蒙层 -->
+  <div class="pano-loading" id="pano-loading">
+    <div class="pano-spinner"></div>
+    <p>全景加载中…</p>
+  </div>
+
+  <!-- 操作提示 -->
+  <div class="pano-hint">拖拽旋转视角&ensp;·&ensp;滚轮缩放&ensp;·&ensp;手机可转动设备观看</div>
+
+  <script type="module" src="js/vendor/psv/psv.bundle.js"></script>
+</body>
+</html>

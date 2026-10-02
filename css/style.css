@@ -730,3 +730,59 @@ canvas.particle-field {
   width: 100%; height: 100%;
   pointer-events: none;
 }
+
+/* ===== 360° Panorama Entry Card(photo.html 全景入口)===== */
+.photo-pano-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 2.5rem;
+  padding: 22px 26px;
+  background: #0b0a08;
+  color: #f0ece2;
+  text-decoration: none;
+  border: 1px solid rgba(200, 168, 107, .35);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.photo-pano-card:hover {
+  transform: translateY(-2px);
+  border-color: #c8a86b;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+}
+.photo-pano-icon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c8a86b;
+  border-radius: 50%;
+  color: #c8a86b;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.photo-pano-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.photo-pano-body strong {
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  color: #f0ece2;
+}
+.photo-pano-body em {
+  font-style: normal;
+  font-size: .82rem;
+  letter-spacing: 1px;
+  color: rgba(240, 236, 226, .55);
+}
+.photo-pano-go {
+  margin-left: auto;
+  color: #c8a86b;
+  font-size: .9rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
