@@ -449,6 +449,89 @@ body {
   text-align: center;
 }
 
+/* ---------- 加载门 ---------- */
+.m95-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  transition: opacity 0.55s ease;
+}
+
+.m95-gate.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.m95-gate[hidden] { display: none; }
+
+.m95-gate-inner {
+  text-align: center;
+  padding: 0 24px;
+  max-width: 420px;
+}
+
+.m95-gate-title {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-indent: 8px;
+  color: var(--ink);
+}
+
+.m95-gate-sub {
+  margin-top: 10px;
+  font-family: var(--hand);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+}
+
+.m95-gate-bar {
+  width: min(280px, 70vw);
+  height: 4px;
+  margin: 28px auto 12px;
+  border-radius: 2px;
+  background: rgba(138, 97, 54, 0.18);
+  overflow: hidden;
+}
+
+.m95-gate-bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c8a86b, #c46a2d);
+  transition: width 0.25s ease;
+}
+
+.m95-gate-count {
+  font-family: var(--hand);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--brown);
+}
+
+.m95-gate-skip {
+  margin-top: 22px;
+  padding: 6px 4px;
+  background: none;
+  border: none;
+  border-bottom: 1px dashed rgba(138, 97, 54, 0.5);
+  font-family: var(--hand);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--brown);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.m95-gate-skip:hover { color: var(--accent); }
+
 /* ---------- 视频占位 ---------- */
 .m95-video-placeholder {
   padding: 34px 26px;

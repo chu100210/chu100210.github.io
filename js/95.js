@@ -8,6 +8,12 @@
   var JSD_BASE = 'https://cdn.jsdelivr.net/gh/chu100210/chu100210.github.io@main';
   var LOCAL_BASE = ''; // 相对站内路径回退
 
+  // ---------- 加载门 ----------
+  var GATE_MAX_MS = 25000; // 网络极差时最多等 25 秒
+  var entered = false;
+  var rendered = false;
+  var prefetchMap = {}; // src -> 已确认可用 URL(jsDelivr 或本地)
+
   // ---------- 工具 ----------
   function enc(path) {
     return path.split('/').map(encodeURIComponent).join('/');
@@ -19,6 +25,13 @@
     img.decoding = 'async';
     img.alt = alt || '';
     var local = enc(src);
+
+    // 预加载已确认的 URL 直接使用(命中缓存,秒显)
+    var prefetched = prefetchMap[src];
+    if (prefetched) {
+      img.src = prefetched;
+      return img;
+    }
 
     function fallback() {
       if (img.dataset.fb) return;
@@ -53,6 +66,68 @@
     var d = m[1];
     var t = m[2];
     return d.slice(0, 4) + '-' + d.slice(4, 6) + '-' + d.slice(6, 8) + ' ' + t.slice(0, 2) + ':' + t.slice(2, 4);
+  }
+
+  // ---------- 预加载 ----------
+  // 加载单张:jsDelivr 优先(5 秒超时),失败回退本地(10 秒超时),resolve 最终 URL 或 null
+  function loadOnce(src) {
+    var local = enc(src);
+    var remote = JSD_BASE + '/' + local;
+    return new Promise(function (resolve) {
+      var img = new Image();
+      var settled = false;
+      function settle(url) {
+        if (settled) return;
+        settled = true;
+        resolve(url);
+      }
+      function tryLocal() {
+        var t = setTimeout(function () { settle(null); }, 10000);
+        img.onload = function () { clearTimeout(t); settle(local); };
+        img.onerror = function () { clearTimeout(t); settle(null); };
+        img.src = local;
+      }
+      var timer = setTimeout(function () { tryLocal(); }, 5000);
+      img.onload = function () { clearTimeout(timer); settle(remote); };
+      img.onerror = function () { clearTimeout(timer); tryLocal(); };
+      img.src = remote;
+    });
+  }
+
+  // 并发预加载全部缩略图,完成后 resolve 可用 URL 映射
+  function preloadAll(list, onProgress) {
+    var total = list.length;
+    return new Promise(function (resolve) {
+      var results = {};
+      var done = 0;
+      var idx = 0;
+      var workers = Math.min(8, total || 1);
+      function next() {
+        if (idx >= list.length) {
+          if (done >= total) resolve(results);
+          return;
+        }
+        var src = list[idx++];
+        loadOnce(src).then(function (url) {
+          if (url) results[src] = url;
+          done++;
+          if (onProgress) onProgress(done, total);
+          next();
+        });
+      }
+      for (var i = 0; i < workers; i++) next();
+    });
+  }
+
+  // 收集所有需要预加载的缩略图路径
+  function collectPreload() {
+    var list = [];
+    CATS.forEach(function (cat) {
+      (cat.files || []).forEach(function (f) {
+        list.push('95/web/thumb/' + cat.name + '/' + f);
+      });
+    });
+    return list;
   }
 
   // ---------- 灯箱数据 ----------
@@ -254,29 +329,26 @@
   }
 
   // ---------- 入场动画 ----------
-  function bindReveal() {
-    var obs = new IntersectionObserver(function (entries) {
+  var revealObs = null;
+  var cardObs = null;
+
+  // 创建观察器(不立即观察,等渲染完成后由 startReveal 统一触发)
+  function initReveal() {
+    revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         en.target.classList.add('in-view');
-        obs.unobserve(en.target);
+        revealObs.unobserve(en.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-
-    var cardObs = new IntersectionObserver(function (entries) {
+    cardObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         en.target.classList.remove('pending');
         cardObs.unobserve(en.target);
       });
     }, { rootMargin: '0px 0px -5% 0px', threshold: 0.02 });
-
-    // 先观察已渲染的照片卡,再兜底后续新增
-    document.querySelectorAll('.m95-card.pending, .m95-pano-card.pending, .m95-now-card.pending').forEach(function (el) {
-      cardObs.observe(el);
-    });
 
     var mo = new MutationObserver(function (muts) {
       muts.forEach(function (m) {
@@ -290,8 +362,17 @@
     document.querySelectorAll('.m95-main').forEach(function (el) { mo.observe(el, { childList: true, subtree: true }); });
   }
 
+  function startReveal() {
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObs.observe(el); });
+    document.querySelectorAll('.m95-card.pending, .m95-pano-card.pending, .m95-now-card.pending').forEach(function (el) {
+      cardObs.observe(el);
+    });
+  }
+
   // ---------- 启动 ----------
-  function init() {
+  function renderAll() {
+    if (rendered) return;
+    rendered = true;
     var nowCat = null;
     CATS.forEach(function (cat) {
       if (cat.pano) renderPano(cat);
@@ -304,9 +385,61 @@
     });
     // 尚无现状照片时也渲染空态提示
     if (!nowCat) renderNow(null);
+    startReveal();
+  }
+
+  function setProgress(n, total) {
+    var bar = document.getElementById('m95GateBar');
+    var count = document.getElementById('m95GateCount');
+    if (!bar || !count) return;
+    bar.style.width = Math.round((n / total) * 100) + '%';
+    count.textContent = '正在冲洗第 ' + n + ' / ' + total + ' 张…';
+  }
+
+  function enterPage() {
+    if (entered) return;
+    entered = true;
+    document.body.style.overflow = '';
+    var gate = document.getElementById('m95Gate');
+    if (gate) {
+      gate.classList.add('done');
+      setTimeout(function () { gate.hidden = true; }, 550);
+    }
+  }
+
+  function init() {
     buildNav();
     bindLightbox();
-    bindReveal();
+    initReveal();
+
+    document.body.style.overflow = 'hidden';
+    var list = collectPreload();
+
+    if (!list.length) {
+      renderAll();
+      enterPage();
+      return;
+    }
+
+    preloadAll(list, setProgress).then(function (results) {
+      prefetchMap = results;
+      renderAll();
+      enterPage();
+    });
+
+    // 兜底:网络极差时最多等 25 秒强制进入(剩余图片仍走懒加载超时回退)
+    setTimeout(function () {
+      renderAll();
+      enterPage();
+    }, GATE_MAX_MS);
+
+    var skip = document.getElementById('m95GateSkip');
+    if (skip) {
+      skip.addEventListener('click', function () {
+        renderAll();
+        enterPage();
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
