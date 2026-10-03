@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /95.html
+Disallow: /95
+Disallow: /pano.html
+Disallow: /pano
