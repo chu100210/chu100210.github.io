@@ -7,7 +7,7 @@
   <meta name="description" content="九五年华 — 初中生活回忆相册">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="css/95.css">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: https://cdn.jsdelivr.net; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: https://cdn.jsdelivr.net https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -95,6 +95,14 @@
         <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->散作满天星,也要常回来看看。</p>
       </header>
       <div class="m95-grid" id="grid-biye"></div>
+
+      <!-- ★ 同学们现在:近照放 95/photo/现状/(文件名=同学名字),跑压缩脚本后自动出现 -->
+      <div class="m95-now-head reveal">
+        <h3>他们现在</h3>
+        <p>看看同学们如今的模样 —— 一句近况,一张笑脸。</p>
+      </div>
+      <div class="m95-now-grid" id="grid-xianzhuang"></div>
+
       <div class="m95-note reveal">
         <p>★ 便签:毕业后第一次聚会,谁变化最大?</p>
       </div>
@@ -148,6 +156,7 @@
   </div>
 
   <script src="js/95-data.js"></script>
+  <script src="js/95-notes.js"></script>
   <script src="js/leaves.js"></script>
   <script src="js/95.js"></script>
 </body>

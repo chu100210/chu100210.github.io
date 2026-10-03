@@ -6,6 +6,7 @@ window.PHOTO95 = {
       "key": "geren",
       "name": "个人",
       "pano": false,
+      "now": false,
       "files": [
         "015accb0e6605e071fd1345ad6455398.webp",
         "051ace8053a8be7d4bf255d3a217eaf3.webp",
@@ -56,6 +57,7 @@ window.PHOTO95 = {
       "key": "jiti",
       "name": "集体",
       "pano": false,
+      "now": false,
       "files": [
         "00c36d3dd8f0f28701aaf9067855fe69.webp",
         "0222745c095b1a07397cb1deffee3d07.webp",
@@ -102,6 +104,7 @@ window.PHOTO95 = {
       "key": "laoshi",
       "name": "老师",
       "pano": false,
+      "now": false,
       "files": [
         "094866f7ff9c2e1a7e3e33488e0fb665.webp",
         "0b1fa90a630532579e122d6df5359506.webp",
@@ -121,6 +124,7 @@ window.PHOTO95 = {
       "key": "biye",
       "name": "毕业后",
       "pano": false,
+      "now": false,
       "files": [
         "01743c3df22fd393e686da531d971b21.webp",
         "MVIMG_20250930_182905.webp",
@@ -134,6 +138,7 @@ window.PHOTO95 = {
       "key": "pano",
       "name": "全景",
       "pano": true,
+      "now": false,
       "files": [
         "CR1420250620_193454059.PHOTOSPHERE.webp",
         "CR1420250620_194948575.PHOTOSPHERE.webp"

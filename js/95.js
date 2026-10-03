@@ -142,13 +142,55 @@
     });
   }
 
+  // 「他们现在」同学卡:照片 + 姓名(文件名)+ 近况(js/95-notes.js)
+  function renderNow(cat) {
+    var grid = document.getElementById('grid-xianzhuang');
+    if (!grid) return;
+    if (!cat || !cat.files || !cat.files.length) {
+      var empty = document.createElement('p');
+      empty.className = 'm95-now-empty';
+      empty.textContent = '还没有同学近照 —— 把照片放进 95/photo/现状/ 文件夹(文件名建议用同学名字),跑一次压缩脚本就会出现在这里';
+      grid.appendChild(empty);
+      return;
+    }
+    var notes = window.XZ_NOTES || {};
+    cat.files.forEach(function (file) {
+      var name = file.replace(/\.webp$/i, '');
+      var card = document.createElement('figure');
+      card.className = 'm95-now-card pending';
+
+      var photo = document.createElement('div');
+      photo.className = 'm95-now-photo';
+      photo.appendChild(buildImg('95/web/thumb/' + cat.name + '/' + file, name));
+
+      var cap = document.createElement('figcaption');
+      var nameEl = document.createElement('strong');
+      nameEl.className = 'm95-now-name';
+      nameEl.textContent = name;
+      var desc = document.createElement('span');
+      desc.className = 'm95-now-desc';
+      desc.textContent = notes[name] || 'TA 的近况,等你来填';
+      cap.appendChild(nameEl);
+      cap.appendChild(desc);
+
+      card.appendChild(photo);
+      card.appendChild(cap);
+
+      var index = gallery.length;
+      gallery.push({ src: '95/web/' + cat.name + '/' + file, alt: name });
+      card.addEventListener('click', function () { openLightbox(index); });
+
+      grid.appendChild(card);
+    });
+  }
+
   // ---------- 分类导航 ----------
   function buildNav() {
     var nav = document.getElementById('m95Nav');
     if (!nav) return;
     var items = [];
     CATS.forEach(function (cat) {
-      if (cat.pano) return;
+      if (cat.pano || cat.now) return; // 全景与现状不进顶部导航
       var a = document.createElement('a');
       a.href = '#cat-' + cat.key;
       a.textContent = cat.name;
@@ -202,7 +244,7 @@
     }, { rootMargin: '0px 0px -5% 0px', threshold: 0.02 });
 
     // 先观察已渲染的照片卡,再兜底后续新增
-    document.querySelectorAll('.m95-card.pending, .m95-pano-card.pending').forEach(function (el) {
+    document.querySelectorAll('.m95-card.pending, .m95-pano-card.pending, .m95-now-card.pending').forEach(function (el) {
       cardObs.observe(el);
     });
 
@@ -220,10 +262,18 @@
 
   // ---------- 启动 ----------
   function init() {
+    var nowCat = null;
     CATS.forEach(function (cat) {
       if (cat.pano) renderPano(cat);
-      else renderCategory(cat);
+      else if (cat.now) {
+        nowCat = cat;
+        renderNow(cat);
+      } else {
+        renderCategory(cat);
+      }
     });
+    // 尚无现状照片时也渲染空态提示
+    if (!nowCat) renderNow(null);
     buildNav();
     bindLightbox();
     bindReveal();

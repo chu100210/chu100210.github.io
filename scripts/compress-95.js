@@ -15,6 +15,7 @@ const CATS = [
   { key: 'jiti', dir: '集体', name: '集体', quality: 88 },
   { key: 'laoshi', dir: '老师', name: '老师', quality: 88 },
   { key: 'biye', dir: '毕业后', name: '毕业后', quality: 88 },
+  { key: 'xianzhuang', dir: '现状', name: '现状', quality: 88, now: true },
   { key: 'pano', dir: '全景', name: '全景', quality: 90, pano: true },
 ];
 
@@ -70,7 +71,7 @@ async function main() {
 
     totalIn += catIn;
     totalOut += catOut;
-    result.categories.push({ key: cat.key, name: cat.name, pano: !!cat.pano, files: outFiles });
+    result.categories.push({ key: cat.key, name: cat.name, pano: !!cat.pano, now: !!cat.now, files: outFiles });
     process.stdout.write(`${cat.dir}: ${files.length} 张, ${human(catIn / 1e6)} → ${human(catOut / 1e6)}\n\n`);
   }
 
