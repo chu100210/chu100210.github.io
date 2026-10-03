@@ -13,18 +13,36 @@
     return path.split('/').map(encodeURIComponent).join('/');
   }
 
-  // 构造 jsDelivr 优先、本地回退的图片
+  // 构造 jsDelivr 优先、本地回退的图片(懒加载 + 超时回退)
   function buildImg(src, alt) {
     var img = document.createElement('img');
-    img.loading = 'lazy';
     img.decoding = 'async';
     img.alt = alt || '';
-    img.src = JSD_BASE + '/' + enc(src);
-    img.addEventListener('error', function () {
+    var local = enc(src);
+
+    function fallback() {
       if (img.dataset.fb) return;
       img.dataset.fb = '1';
-      img.src = enc(src);
-    });
+      img.src = local;
+    }
+
+    img.addEventListener('error', fallback);
+
+    // 进入视口(含缓冲)才开始请求,避免 jsDelivr 挂起时一直空白
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(img);
+        // jsDelivr 优先,5 秒未完成则切回本地
+        var timer = setTimeout(function () {
+          if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) fallback();
+        }, 5000);
+        img.addEventListener('load', function () { clearTimeout(timer); }, { once: true });
+        img.src = JSD_BASE + '/' + local;
+      });
+    }, { rootMargin: '400px 0px' });
+    io.observe(img);
+
     return img;
   }
 
@@ -40,6 +58,7 @@
   // ---------- 灯箱数据 ----------
   var gallery = []; // { src(full), alt }
   var lbIndex = -1;
+  var lbTimer = null;
 
   function openLightbox(i) {
     if (i < 0 || i >= gallery.length) return;
@@ -49,6 +68,17 @@
     var count = document.getElementById('m95LbCount');
     var item = gallery[i];
 
+    // 清理上一张的未完成定时器,避免误切新图
+    if (lbTimer) clearTimeout(lbTimer);
+
+    lbTimer = setTimeout(function () {
+      if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) {
+        img.dataset.fb = '1';
+        img.src = enc(item.src);
+      }
+    }, 5000);
+
+    img.onload = function () { clearTimeout(lbTimer); };
     img.onerror = function () {
       if (img.dataset.fb) return;
       img.dataset.fb = '1';
