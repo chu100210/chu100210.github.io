@@ -24,16 +24,16 @@
   Leaf.prototype.reset = function (first) {
     this.x = Math.random() * W;
     this.y = first ? Math.random() * H : -40 - Math.random() * 80;
-    this.size = 7 + Math.random() * 10;          // 叶片半长
-    this.fall = 0.5 + Math.random() * 1.3;       // 下落速度
-    this.swayAmp = 16 + Math.random() * 34;      // 水平摆动幅度
+    this.size = 5 + Math.random() * 8;            // 叶片半长(更小更轻)
+    this.fall = 0.45 + Math.random() * 1.1;       // 下落速度
+    this.swayAmp = 14 + Math.random() * 28;       // 水平摆动幅度
     this.swaySpeed = 0.008 + Math.random() * 0.014;
     this.phase = Math.random() * Math.PI * 2;
     this.rot = Math.random() * Math.PI * 2;
     this.rotSpeed = (Math.random() - 0.5) * 0.035;
     this.color = COLORS[(Math.random() * COLORS.length) | 0];
-    this.alpha = 0.5 + Math.random() * 0.4;
-    this.wobble = 1 + Math.random() * 0.6;       // 侧翻挤压感
+    this.alpha = 0.22 + Math.random() * 0.23;     // 更透明,不挡视野
+    this.wobble = 1 + Math.random() * 0.6;        // 侧翻挤压感
   };
 
   Leaf.prototype.update = function () {
@@ -74,7 +74,8 @@
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    var count = Math.min(64, Math.max(22, Math.floor(W / 24)));
+    // 更稀疏:每 34px 宽一枚,上限 44
+    var count = Math.min(44, Math.max(16, Math.floor(W / 34)));
     if (leaves.length !== count) {
       leaves = [];
       for (var i = 0; i < count; i++) leaves.push(new Leaf(true));
