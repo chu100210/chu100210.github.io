@@ -786,3 +786,33 @@ canvas.particle-field {
   letter-spacing: 2px;
   white-space: nowrap;
 }
+
+/* 双入口并排 + 九五时光册配色 */
+.photo-entry-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.photo-entry-row .photo-pano-card { margin-bottom: 0; }
+
+.photo-95-card {
+  background: #f4ecdb;
+  color: #453223;
+  border-color: rgba(196, 106, 45, .45);
+}
+
+.photo-95-card:hover { border-color: #c46a2d; }
+
+.photo-95-card .photo-pano-icon { color: #c46a2d; border-color: #c46a2d; }
+
+.photo-95-card .photo-pano-body strong { color: #453223; }
+
+.photo-95-card .photo-pano-body em { color: rgba(107, 81, 56, .75); }
+
+.photo-95-card .photo-pano-go { color: #c46a2d; }
+
+@media (max-width: 640px) {
+  .photo-entry-row { grid-template-columns: 1fr; }
+}

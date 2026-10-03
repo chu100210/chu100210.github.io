@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>九五 · 时光册 — CHU.LIFE</title>
+  <meta name="description" content="九五年华 — 初中生活回忆相册">
+  <link rel="stylesheet" href="css/95.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: https://cdn.jsdelivr.net; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light">
+</head>
+<body>
+  <!-- 落叶画布 -->
+  <canvas id="leaves" aria-hidden="true"></canvas>
+
+  <!-- 顶栏 -->
+  <header class="m95-topbar" id="m95Topbar">
+    <a href="index.html" class="m95-logo">CHU<span>.</span>LIFE</a>
+    <span class="m95-top-title">九五 · 时光册</span>
+    <a href="photo.html" class="m95-back">← 返回摄影</a>
+  </header>
+
+  <!-- 首屏 -->
+  <section class="m95-hero">
+    <p class="m95-hero-kicker reveal">CLASS 95 · 初中三年 · 永远记得</p>
+    <h1 class="m95-hero-title reveal">九五年华</h1>
+    <p class="m95-hero-sub reveal">那些年 · 那些人 · 那些回不去的课间十分钟</p>
+
+    <!-- ★ 前言:想写的话写在这里,替换下面这段即可 -->
+    <div class="m95-hero-note reveal">
+      <p>这里是我们的时光册。</p>
+      <p>点开每一张照片,都是昨天。</p>
+      <p>（把这段文字换成你想对大家说的话）</p>
+    </div>
+
+    <div class="m95-hero-scroll reveal" aria-hidden="true">
+      <span>翻开相册</span>
+      <i></i>
+    </div>
+  </section>
+
+  <!-- 分类导航 -->
+  <nav class="m95-nav" id="m95Nav" aria-label="相册分类"></nav>
+
+  <main class="m95-main">
+
+    <!-- ============ 个人 ============ -->
+    <section class="m95-cat" id="cat-geren" data-cat="geren">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">01</span>
+        <h2>个人</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->那年夏天的你,比任何时候都耀眼。</p>
+      </header>
+      <div class="m95-grid" id="grid-geren"></div>
+      <div class="m95-note reveal">
+        <p>★ 便签:在这里写一段关于"个人"的小故事,会像贴纸一样待在照片旁。</p>
+      </div>
+    </section>
+
+    <!-- ============ 集体 ============ -->
+    <section class="m95-cat" id="cat-jiti" data-cat="jiti">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">02</span>
+        <h2>集体</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->四十五个人,一张课表,一个班。</p>
+      </header>
+      <div class="m95-grid" id="grid-jiti"></div>
+      <div class="m95-note reveal">
+        <p>★ 便签:写下全班一起做过最难忘的事。</p>
+      </div>
+    </section>
+
+    <!-- ============ 老师 ============ -->
+    <section class="m95-cat" id="cat-laoshi" data-cat="laoshi">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">03</span>
+        <h2>老师</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->粉笔灰落下的瞬间,都是他们的青春。</p>
+      </header>
+      <div class="m95-grid" id="grid-laoshi"></div>
+      <div class="m95-note reveal">
+        <p>★ 便签:对老师说一句当年没敢说的话。</p>
+      </div>
+    </section>
+
+    <!-- ============ 毕业后 ============ -->
+    <section class="m95-cat" id="cat-biye" data-cat="biye">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">04</span>
+        <h2>毕业后</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->散作满天星,也要常回来看看。</p>
+      </header>
+      <div class="m95-grid" id="grid-biye"></div>
+      <div class="m95-note reveal">
+        <p>★ 便签:毕业后第一次聚会,谁变化最大?</p>
+      </div>
+    </section>
+
+    <!-- ============ 全景时空 ============ -->
+    <section class="m95-cat" id="cat-pano" data-cat="pano">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">05</span>
+        <h2>全景时空</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->站在那一天的正中央,转一圈,看看四周。</p>
+      </header>
+      <div class="m95-pano-grid" id="grid-pano"></div>
+      <div class="m95-note reveal">
+        <p>★ 便签:点开一张全景,拖拽画面,回到那天的教室和操场。</p>
+      </div>
+    </section>
+
+    <!-- ============ 影像 ============ -->
+    <section class="m95-cat" id="cat-video">
+      <header class="m95-cat-head reveal">
+        <span class="m95-cat-no">06</span>
+        <h2>影像</h2>
+        <p class="m95-cat-desc"><!-- ★ 写这个分类的回忆 -->有些画面,动了才完整。</p>
+      </header>
+      <div class="m95-video-placeholder reveal">
+        <p>视频区正在整理中 —— 原视频较大,正在压缩 / 找更好的承载方式,敬请期待。</p>
+      </div>
+    </section>
+
+    <!-- 结尾 -->
+    <section class="m95-ending">
+      <p class="m95-ending-line reveal">青春没有散场,只是换了个教室继续。</p>
+      <p class="m95-ending-sub reveal"><!-- ★ 结尾寄语 -->致我们永远的九五年华 —— 见字如面,来日方长。</p>
+    </section>
+  </main>
+
+  <footer class="m95-footer">
+    <div class="m95-footer-inner">
+      <p>© 2026 CHU.LIFE · 九五时光册</p>
+    </div>
+  </footer>
+
+  <!-- 大图灯箱 -->
+  <div class="m95-lightbox" id="m95Lightbox" hidden>
+    <button class="m95-lb-close" id="m95LbClose" aria-label="关闭">&times;</button>
+    <button class="m95-lb-prev" id="m95LbPrev" aria-label="上一张">‹</button>
+    <img id="m95LbImg" alt="">
+    <button class="m95-lb-next" id="m95LbNext" aria-label="下一张">›</button>
+    <div class="m95-lb-count" id="m95LbCount"></div>
+  </div>
+
+  <script src="js/95-data.js"></script>
+  <script src="js/leaves.js"></script>
+  <script src="js/95.js"></script>
+</body>
+</html>

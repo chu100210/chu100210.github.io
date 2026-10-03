@@ -1,0 +1,143 @@
+// 由 scripts/compress-95.js 自动生成，请勿手动编辑
+// 照片清单：95/web/ 为全尺寸 WebP，95/web/thumb/ 为缩略图
+window.PHOTO95 = {
+  "categories": [
+    {
+      "key": "geren",
+      "name": "个人",
+      "pano": false,
+      "files": [
+        "015accb0e6605e071fd1345ad6455398.webp",
+        "051ace8053a8be7d4bf255d3a217eaf3.webp",
+        "17056ae0edd78d79ca54d300aaccde17.webp",
+        "1e2ca9e76b51c04fe4878b47a4077e0c.webp",
+        "1ee4707659b38f8a102905f785020c9a.webp",
+        "1f49093528b441653991a188b8edafde.webp",
+        "219a630962e1fc61c5d22c443fd5df68.webp",
+        "2350e689763ee5c3b5b16bb7707e7c68.webp",
+        "287dbc47325f15d6fba66d912f85489c.webp",
+        "29bc5fab755198a0deb905f3f865792e.webp",
+        "2b97602d890660d170879db0463b1b6d.webp",
+        "32caadabcc74791f4ea9b41d7cde56a7.webp",
+        "3632f541f55659a4afe315a29d0634ae.webp",
+        "38e0b0bac10e29a57024d4b663dc9431.webp",
+        "3C68A3EFCFEBE67001989ADDD1F7CAD2.webp",
+        "461a7d898e68866bcc1f453ee281b8b8.webp",
+        "476efdc3fba0023a8a79e2be53550195.webp",
+        "50ec989240858669734d37fcae7d9dee.webp",
+        "521114abb3f71c4fb03d9c1fb52160d6.webp",
+        "546263580704bd220974ca6a36afc0b4.webp",
+        "5b962f1468b47600c44593c467f50d62.webp",
+        "72352d665c13c9c347e3e3df96c3eebd.webp",
+        "7BF3945E55D22990D33F26ABA9DE8CFE.webp",
+        "7cbc73aa3c8310ecde88353f04251dc8.webp",
+        "82776d159658f221ca364620a1875de4.webp",
+        "8a783c8c4150c6d27d07ebfc7b8dcdd2.webp",
+        "91D093EDF1A0EF618AEA491A8D5B158E.webp",
+        "9fba855f5a29c656eef83eba1b3efcc4.webp",
+        "E2FFA9F777993882B84251C873AFFFAD.webp",
+        "IMG_20250620_150520.webp",
+        "IMG_20250620_150557.webp",
+        "IMG_20250620_163257.webp",
+        "IMG_20250620_191625.webp",
+        "IMG_20250620_191750.webp",
+        "IMG_20250620_194150.webp",
+        "a13b187709bb4e9d0e468f27181ac4ed.webp",
+        "b6aefc1c57300400ae9d73c08f392c2d.webp",
+        "c3c94ea0314da2d2ecf07c5ae5852cc3.webp",
+        "cc7a54c4eba164d29df49f58b059a8a8.webp",
+        "d5c463d8a3b63cc6dc3a116514185820.webp",
+        "e2ed320afa438b0b3eb953fc89b1c87f.webp",
+        "e5ce97ea59a4b88af9e4662fea60c37c.webp",
+        "fed6d2ab56d870ecdb706091a3a96732.webp"
+      ]
+    },
+    {
+      "key": "jiti",
+      "name": "集体",
+      "pano": false,
+      "files": [
+        "00c36d3dd8f0f28701aaf9067855fe69.webp",
+        "0222745c095b1a07397cb1deffee3d07.webp",
+        "1e158f068b4105c97e44fd0122cd13e7.webp",
+        "2f7795a7eea0dcdf2de7a31cddecec8a.webp",
+        "3047501f7da6b63e8dcb7cd7723381fe.webp",
+        "3a8e83f0b5482d9482fa2b4a0b02edb1.webp",
+        "3e445d10befb2008445fcd615afd02e3.webp",
+        "3fea18ecdab5963832783fbb1428d99d.webp",
+        "4339c8a6239d3033eba35eebd834b187.webp",
+        "43f8e6b7454fbad6a475207cd81d0385.webp",
+        "44e4539f7f0e4fc7e78ae2c592816179.webp",
+        "560a1431d4cb8230156bbc4749e1d43f.webp",
+        "594861f44a8b6753891aaef1eda49b6d.webp",
+        "5b87276d0f12dc99f7ac67a119c8f3a3.webp",
+        "5f4c96d9c3d8e09ea2611929bde205d3.webp",
+        "643bdb2a2874ab9ff34d16ad0e4db11e.webp",
+        "64e0ff84806214237e9d0fe271e4b36a.webp",
+        "6505db206bdd6f2a3aef8cd6d7eb71ce.webp",
+        "68c78b6fffb26de48c38b4720e1d56ba.webp",
+        "7b54ed8a1b3c260d8f3cd92e7a38f975.webp",
+        "8035b6cf16b5905f59c72022efeb32e6.webp",
+        "85222a5e5335d645428a4d8f8765b372.webp",
+        "95ec69ab28dfa150bc0363670004f01a.webp",
+        "981ea37f0fcb3c2661ab9a47d6dd2a99.webp",
+        "IMG_20250620_174818.webp",
+        "IMG_20250620_175720.webp",
+        "IMG_20250620_190006.webp",
+        "IMG_20250620_192150.webp",
+        "a3a071a5e8a2ae91a964b50f29867edd.webp",
+        "a8357aa063206e4fa938a17e30ca30ff.webp",
+        "af42821d95ea63127983e65227c6d8dd.webp",
+        "bb0306dfd5515db44f45cda1fbd0e9c9.webp",
+        "bc08ffe7b7eb6385f4267ab8e7e79990.webp",
+        "d76199ca6eda2424958aa9420662b99c.webp",
+        "e9144304656af46ed8b7ff7eeb43d8dd.webp",
+        "f03c9a220be46f4af090c5128a14afca.webp",
+        "f9dc9bf174c6258d0175bfd8a3ecc522.webp",
+        "fb11b3eeac6772bf1a92fc6c2e2526ed.webp",
+        "mmexport1750373355506.webp"
+      ]
+    },
+    {
+      "key": "laoshi",
+      "name": "老师",
+      "pano": false,
+      "files": [
+        "094866f7ff9c2e1a7e3e33488e0fb665.webp",
+        "0b1fa90a630532579e122d6df5359506.webp",
+        "2f9438648cae6a1b62e021851822b51b.webp",
+        "71f5e98a0d249a0fe6cf180ee21b4c01.webp",
+        "9ecc1e8c7dbfc302c2d469334eb7d2d5.webp",
+        "aa1e1f4d8501b74581b09a6bc86220d7.webp",
+        "af827e85ad2b1e51234d57cc25c2a703.webp",
+        "be03c9888f119dc2938944c04f7c7932.webp",
+        "d941324d212935b009f93935c9b19142.webp",
+        "e392fdd562c57ce0637b492835a85bed.webp",
+        "e92cd1fec4dc84e7a73406ea260f68f0.webp",
+        "fa8c82ab4b19cfb695a50cbcc191390c.webp"
+      ]
+    },
+    {
+      "key": "biye",
+      "name": "毕业后",
+      "pano": false,
+      "files": [
+        "01743c3df22fd393e686da531d971b21.webp",
+        "MVIMG_20250930_182905.webp",
+        "MVIMG_20250930_184453.webp",
+        "MVIMG_20250930_185400.webp",
+        "MVIMG_20250930_185558.webp",
+        "MVIMG_20250930_185911.webp"
+      ]
+    },
+    {
+      "key": "pano",
+      "name": "全景",
+      "pano": true,
+      "files": [
+        "CR1420250620_193454059.PHOTOSPHERE.webp",
+        "CR1420250620_194948575.PHOTOSPHERE.webp"
+      ]
+    }
+  ]
+};

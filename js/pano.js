@@ -1,20 +1,41 @@
 // 360° 全景浏览 — 入口(打包进 psv.bundle.js)
+// 全景清单读自 js/95-data.js(window.PHOTO95,由 scripts/compress-95.js 生成),
+// 照片文件位于 95/web/全景/。新增全景:放入 95/photo/全景/ 后重跑压缩脚本即可。
 import { Viewer } from '@photo-sphere-viewer/core';
 import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 import { GyroscopePlugin } from '@photo-sphere-viewer/gyroscope-plugin';
 
-// 全景照片列表(新增照片只需在末尾追加一项)
-const PANORAMAS = [
-  { file: 'CR1420250620_193454059.PHOTOSPHERE.jpg', label: '2025-06-20 19:34' },
-  { file: 'CR1420250620_194948575.PHOTOSPHERE.jpg', label: '2025-06-20 19:48' },
-];
+// 文件名时间 → "2025-06-20 19:34"
+function panoLabel(file) {
+  const m = file.match(/(\d{8})_(\d{6})/);
+  if (!m) return file.replace(/\.webp$/i, '');
+  const d = m[1];
+  const t = m[2];
+  return `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)} ${t.slice(0, 2)}:${t.slice(2, 4)}`;
+}
+
+function getPanoramas() {
+  const data = window.PHOTO95 && window.PHOTO95.categories;
+  const cat = data && data.find((c) => c.pano);
+  if (cat && cat.files && cat.files.length) {
+    return cat.files.map((f) => ({
+      file: `95/web/${cat.name}/${f}`,
+      label: panoLabel(f),
+    }));
+  }
+  return [{ file: '95/web/全景/CR1420250620_194948575.PHOTOSPHERE.webp', label: '全景' }];
+}
+
+const PANORAMAS = getPanoramas();
+const urlP = parseInt(new URLSearchParams(location.search).get('p'), 10);
+let current = Number.isInteger(urlP) && urlP >= 0 && urlP < PANORAMAS.length
+  ? urlP
+  : PANORAMAS.length - 1;
 
 const loading = document.getElementById('pano-loading');
 const loadingText = loading && loading.querySelector('p');
 const switchBtn = document.getElementById('pano-switch');
 const switchMenu = document.getElementById('pano-switch-menu');
-
-let current = PANORAMAS.length - 1;
 
 const viewer = new Viewer({
   container: document.getElementById('viewer'),
