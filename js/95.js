@@ -19,7 +19,7 @@
     return path.split('/').map(encodeURIComponent).join('/');
   }
 
-  // 构造 jsDelivr 优先、本地回退的图片(懒加载 + 超时回退)
+  // 构造 jsDelivr 优先、本地回退的图片
   function buildImg(src, alt) {
     var img = document.createElement('img');
     img.decoding = 'async';
@@ -33,28 +33,19 @@
       return img;
     }
 
+    // 预加载未覆盖(全局超时等)时:原生懒加载 + 失败/挂起 5 秒回退本地
     function fallback() {
       if (img.dataset.fb) return;
       img.dataset.fb = '1';
       img.src = local;
     }
-
     img.addEventListener('error', fallback);
-
-    // 进入视口(含缓冲)才开始请求,避免 jsDelivr 挂起时一直空白
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        io.unobserve(img);
-        // jsDelivr 优先,5 秒未完成则切回本地
-        var timer = setTimeout(function () {
-          if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) fallback();
-        }, 5000);
-        img.addEventListener('load', function () { clearTimeout(timer); }, { once: true });
-        img.src = JSD_BASE + '/' + local;
-      });
-    }, { rootMargin: '400px 0px' });
-    io.observe(img);
+    img.loading = 'lazy';
+    var timer = setTimeout(function () {
+      if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) fallback();
+    }, 5000);
+    img.addEventListener('load', function () { clearTimeout(timer); }, { once: true });
+    img.src = JSD_BASE + '/' + local;
 
     return img;
   }
@@ -369,6 +360,38 @@
     });
   }
 
+  // ---------- 兜底扫描:视口内未入场的元素强制显示 ----------
+  // 部分移动端浏览器 IntersectionObserver 回调会丢失(照片一直透明,
+  // 点一下才出现),滚动停止/点击时主动扫描清理
+  function sweepViewport() {
+    var vh = window.innerHeight;
+    document.querySelectorAll('.reveal:not(.in-view)').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.add('in-view');
+    });
+    document.querySelectorAll('.m95-card.pending, .m95-pano-card.pending, .m95-now-card.pending').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.remove('pending');
+    });
+  }
+
+  function bindSweep() {
+    var timer = null;
+    window.addEventListener('scroll', function () {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(sweepViewport, 250);
+    }, { passive: true });
+    document.addEventListener('click', function () {
+      setTimeout(sweepViewport, 50);
+    });
+    document.addEventListener('touchstart', function () {
+      setTimeout(sweepViewport, 300);
+    }, { passive: true });
+    document.addEventListener('touchmove', function () {
+      setTimeout(sweepViewport, 300);
+    }, { passive: true });
+  }
+
   // ---------- 启动 ----------
   function renderAll() {
     if (rendered) return;
@@ -411,6 +434,7 @@
     buildNav();
     bindLightbox();
     initReveal();
+    bindSweep();
 
     document.body.style.overflow = 'hidden';
     var list = collectPreload();

@@ -691,5 +691,8 @@ html.js .m95-card.pending {
   html { scroll-behavior: auto; }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   html.js .m95-card { transition: none; }
+  html.js .m95-card.pending,
+  html.js .m95-pano-card.pending,
+  html.js .m95-now-card.pending { opacity: 1; transform: none; }
   .m95-hero-scroll i { animation: none; }
 }
