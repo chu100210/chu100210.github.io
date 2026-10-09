@@ -7,6 +7,8 @@ Thumbs.db
 .idea/
 node_modules/
 package-lock.json
+# 视频原档本地备份(网站用压缩版 xs.mp4)
+xs-original.mp4
 # 95 相册:原图与视频留本地备份,仓库只提交压缩产物 95/web/
 95/photo/
 95/video/

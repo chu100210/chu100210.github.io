@@ -2,239 +2,353 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHU.LIFE — Portfolio</title>
-  <link rel="stylesheet" href="css/style.css?v=20261002">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>五班 · 我们的初中回忆</title>
+  <meta name="description" content="五班 — 我们的初中回忆">
+
+  <!-- 安全头:与站点其他页面一致,media-src 允许本站视频,unsafe-inline 供本文件内联样式与脚本 -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), speaker=(), vibrate=(), fullscreen=(self)">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="color-scheme" content="dark light">
-  <link rel="preload" as="image" href="images/photo/IMG_20250807_151850_1784626771606edit.webp" fetchpriority="high">
+  <meta name="color-scheme" content="dark">
+
+  <style>
+    /* ============================================================
+       五班 · 首屏样式
+       ============================================================ */
+
+    /* ---------- 全局 ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      background: #0c0e12;               /* 首屏外的页面底色(可改) */
+      color: #faf6ef;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ---------- 首屏 ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;                    /* 移动端地址栏收起时也保持满屏 */
+      overflow: hidden;
+    }
+
+    /* 视频层:铺满首屏,裁切居中 */
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.8s ease;     /* 滚动离开时淡出 */
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 暗色渐变遮罩:整体压暗去饱和,底部更深,保证文字可读 */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(10, 12, 16, 0.42) 0%,      /* 顶部:轻压暗 */
+        rgba(10, 12, 16, 0.30) 40%,
+        rgba(10, 12, 16, 0.55) 78%,     /* 底部更深,托住文字 */
+        rgba(10, 12, 16, 0.78) 100%
+      );
+      /* 轻微去饱和(降低彩度,氛围更克制) */
+      backdrop-filter: saturate(0.82);
+      -webkit-backdrop-filter: saturate(0.82);
+    }
+
+    /* 文字层:桌面偏左下,移动端居中 */
+    .hero-content {
+      position: absolute;
+      left: 7vw;
+      bottom: 22vh;
+      z-index: 2;
+      transition: opacity 0.25s linear; /* 滚动时由 JS 控制淡出 */
+      will-change: opacity;
+    }
+
+    /* "前缀词 + 五班" 主标题 */
+    .hero-line {
+      display: flex;
+      align-items: baseline;             /* 两个字基线对齐 */
+      gap: 0.55em;
+      font-family: "Songti SC", "STSong", "SimSun", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #faf6ef;                    /* 极浅暖白(可改) */
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);  /* 轻微阴影保证可读 */
+      white-space: nowrap;
+    }
+
+    /* 前缀词:轮换的主角 */
+    .hero-prefix {
+      display: inline-block;
+      font-size: clamp(34px, 6.4vw, 76px);
+      /* 过渡时长在此调整(与 JS 里 SWAP_MS 保持一致) */
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+      will-change: opacity, transform, filter;
+    }
+
+    /* 旧词:淡出 + 轻微上移 + 变模糊 */
+    .hero-prefix.swapping {
+      opacity: 0;
+      transform: translateY(-14px);
+      filter: blur(8px);
+    }
+
+    /* 新词:淡入 + 轻微下移 + 从模糊到清晰(进场初始态,随后移除触发过渡) */
+    .hero-prefix.entering {
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(8px);
+      transition: none;                  /* 初始态不过渡,移除类后自然过渡回正常 */
+    }
+
+    /* "五班":固定不动 */
+    .hero-name {
+      font-size: clamp(56px, 10.5vw, 128px);
+    }
+
+    /* 副标题 */
+    .hero-sub {
+      margin-top: 1.2em;
+      font-size: clamp(14px, 1.8vw, 18px);
+      letter-spacing: 0.5em;
+      text-indent: 0.5em;                /* 抵消末字间距,保持视觉居中 */
+      color: rgba(250, 246, 239, 0.82);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 向下滚动提示:轻微呼吸,不夸张 */
+    .hero-scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 4.5vh;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      color: rgba(250, 246, 239, 0.75);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+      animation: hero-breathe 2.6s ease-in-out infinite;
+      transition: opacity 0.25s linear;
+      pointer-events: none;              /* 不拦截点击 */
+    }
+
+    @keyframes hero-breathe {
+      0%, 100% { opacity: 0.45; }
+      50%      { opacity: 0.85; }
+    }
+
+    /* ---------- 首屏之后的内容区 ----------
+       当前为占位区,仅用于演示"滚动后视频淡出/暂停"。
+       构建后续内容时,删除 .placeholder 并在此加入真实区块。 */
+    .site-body {
+      position: relative;
+      min-height: 120vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 14vh 24px 0;
+    }
+
+    .placeholder {
+      font-size: 15px;
+      letter-spacing: 0.3em;
+      color: rgba(250, 246, 239, 0.4);
+    }
+
+    /* ---------- 响应式:移动端文字居中 ---------- */
+    @media (max-width: 768px) {
+      .hero-content {
+        left: 0;
+        right: 0;
+        bottom: 20vh;
+        text-align: center;
+      }
+      .hero-line { justify-content: center; }
+    }
+
+    /* ---------- 尊重减弱动效 ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scroll { animation: none; }
+      .hero-prefix { transition: none; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Cursor Glow -->
-  <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- Particle Field Background -->
-  <canvas class="particle-field" aria-hidden="true"></canvas>
+  <!-- ======================= 首屏 ======================= -->
+  <section class="hero" id="hero">
+    <!-- 背景视频:★ 替换视频链接改这里的 src -->
+    <div class="hero-media" id="heroMedia">
+      <video
+        id="heroVideo"
+        class="hero-video"
+        src="xs.mp4"
+        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23242a34'/%3E%3Cstop offset='1' stop-color='%230b0d10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23g)'/%3E%3C/svg%3E"
+        muted autoplay loop playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
+    </div>
 
-  <!-- Header -->
-  <header class="site-header" id="header">
-    <div class="container">
-      <a href="#" class="logo">CHU<span>.</span>LIFE</a>
-      <nav class="site-nav">
-        <a href="#works">作品</a>
-        <a href="#awards">奖项</a>
-        <a href="#about">关于</a>
-        <a href="#contact">联系</a>
-        <a href="security.html">认证</a>
-      </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-    </div>
-  </header>
+    <!-- 暗色渐变遮罩 -->
+    <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content reveal">
-        <div class="hero-eyebrow">Design · Code · Photography</div>
-        <h1 class="hero-title">
-          CHU<span class="dot">.</span>LIFE
-        </h1>
-        <div class="hero-line"></div>
-        <p class="hero-sub">Champion’s Journey eXpansion逐梦之路，边界无限</p>
-      </div>
+    <!-- 主文字 -->
+    <div class="hero-content" id="heroContent">
+      <h1 class="hero-line">
+        <span class="hero-prefix" id="heroPrefix">奋进</span>
+        <span class="hero-name">五班</span>
+      </h1>
+      <p class="hero-sub">我们的初中回忆</p>
     </div>
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+
+    <!-- 向下滚动提示 -->
+    <div class="hero-scroll" id="heroScroll">↓ 向下滚动</div>
   </section>
 
-  <!-- Works -->
-  <section class="section" id="works">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Portfolio</div>
-        <h2 class="section-title">精选作品</h2>
-        <p class="section-desc">每一个项目都是一次对美与功能的探索</p>
-      </div>
+  <!-- ======================= 后续内容(占位)======================= -->
+  <main class="site-body" id="siteBody">
+    <p class="placeholder">—— 后续内容从这里开始 ——</p>
+  </main>
 
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="design">设计</button>
-        <button class="filter-btn" data-filter="code">编程</button>
-        <button class="filter-btn" data-filter="photo">摄影</button>
-      </div>
+  <script>
+    /* ============================================================
+       五班 · 首屏脚本
+       可调参数集中在下方「配置区」,便于修改
+       ============================================================ */
+    (function () {
+      'use strict';
 
-      <div class="work-grid" id="workGrid">
-        <!-- Code: codiary -->
-        <div class="work-card reveal" data-cat="code">
-          <a href="projects/modular-diary.html" style="position:absolute;inset:0;z-index:2;"></a>
-          <svg class="card-img" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="gcode1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0b1a14"/><stop offset="100%" stop-color="#162822"/></linearGradient></defs>
-            <rect width="800" height="600" fill="url(#gcode1)"/>
-            <!-- 日历图标 -->
-            <rect x="140" y="140" width="180" height="190" rx="20" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="2"/>
-            <rect x="140" y="140" width="180" height="40" rx="20" fill="rgba(63,185,80,.2)"/>
-            <!-- 日历格子 -->
-            <rect x="162" y="200" width="32" height="28" rx="6" fill="rgba(255,255,255,.08)"/>
-            <rect x="202" y="200" width="32" height="28" rx="6" fill="rgba(63,185,80,.25)"/>
-            <rect x="242" y="200" width="32" height="28" rx="6" fill="rgba(255,255,255,.08)"/>
-            <rect x="282" y="200" width="32" height="28" rx="6" fill="rgba(255,255,255,.05)"/>
-            <rect x="162" y="240" width="32" height="28" rx="6" fill="rgba(255,255,255,.06)"/>
-            <rect x="202" y="240" width="32" height="28" rx="6" fill="rgba(255,255,255,.08)"/>
-            <rect x="242" y="240" width="32" height="28" rx="6" fill="rgba(255,255,255,.05)"/>
-            <rect x="282" y="240" width="32" height="28" rx="6" fill="rgba(255,255,255,.08)"/>
-            <!-- 右侧卡片 -->
-            <rect x="370" y="160" width="280" height="60" rx="12" fill="rgba(255,255,255,.06)"/>
-            <circle cx="400" cy="190" r="14" fill="none" stroke="rgba(63,185,80,.4)" stroke-width="2.5"/>
-            <rect x="430" y="180" width="140" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
-            <rect x="430" y="195" width="100" height="6" rx="3" fill="rgba(255,255,255,.05)"/>
-            <rect x="370" y="240" width="280" height="60" rx="12" fill="rgba(255,255,255,.04)"/>
-            <rect x="400" y="260" width="140" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
-            <rect x="400" y="275" width="180" height="6" rx="3" fill="rgba(255,255,255,.04)"/>
-            <rect x="370" y="320" width="280" height="60" rx="12" fill="rgba(255,255,255,.05)"/>
-            <rect x="400" y="340" width="120" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
-            <rect x="400" y="355" width="160" height="6" rx="3" fill="rgba(255,255,255,.04)"/>
-            <!-- 图表占位 -->
-            <rect x="370" y="420" width="280" height="120" rx="14" fill="rgba(255,255,255,.03)"/>
-            <polyline points="400,500 440,460 480,480 520,430 560,450 600,410" fill="none" stroke="rgba(63,185,80,.35)" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-          <div class="card-overlay">
-            <span class="card-tag">Android 应用</span>
-            <h3 class="card-title">codiary</h3>
-          </div>
-        </div>
+      /* ---------- 配置区 ---------- */
 
-        <!-- Code: MJ -->
-        <div class="work-card reveal" data-cat="code">
-          <a href="projects/mj.html" style="position:absolute;inset:0;z-index:2;"></a>
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%, #1a1420 0%, #0d0a12 75%);">
-            <img class="card-img" src="images/mj.jpg" alt="MJ 应用图标" loading="lazy"
-                 style="width:46%;height:auto;object-fit:contain;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06) inset;">
-          </div>
-          <div class="card-overlay">
-            <span class="card-tag">Android 应用</span>
-            <h3 class="card-title">MJ</h3>
-          </div>
-        </div>
+      // 轮换的前缀词:增删改这里即可(建议保持 6～8 个)
+      var WORDS = ['奋进', '团结', '笃行', '蓬勃', '坚毅', '向上', '齐心', '热忱'];
 
-        <!-- Photo -->
-        <div class="work-card reveal" data-cat="photo" data-full="images/photo/IMG_20250807_151850_1784626771606edit.webp">
-          <img class="card-img" src="images/photo/IMG_20250807_151850_1784626771606edit.webp" alt="城市天际线" loading="lazy">
-          <div class="card-overlay">
-            <span class="card-tag">城市掠影</span>
-            <h3 class="card-title">城市天际线</h3>
-          </div>
-        </div>
+      // 轮换间隔(毫秒):每 2.5～3.5 秒切换一次
+      var INTERVAL_MS = 3000;
 
-        <div class="work-card reveal" data-cat="photo" data-full="images/photo/CR1420250628_164245153.webp">
-          <img class="card-img" src="images/photo/CR1420250628_164245153.webp" alt="建筑光影" loading="lazy">
-          <div class="card-overlay">
-            <span class="card-tag">建筑空间</span>
-            <h3 class="card-title">几何光影</h3>
-          </div>
-        </div>
+      // 过渡时长(毫秒):600～800ms,需与 CSS 中 .hero-prefix 的 transition 时长一致
+      var SWAP_MS = 700;
 
-        <div class="work-card reveal" data-cat="photo" data-full="images/photo/IMG_20260502_140541.webp">
-          <img class="card-img" src="images/photo/IMG_20260502_140541.webp" alt="自然时刻" loading="lazy">
-          <div class="card-overlay">
-            <span class="card-tag">光影瞬间</span>
-            <h3 class="card-title">暮色时分</h3>
-          </div>
-        </div>
+      // 视频慢放倍率:0.5 = 半速,越大越快(0.25 最慢,1 为原速)
+      var PLAYBACK_RATE = 0.55;
 
-        <div class="work-card reveal" data-cat="photo" data-full="images/photo/CR1420250628_161915809.webp">
-          <img class="card-img" src="images/photo/CR1420250628_161915809.webp" alt="街头瞬间" loading="lazy">
-          <div class="card-overlay">
-            <span class="card-tag">人文纪实</span>
-            <h3 class="card-title">街头瞬间</h3>
-          </div>
-        </div>
-      </div>
+      /* ---------- 元素 ---------- */
+      var hero = document.getElementById('hero');
+      var heroMedia = document.getElementById('heroMedia');
+      var heroContent = document.getElementById('heroContent');
+      var heroScroll = document.getElementById('heroScroll');
+      var prefixEl = document.getElementById('heroPrefix');
+      var video = document.getElementById('heroVideo');
 
-      <div class="empty-state reveal" id="emptyState" style="display:none;">
-        <p>暂无更多</p>
-      </div>
+      var wordIndex = 0;
+      var swapTimer = null;
 
-      <div class="reveal" style="text-align:center;" id="morePhotoLink">
-        <a href="photo.html" class="more-link">查看更多摄影作品 <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </section>
+      /* ---------- 前缀词轮换 ----------
+         旧词:淡出 + 上移 + 变模糊(.swapping)
+         新词:从下方 + 模糊处淡入(.entering 初始态,移除后过渡到清晰) */
+      function swapWord() {
+        if (swapTimer) return;
 
-  <!-- Awards -->
-  <section class="section" id="awards">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Honors</div>
-        <h2 class="section-title">荣誉奖项</h2>
-        <p class="section-desc">每一份认可都是继续前行的动力。</p>
-      </div>
+        prefixEl.classList.remove('entering');
+        prefixEl.classList.add('swapping');            // 旧词淡出
 
-      <div class="awards-list">
-        <div class="award-item reveal">
-          <div class="award-year">2025</div>
-          <div class="award-info">
-            <h3>科学知识竞赛二等奖</h3>
-          </div>
-          <div class="award-badge">校级</div>
-        </div>
-      </div>
-    </div>
-  </section>
+        swapTimer = setTimeout(function () {
+          wordIndex = (wordIndex + 1) % WORDS.length;  // 循环取下一个词
+          prefixEl.textContent = WORDS[wordIndex];
 
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal">
-          <img src="images/tx.webp" alt="关于我">
-        </div>
-        <div class="about-text reveal">
-          <div class="section-label">About</div>
-          <h2>关于我</h2>
-          <p>本人褚俊熙，男生，10后。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+          prefixEl.classList.remove('swapping');
+          prefixEl.classList.add('entering');          // 新词初始态(透明+模糊+偏下)
 
-  <!-- Contact -->
-  <section class="section contact-section" id="contact">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-label">Contact</div>
-        <h2 class="section-title">欢迎联系</h2>
-        <p class="section-desc" style="margin:0 auto;">和我认识一下吧~</p>
-      </div>
-      <div class="contact-links reveal">
-        <a href="mailto:chu114445514@gmail.com" class="contact-link">✉️ chu114445514@gmail.com</a>
-        <a href="https://github.com/chu100210" target="_blank" rel="noopener" class="contact-link">💻 GitHub</a>
-      </div>
-    </div>
-  </section>
+          // 下一帧再移除 entering,让浏览器产生过渡
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              prefixEl.classList.remove('entering');
+              swapTimer = null;
+            });
+          });
+        }, SWAP_MS);
+      }
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 CHU.LIFE. All rights reserved.<a href="projects/vip.html" title="闫帅" class="vip-door">●</a></p>
-    </div>
-  </footer>
+      function startRotation() {
+        setInterval(function () { swapWord(); }, INTERVAL_MS);
+      }
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <img src="" alt="" id="lightboxImg">
-  </div>
+      /* ---------- 视频慢放 ---------- */
+      function slowVideo() {
+        try {
+          video.playbackRate = PLAYBACK_RATE;
+        } catch (e) { /* 个别浏览器不支持慢放时保持原速,不报错 */ }
+      }
 
-  <script src="js/particles.js"></script>
-  <script src="js/common.js"></script>
-  <script src="js/index.js"></script>
+      // 视频可播放后再设倍率(过早设置可能被浏览器重置)
+      video.addEventListener('loadedmetadata', slowVideo);
+      video.addEventListener('playing', slowVideo);
+
+      // 自动播放兜底:部分移动浏览器需要一次轻触才会真正开播
+      video.play().catch(function () {
+        // 首次交互时尝试恢复播放
+        function tryPlay() {
+          video.play().catch(function () {});
+          document.removeEventListener('touchstart', tryPlay);
+          document.removeEventListener('click', tryPlay);
+        }
+        document.addEventListener('touchstart', tryPlay, { once: true });
+        document.addEventListener('click', tryPlay, { once: true });
+      });
+
+      /* ---------- 滚动处理 ----------
+         1. 滚过首屏一半后暂停视频(省电省流量),回滚时恢复
+         2. 滚动过程中文字与提示逐渐淡出,不干扰后续内容 */
+      var ticking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var y = window.scrollY || window.pageYOffset;
+          var heroHeight = hero.offsetHeight;
+
+          // 视频暂停 / 恢复
+          if (y > heroHeight * 0.5) {
+            if (!video.paused) video.pause();
+            heroMedia.style.opacity = '0';              // 视频层淡出
+          } else {
+            if (video.paused) video.play().catch(function () {});
+            heroMedia.style.opacity = '1';
+          }
+
+          // 文字与提示随滚动淡出(0～60% 首屏高度之间完成)
+          var fade = Math.min(1, y / (heroHeight * 0.6));
+          heroContent.style.opacity = String(1 - fade);
+          heroScroll.style.opacity = String(1 - fade);
+
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // 初始执行一次,确保状态正确
+
+      /* ---------- 启动轮换 ---------- */
+      startRotation();
+    })();
+  </script>
 </body>
 </html>
