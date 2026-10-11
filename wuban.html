@@ -170,7 +170,8 @@
       height: 100svh;
       background: #04070f;
       overflow: hidden;
-      touch-action: none;
+      /* 允许垂直滚动(手机可滑回上一屏),水平/向下滑动用于扰动 */
+      touch-action: pan-y;
     }
 
     .passion canvas {
@@ -495,6 +496,16 @@
         maxParticles: 5000
       };
 
+      // 移动端性能自适应:粒子减半、降低像素比与残影,保证流畅
+      if (window.innerWidth < 768) {
+        CONFIG.sampleStep = 7;
+        CONFIG.maxParticles = 2500;
+        CONFIG.maxDpr = 1.5;
+        CONFIG.trail = 0.42;
+        CONFIG.particleSize = 1.35;
+        CONFIG.mouseRadius = 80;
+      }
+
       var section = document.getElementById('passionSection');
       var canvas = document.getElementById('passionCanvas');
       var ctx = canvas.getContext('2d');
@@ -530,8 +541,8 @@
         off.height = H;
         var octx = off.getContext('2d');
         var fontSize = Math.min(W * 0.15, H * 0.3, 210);
-        // 字体:微软雅黑(可自行更换)
-        octx.font = '900 ' + fontSize + 'px "Microsoft YaHei", "微软雅黑", "PingFang SC", sans-serif';
+        // 字体:微软雅黑(iOS/安卓回退 PingFang/Noto/默认无衬线)
+        octx.font = '900 ' + fontSize + 'px "Microsoft YaHei", "微软雅黑", "PingFang SC", "Noto Sans SC", sans-serif';
         octx.textAlign = 'center';
         octx.textBaseline = 'middle';
         octx.fillStyle = '#fff';
@@ -688,7 +699,12 @@
         ctx.fillStyle = '#04070f';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
-      window.addEventListener('resize', resize);
+      // 尺寸变化防抖:移动端地址栏收起/展开会频繁触发 resize,避免反复重建粒子
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 220);
+      });
 
       resize();
     })();
