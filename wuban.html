@@ -142,7 +142,7 @@
       text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
     }
 
-    /* 向下滚动提示:轻微呼吸,不夸张 */
+    /* 向下滚动提示:轻微呼吸,不夸张(点击滑到第二屏) */
     .hero-scroll {
       position: absolute;
       left: 50%;
@@ -155,12 +155,53 @@
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
       animation: hero-breathe 2.6s ease-in-out infinite;
       transition: opacity 0.25s linear;
-      pointer-events: none;              /* 不拦截点击 */
+      cursor: pointer;
     }
 
     @keyframes hero-breathe {
       0%, 100% { opacity: 0.45; }
       50%      { opacity: 0.85; }
+    }
+
+    /* ---------- 第二屏:passion! 粒子文字 ---------- */
+    .passion {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      background: #04070f;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .passion canvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+
+    .passion-label {
+      position: absolute;
+      top: 6vh;
+      left: 6vw;
+      z-index: 2;
+      font-size: clamp(16px, 2.6vw, 22px);
+      letter-spacing: 0.35em;
+      color: rgba(226, 240, 255, 0.75);
+      text-shadow: 0 0 18px rgba(77, 166, 255, 0.35);
+      pointer-events: none;
+    }
+
+    .passion-hint {
+      position: absolute;
+      bottom: 4.5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      white-space: nowrap;
+      color: rgba(180, 205, 235, 0.4);
+      pointer-events: none;
     }
 
     /* ---------- 首屏之后的内容区 ----------
@@ -226,10 +267,12 @@
     <div class="hero-scroll" id="heroScroll">↓ 向下滚动</div>
   </section>
 
-  <!-- ======================= 后续内容(占位)======================= -->
-  <main class="site-body" id="siteBody">
-    <p class="placeholder">—— 后续内容从这里开始 ——</p>
-  </main>
+  <!-- ======================= 第二屏:口号 ======================= -->
+  <section class="passion" id="passionSection">
+    <canvas id="passionCanvas"></canvas>
+    <p class="passion-label">我们的口号是</p>
+    <p class="passion-hint">滑动扰动 · 水流般归位</p>
+  </section>
 
   <script>
     /* ============================================================
@@ -398,6 +441,256 @@
 
       /* ---------- 启动轮换 ---------- */
       startRotation();
+
+      /* ---------- 滚动提示:点击滑到第二屏 ---------- */
+      heroScroll.addEventListener('click', function () {
+        var target = document.getElementById('passionSection');
+        if (target && target.scrollIntoView) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    })();
+
+    /* ============================================================
+       第二屏 passion! 粒子文字引擎(流水交互版)
+       ============================================================ */
+    (function () {
+      'use strict';
+
+      var CONFIG = {
+        text: 'passion!',            // 显示文字
+        colors: ['#4da6ff', '#00bfff', '#7dd3fc'],   // 蓝色系
+
+        // 采样步长(px):越大粒子越稀疏(当前较疏、清爽)
+        sampleStep: 6,
+
+        // 星粒大小
+        particleSize: 1.15,
+
+        // 漂浮 / 闪烁
+        floatAmp: 1.2,
+        floatSpeed: 0.001,
+        twinkleAmp: 0.2,
+        twinkleSpeed: 0.0012,
+
+        // 水流式回位:位置平滑趋近目标(无弹簧振荡,不回弹)
+        flow: 0.055,
+
+        // 冲量消散:越小扰动越柔,越大越冲
+        drag: 0.82,
+
+        // 鼠标影响半径与推力(柔和,速度快推力略增)
+        mouseRadius: 100,
+        pushForce: 0.16,
+        speedFactor: 0.035,
+
+        // 清屏强度:越大残影越少、文字越清晰
+        trail: 0.34,
+
+        // 鼠标光晕
+        glowRadius: 70,
+        glowMaxAlpha: 0.4,
+
+        maxDpr: 2,
+        maxParticles: 5000
+      };
+
+      var section = document.getElementById('passionSection');
+      var canvas = document.getElementById('passionCanvas');
+      var ctx = canvas.getContext('2d');
+      var dpr = 1;
+      var W = 0;
+      var H = 0;
+      var particles = [];
+      var pointer = { x: -9999, y: -9999, px: -9999, py: -9999, active: false };
+      var time = 0;
+
+      // 星粒精灵:亮核 + 快速衰减的光晕(锐利不糊)
+      function makeSprite() {
+        var s = 32;
+        var c = document.createElement('canvas');
+        c.width = c.height = s;
+        var g = c.getContext('2d');
+        var grad = g.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+        grad.addColorStop(0, 'rgba(255,255,255,1)');
+        grad.addColorStop(0.16, 'rgba(200,230,255,0.9)');
+        grad.addColorStop(0.45, 'rgba(77,166,255,0.35)');
+        grad.addColorStop(1, 'rgba(77,166,255,0)');
+        g.fillStyle = grad;
+        g.fillRect(0, 0, s, s);
+        return c;
+      }
+
+      var sprite = makeSprite();
+
+      // 离屏采样文字 → 粒子目标点
+      function sampleText() {
+        var off = document.createElement('canvas');
+        off.width = W;
+        off.height = H;
+        var octx = off.getContext('2d');
+        var fontSize = Math.min(W * 0.15, H * 0.3, 210);
+        // 高级感:衬线斜体
+        octx.font = 'italic 900 ' + fontSize + 'px Georgia, "Times New Roman", serif';
+        octx.textAlign = 'center';
+        octx.textBaseline = 'middle';
+        octx.fillStyle = '#fff';
+        octx.fillText(CONFIG.text, W / 2, H / 2);
+
+        var step = CONFIG.sampleStep;
+        var data = octx.getImageData(0, 0, W, H).data;
+        var pts = [];
+        for (var y = 0; y < H; y += step) {
+          for (var x = 0; x < W; x += step) {
+            if (data[(y * W + x) * 4 + 3] > 128) pts.push([x, y]);
+          }
+        }
+        if (pts.length > CONFIG.maxParticles) {
+          pts = [];
+          step *= 2;
+          for (var y2 = 0; y2 < H; y2 += step) {
+            for (var x2 = 0; x2 < W; x2 += step) {
+              if (data[(y2 * W + x2) * 4 + 3] > 128) pts.push([x2, y2]);
+            }
+          }
+        }
+        return pts;
+      }
+
+      function Particle(tx, ty) {
+        this.tx = tx; this.ty = ty;
+        this.x = tx; this.y = ty;
+        this.vx = 0; this.vy = 0;
+        this.phase = Math.random() * Math.PI * 2;
+        this.color = CONFIG.colors[(Math.random() * CONFIG.colors.length) | 0];
+        this.size = CONFIG.particleSize * (0.75 + Math.random() * 0.6);
+        this.baseAlpha = 0.6 + Math.random() * 0.4;
+      }
+
+      // 水流式回位:位置平滑趋近目标 + 冲量位移,无回弹振荡
+      Particle.prototype.update = function () {
+        this.x += (this.tx - this.x) * CONFIG.flow;
+        this.y += (this.ty - this.y) * CONFIG.flow;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= CONFIG.drag;
+        this.vy *= CONFIG.drag;
+      };
+
+      Particle.prototype.draw = function () {
+        var fx = Math.sin(time * CONFIG.floatSpeed + this.phase) * CONFIG.floatAmp;
+        var fy = Math.cos(time * CONFIG.floatSpeed * 0.8 + this.phase) * CONFIG.floatAmp;
+        var tw = Math.sin(time * CONFIG.twinkleSpeed + this.phase * 1.7);
+        var alpha = this.baseAlpha + tw * CONFIG.twinkleAmp;
+        if (alpha < 0.1) alpha = 0.1;
+        var s = this.size * 7;
+        ctx.globalAlpha = alpha;
+        ctx.drawImage(sprite, this.x + fx - s / 2, this.y + fy - s / 2, s, s);
+      };
+
+      // 柔和推扰:速度快推力略增
+      function applyPointer() {
+        if (!pointer.active) return;
+        var speed = Math.min(Math.hypot(pointer.x - pointer.px, pointer.y - pointer.py), 60);
+        var R2 = CONFIG.mouseRadius * CONFIG.mouseRadius;
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          var px = p.x - pointer.x;
+          var py = p.y - pointer.y;
+          var d2 = px * px + py * py;
+          if (d2 < R2 && d2 > 0.01) {
+            var d = Math.sqrt(d2);
+            var f = (1 - d / CONFIG.mouseRadius) * CONFIG.pushForce * (1 + speed * CONFIG.speedFactor);
+            p.vx += (px / d) * f;
+            p.vy += (py / d) * f;
+          }
+        }
+      }
+
+      var running = false;
+      var rafId = null;
+
+      function frame() {
+        time++;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = 'rgba(4, 7, 15, ' + CONFIG.trail + ')';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        applyPointer();
+
+        if (pointer.active) {
+          var spd = Math.min(Math.hypot(pointer.x - pointer.px, pointer.y - pointer.py), 60) / 60;
+          var gr = CONFIG.glowRadius * (0.5 + spd);
+          var glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, gr);
+          glow.addColorStop(0, 'rgba(0, 191, 255, ' + CONFIG.glowMaxAlpha * (0.4 + spd * 0.6) + ')');
+          glow.addColorStop(1, 'rgba(0, 191, 255, 0)');
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(pointer.x, pointer.y, gr, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        for (var i = 0; i < particles.length; i++) particles[i].update();
+        for (var j = 0; j < particles.length; j++) particles[j].draw();
+        ctx.globalAlpha = 1;
+
+        pointer.px = pointer.x;
+        pointer.py = pointer.y;
+
+        if (running) rafId = requestAnimationFrame(frame);
+      }
+
+      function start() {
+        if (!running) {
+          running = true;
+          rafId = requestAnimationFrame(frame);
+        }
+      }
+
+      function stop() {
+        running = false;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      }
+
+      // 滚入第二屏才运行,滚出暂停(省资源)
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) start();
+          else stop();
+        });
+      }, { threshold: 0.04 });
+      io.observe(section);
+
+      // 统一指针事件(鼠标 + 触摸)
+      function setPointer(e) {
+        var rect = canvas.getBoundingClientRect();
+        pointer.x = e.clientX - rect.left;
+        pointer.y = e.clientY - rect.top;
+        pointer.active = true;
+      }
+      canvas.addEventListener('pointermove', setPointer);
+      canvas.addEventListener('pointerleave', function () {
+        pointer.active = false;
+        pointer.x = pointer.px = -9999;
+        pointer.y = pointer.py = -9999;
+      });
+
+      function resize() {
+        W = section.clientWidth;
+        H = section.clientHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDpr);
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        particles = sampleText().map(function (pt) { return new Particle(pt[0], pt[1]); });
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#04070f';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      window.addEventListener('resize', resize);
+
+      resize();
     })();
   </script>
 </body>
