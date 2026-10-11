@@ -163,15 +163,16 @@
       50%      { opacity: 0.85; }
     }
 
-    /* ---------- 第二屏:passion! 粒子文字 ---------- */
+    /* ---------- 第二屏:passion! 粒子文字 ----------
+       不占满屏:仅首页下方一小块,页面可继续向下放内容 */
     .passion {
       position: relative;
-      height: 100vh;
-      height: 100svh;
+      height: 58vh;
+      min-height: 340px;
       background: #04070f;
       overflow: hidden;
-      /* 允许垂直滚动(手机可滑回上一屏),水平/向下滑动用于扰动 */
-      touch-action: pan-y;
+      /* 本区域内滑动全部用于粒子扰动(滚动靠本区域之外) */
+      touch-action: none;
     }
 
     .passion canvas {
@@ -496,14 +497,15 @@
         maxParticles: 5000
       };
 
-      // 移动端性能自适应:粒子减半、降低像素比与残影,保证流畅
+      // 移动端性能与效果:粒子稍密更显形,降低像素比保证流畅
       if (window.innerWidth < 768) {
-        CONFIG.sampleStep = 7;
-        CONFIG.maxParticles = 2500;
+        CONFIG.sampleStep = 6;
+        CONFIG.maxParticles = 3000;
         CONFIG.maxDpr = 1.5;
         CONFIG.trail = 0.42;
-        CONFIG.particleSize = 1.35;
-        CONFIG.mouseRadius = 80;
+        CONFIG.particleSize = 1.5;
+        CONFIG.mouseRadius = 90;
+        CONFIG.pushForce = 0.2;
       }
 
       var section = document.getElementById('passionSection');
@@ -540,13 +542,14 @@
         off.width = W;
         off.height = H;
         var octx = off.getContext('2d');
-        var fontSize = Math.min(W * 0.15, H * 0.3, 210);
+        var fontSize = Math.min(W * 0.2, H * 0.42, 210);
         // 字体:微软雅黑(iOS/安卓回退 PingFang/Noto/默认无衬线)
         octx.font = '900 ' + fontSize + 'px "Microsoft YaHei", "微软雅黑", "PingFang SC", "Noto Sans SC", sans-serif';
-        octx.textAlign = 'center';
+        octx.textAlign = 'left';      // 手动居中,避免部分移动浏览器 textAlign 异常
         octx.textBaseline = 'middle';
         octx.fillStyle = '#fff';
-        octx.fillText(CONFIG.text, W / 2, H / 2);
+        var tw = octx.measureText(CONFIG.text).width;
+        octx.fillText(CONFIG.text, Math.max(0, (W - tw) / 2), H / 2);
 
         var step = CONFIG.sampleStep;
         var data = octx.getImageData(0, 0, W, H).data;
@@ -673,7 +676,7 @@
       }, { threshold: 0.04 });
       io.observe(section);
 
-      // 统一指针事件(鼠标 + 触摸)
+      // 统一指针事件(桌面鼠标 + 触控笔)
       function setPointer(e) {
         var rect = canvas.getBoundingClientRect();
         pointer.x = e.clientX - rect.left;
@@ -686,6 +689,42 @@
         pointer.x = pointer.px = -9999;
         pointer.y = pointer.py = -9999;
       });
+
+      /* ---------- 触摸扰动(手机) ----------
+         touch-action: none + 非被动 touchmove,滑动手势全部用于扰动;
+         页面滚动请用本区域之外的部分 */
+      function sectionInUse() {
+        var r = section.getBoundingClientRect();
+        var vh = window.innerHeight;
+        return r.top < vh * 0.5 && r.bottom > vh * 0.3;
+      }
+
+      function touchPos(t) {
+        var rect = canvas.getBoundingClientRect();
+        pointer.x = t.clientX - rect.left;
+        pointer.y = t.clientY - rect.top;
+      }
+
+      section.addEventListener('touchstart', function (e) {
+        if (!sectionInUse()) return;
+        var t = e.touches[0];
+        touchPos(t);
+        pointer.px = pointer.x;
+        pointer.py = pointer.y;
+        pointer.active = true;
+      }, { passive: true });
+
+      section.addEventListener('touchmove', function (e) {
+        if (!sectionInUse()) return;
+        e.preventDefault();   // 阻断滚动,全部交给扰动
+        touchPos(e.touches[0]);
+      }, { passive: false });
+
+      section.addEventListener('touchend', function () {
+        pointer.active = false;
+        pointer.x = pointer.px = -9999;
+        pointer.y = pointer.py = -9999;
+      }, { passive: true });
 
       function resize() {
         W = section.clientWidth;
