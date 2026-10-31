@@ -267,33 +267,45 @@
       overflow: hidden;
       /* 兜底图:JS 未执行时也能看到照片 */
       background: #0a0c10 url('wbbg/4339c8a6239d3033eba35eebd834b187.jpg') center / cover no-repeat;
-      filter: saturate(0.9) brightness(0.8);
+      perspective: 1600px;
       transform: scale(1.02);
-      transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  filter 0.9s ease;
+      transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* 轮播层:两片交叉淡入淡出,带极缓的推近 */
+    /* 翻页层:以左边缘为轴翻过去,背面朝外时自动隐藏 */
     .photo-card-layer {
       position: absolute;
       inset: 0;
+      z-index: 1;
       background-size: cover;
       background-position: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      transition: transform 1.05s cubic-bezier(0.55, 0.06, 0.2, 1);
+      will-change: transform;
+      filter: saturate(0.92) brightness(0.82);
+    }
+
+    .photo-card-layer.is-top { z-index: 2; }
+
+    .photo-card-layer.is-flipping { transform: rotateY(-180deg); }
+
+    /* 翻页时的侧光阴影,增强纸张立体感 */
+    .photo-card-layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 62%);
       opacity: 0;
-      transform: scale(1.06);
-      transition: opacity 1.2s ease, transform 6s linear;
-      will-change: opacity, transform;
+      transition: opacity 0.55s ease;
     }
 
-    .photo-card-layer.is-on {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .photo-card-layer.is-flipping::after { opacity: 1; }
 
-    .photo-card:hover .photo-card-media {
-      transform: scale(1.08);
-      filter: saturate(1) brightness(0.88);
-    }
+    .photo-card:hover .photo-card-media { transform: scale(1.035); }
 
     .photo-card-shade {
       position: absolute;
@@ -455,6 +467,8 @@
       .hero-scroll { animation: none; }
       .hero-prefix { transition: none; }
       .bg-layer { transition: none; }
+      .photo-card-media { transition: none; }
+      .photo-card-layer { transition: none; }
       .photos-kicker,
       .photos-title,
       .photos-sub,
@@ -659,27 +673,54 @@
         "url('" + PHOTO_DIR + nextPhoto() + "')";
       preloadAllPhotos();
 
-      /* ---------- 卡片封面轮播 ----------
-         两片图层交替淡入,与首屏共用同一份照片池(已预加载,切换无延迟) */
+      /* ---------- 卡片封面翻页 ----------
+         两层交替:顶层绕左边缘翻走,露出底层已备好的下一张,
+         翻完后角色互换,像翻相册一样一张张过 */
       var cardLayers = [
         document.getElementById('cardLayerA'),
         document.getElementById('cardLayerB')
       ];
-      var cardCur = 0;
-      var CARD_SWAP_MS = 4500; // 每 4.5 秒换一张
+      var cardTopIdx = 1;          // 当前盖在上面的是哪一层
+      var CARD_SWAP_MS = 4500;     // 每 4.5 秒翻一页
+      var CARD_FLIP_MS = 1050;     // 与 CSS 中 layer 的 transition 时长一致
 
-      function showCardPhoto(layerIdx, file) {
-        var layer = cardLayers[layerIdx];
-        if (!layer) return;
-        layer.style.backgroundImage = "url('" + PHOTO_DIR + file + "')";
-        layer.classList.add('is-on');
-        var other = cardLayers[1 - layerIdx];
-        if (other) other.classList.remove('is-on');
+      function cardPhotoUrl() {
+        return "url('" + PHOTO_DIR + nextPhoto() + "')";
+      }
+
+      function initCardPages() {
+        // A 层放下一张(会被翻出来的),B 层放当前这张(盖在上面)
+        cardLayers[0].style.backgroundImage = cardPhotoUrl();
+        cardLayers[1].style.backgroundImage = cardPhotoUrl();
+        cardLayers[0].classList.remove('is-top', 'is-flipping');
+        cardLayers[1].classList.add('is-top');
+        cardTopIdx = 1;
+      }
+
+      function flipCardPage() {
+        var top = cardLayers[cardTopIdx];
+        var under = cardLayers[1 - cardTopIdx];
+        if (!top || !under) return;
+
+        top.classList.add('is-flipping');
+
+        setTimeout(function () {
+          // 翻完:旧顶页退到下面并换上下一张,原底页升为顶层
+          // 复位时临时关掉过渡,避免"翻回去"的残影
+          top.style.transition = 'none';
+          top.classList.remove('is-flipping', 'is-top');
+          top.style.backgroundImage = cardPhotoUrl();
+          void top.offsetWidth;
+          top.style.transition = '';
+
+          under.classList.add('is-top');
+          cardTopIdx = 1 - cardTopIdx;
+        }, CARD_FLIP_MS);
       }
 
       function startCardSlideshow() {
         if (!cardLayers[0] || !cardLayers[1]) return;
-        showCardPhoto(0, nextPhoto());
+        initCardPages();
 
         // 尊重「减少动效」:只留一张静图
         var reduce = window.matchMedia &&
@@ -688,8 +729,7 @@
 
         setInterval(function () {
           if (document.hidden) return;   // 切到后台时暂停,省电
-          cardCur = 1 - cardCur;
-          showCardPhoto(cardCur, nextPhoto());
+          flipCardPage();
         }, CARD_SWAP_MS);
       }
 
