@@ -243,9 +243,10 @@
     var grid = document.getElementById('grid-xianzhuang');
     if (!grid) return;
     if (!cat || !cat.files || !cat.files.length) {
+      // 说明:把同学近照放进 95/photo/现状/(文件名=同学名字),跑一次压缩脚本,这里就会自动生成卡片
       var empty = document.createElement('p');
       empty.className = 'm95-now-empty';
-      empty.textContent = '还没有同学近照 —— 把照片放进 95/photo/现状/ 文件夹(文件名建议用同学名字),跑一次压缩脚本就会出现在这里';
+      empty.textContent = '大家的样子还在路上 —— 再等等,他们正从各自的城市往回赶。';
       grid.appendChild(empty);
       return;
     }
@@ -265,7 +266,7 @@
       nameEl.textContent = name;
       var desc = document.createElement('span');
       desc.className = 'm95-now-desc';
-      desc.textContent = notes[name] || 'TA 的近况,等你来填';
+      desc.textContent = notes[name] || '近况正在路上 —— 等 TA 自己来讲';
       cap.appendChild(nameEl);
       cap.appendChild(desc);
 
