@@ -237,26 +237,20 @@
     }
 
     /* 主入口卡片:整块可点,通往九五时光册 */
+    /* 整块就是「一叠照片」,外面不再套边框,堆叠可以露出来 */
     .photo-card {
       position: relative;
       display: block;
       margin-top: clamp(36px, 6vh, 64px);
-      border-radius: 28px;
-      overflow: hidden;
       text-decoration: none;
       color: inherit;
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
-      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  box-shadow 0.7s ease,
-                  border-color 0.7s ease;
+      transform: translateY(0);
+      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .photo-card:hover,
     .photo-card:focus-visible {
-      transform: translateY(-8px);
-      border-color: rgba(255, 255, 255, 0.24);
-      box-shadow: 0 44px 100px -34px rgba(0, 0, 0, 0.95);
+      transform: translateY(-6px);
       outline: none;
     }
 
@@ -264,20 +258,17 @@
       position: relative;
       aspect-ratio: 16 / 9;
       min-height: 260px;
-      overflow: hidden;
-      background:
-        radial-gradient(120% 120% at 30% 10%, rgba(77, 166, 255, 0.10), transparent 60%),
-        #0a0c10;
-      perspective: 1200px;
-      transform: scale(1.02);
-      transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      /* 右侧与底部留出空间,给后面的卡露头 */
+      margin: 0 30px 30px 0;
+      overflow: visible;              /* 关键:不再裁掉堆叠 */
+      background: transparent;
     }
 
     /* ---------- 堆叠的照片卡片 ----------
        三张卡叠在一起,前方的卡被"抽走"后回到堆底 */
     .card-page {
       position: absolute;
-      inset: 0 32px 32px 0;          /* 右下留出厚度,让后面的卡露出来 */
+      inset: 0;
       border-radius: 18px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       background-color: #12151b;
@@ -300,28 +291,27 @@
 
     .card-page.pos-1 {
       z-index: 2;
-      transform: translate3d(15px, 15px, 0) rotate(1.5deg) scale(0.968);
+      transform: translate3d(15px, 15px, 0) rotate(1.5deg) scale(0.985);
     }
 
     .card-page.pos-2 {
       z-index: 1;
-      transform: translate3d(30px, 30px, 0) rotate(3deg) scale(0.936);
+      transform: translate3d(30px, 30px, 0) rotate(3deg) scale(0.97);
       filter: saturate(0.85) brightness(0.66);
     }
 
-    /* 被抽出的那张:向右上方滑出画面 */
+    /* 被抽出的那张:向右上方飞出去 */
     .card-page.is-leaving {
-      z-index: 4;
-      transform: translate3d(44%, -16%, 0) rotate(9deg) scale(1.03);
+      z-index: 6;
+      transform: translate3d(46%, -18%, 0) rotate(9deg) scale(1.02);
       opacity: 0;
       box-shadow: 0 40px 70px -20px rgba(0, 0, 0, 0.9);
     }
 
-    .photo-card:hover .photo-card-media { transform: scale(1.025); }
-
     .photo-card-shade {
       position: absolute;
       inset: 0;
+      z-index: 4;
       pointer-events: none;
       background: linear-gradient(
         180deg,
@@ -334,6 +324,7 @@
     .photo-card-body {
       position: absolute;
       inset: auto 0 0 0;
+      z-index: 5;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -412,7 +403,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px 12px;
-      margin-top: 22px;
+      margin-top: 34px;   /* 给堆叠卡片的下沿留出空间 */
     }
 
     .photo-quick a {
@@ -461,13 +452,16 @@
 
       .photos { padding: 12vh 24px 14vh; }
 
-      .photo-card { border-radius: 22px; }
-      .photo-card-media { aspect-ratio: 4 / 3; min-height: 0; }
+      .photo-card-media {
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+        margin: 0 18px 18px 0;
+      }
 
       /* 移动端:卡片厚度与圆角收一点,避免挤压 */
-      .card-page { inset: 0 20px 20px 0; border-radius: 14px; }
-      .card-page.pos-1 { transform: translate3d(10px, 10px, 0) rotate(1.2deg) scale(0.972); }
-      .card-page.pos-2 { transform: translate3d(20px, 20px, 0) rotate(2.4deg) scale(0.945); }
+      .card-page { border-radius: 14px; }
+      .card-page.pos-1 { transform: translate3d(9px, 9px, 0) rotate(1.2deg) scale(0.985); }
+      .card-page.pos-2 { transform: translate3d(18px, 18px, 0) rotate(2.4deg) scale(0.97); }
 
       /* 移动端:文案与按钮上下排列,避免挤压 */
       .photo-card-body {
@@ -532,24 +526,25 @@
           <div class="card-page pos-0" style="background-image: url('wbbg/4339c8a6239d3033eba35eebd834b187.jpg');"></div>
           <div class="card-page pos-1" style="background-image: url('wbbg/1e158f068b4105c97e44fd0122cd13e7.jpg');"></div>
           <div class="card-page pos-2" style="background-image: url('wbbg/5f4c96d9c3d8e09ea2611929bde205d3.jpg');"></div>
-        </div>
-        <div class="photo-card-shade" aria-hidden="true"></div>
-        <div class="photo-card-body">
-          <div>
-            <p class="photo-card-eyebrow">九五 · 时光册</p>
-            <p class="photo-card-name">九五年华</p>
-            <div class="photo-card-tags">
-              <span class="photo-card-tag">个人</span>
-              <span class="photo-card-tag">集体</span>
-              <span class="photo-card-tag">老师</span>
-              <span class="photo-card-tag">毕业后</span>
-              <span class="photo-card-tag">全景</span>
+
+          <div class="photo-card-shade" aria-hidden="true"></div>
+          <div class="photo-card-body">
+            <div>
+              <p class="photo-card-eyebrow">九五 · 时光册</p>
+              <p class="photo-card-name">九五年华</p>
+              <div class="photo-card-tags">
+                <span class="photo-card-tag">个人</span>
+                <span class="photo-card-tag">集体</span>
+                <span class="photo-card-tag">老师</span>
+                <span class="photo-card-tag">毕业后</span>
+                <span class="photo-card-tag">全景</span>
+              </div>
             </div>
+            <span class="photo-card-cta">
+              翻开相册
+              <i class="photo-card-arrow" aria-hidden="true">→</i>
+            </span>
           </div>
-          <span class="photo-card-cta">
-            翻开相册
-            <i class="photo-card-arrow" aria-hidden="true">→</i>
-          </span>
         </div>
       </a>
 
