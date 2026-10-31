@@ -8,6 +8,12 @@
   var JSD_BASE = 'https://cdn.jsdelivr.net/gh/chu100210/chu100210.github.io@main';
   var LOCAL_BASE = ''; // 相对站内路径回退
 
+  // ---------- 页面文案(来源:根目录 95-文案.md,改 md 即可,无需动 HTML) ----------
+  var COPY_FILE = '95-文案.md';       // 文案文件名(改名请同步这里)
+  var COPY = null;                    // 解析后的文案对象
+  var COPY_NOW_EMPTY = '大家的样子还在路上 —— 再等等,他们正从各自的城市往回赶。';
+  var COPY_NOW_DESC = '近况正在路上 —— 等 TA 自己来讲';
+
   // ---------- 加载门 ----------
   var GATE_MAX_MS = 25000; // 网络极差时最多等 25 秒
   var entered = false;
@@ -57,6 +63,126 @@
     var d = m[1];
     var t = m[2];
     return d.slice(0, 4) + '-' + d.slice(4, 6) + '-' + d.slice(6, 8) + ' ' + t.slice(0, 2) + ':' + t.slice(2, 4);
+  }
+
+  // ---------- 文案:读取根目录 Markdown 并套用到页面 ----------
+  // 格式:## 分区标题 / 字段: 内容 / note: 下用「- 」分段
+  function parseCopy(md) {
+    var out = {};
+    var cur = null;
+    var lastKey = null;
+    md.split(/\r?\n/).forEach(function (line) {
+      var t = line.trim();
+      if (!t || t.charAt(0) === '>') return;
+
+      if (t.charAt(0) === '#') {
+        var name = t.replace(/^#+\s*/, '').replace(/^[\d\s.、]+/, '').trim();
+        cur = out[name] || (out[name] = {});
+        lastKey = null;
+        return;
+      }
+      if (!cur) return;
+
+      if (t.charAt(0) === '-' && lastKey) {
+        if (!Array.isArray(cur[lastKey])) cur[lastKey] = [];
+        cur[lastKey].push(t.replace(/^-\s*/, ''));
+        return;
+      }
+
+      var m = t.match(/^([A-Za-z]+)\s*:\s*(.*)$/);
+      if (m) {
+        lastKey = m[1];
+        cur[lastKey] = m[2] || '';
+      }
+    });
+    return out;
+  }
+
+  function setText(sel, txt) {
+    if (!txt) return;
+    var el = document.querySelector(sel);
+    if (el) el.textContent = txt;
+  }
+
+  function setParas(sel, arr) {
+    if (!arr || !arr.length) return;
+    var el = document.querySelector(sel);
+    if (!el) return;
+    el.innerHTML = '';
+    arr.forEach(function (t) {
+      var p = document.createElement('p');
+      p.textContent = t;
+      el.appendChild(p);
+    });
+  }
+
+  function applyCopy(copy) {
+    if (!copy) return;
+
+    var hero = copy['首屏'];
+    if (hero) {
+      setText('.m95-hero-kicker', hero.kicker);
+      setText('.m95-hero-title', hero.title);
+      setText('.m95-hero-sub', hero.sub);
+      setParas('.m95-hero-note', hero.note);
+    }
+
+    ['geren', 'jiti', 'laoshi', 'biye', 'pano'].forEach(function (key) {
+      var name = { geren: '个人', jiti: '集体', laoshi: '老师', biye: '毕业后', pano: '全景时空' }[key];
+      var s = copy[name];
+      if (!s) return;
+      setText('#cat-' + key + ' .m95-cat-desc', s.desc);
+
+      // 便签:写了就替换;写成空的(note: 后面不填)就整块隐藏
+      var note = Array.isArray(s.note) ? s.note[0] : s.note;
+      var noteWrap = document.querySelector('#cat-' + key + ' .m95-note');
+      if (typeof note === 'string') {
+        if (note.trim()) setText('#cat-' + key + ' .m95-note p', note);
+        else if (noteWrap) noteWrap.style.display = 'none';
+      }
+    });
+
+    var video = copy['影像'];
+    if (video) {
+      setText('#cat-video .m95-cat-desc', video.desc);
+      setText('.m95-video-placeholder p', video.placeholder);
+    }
+
+    var now = copy['同学们现在'];
+    if (now) {
+      setText('.m95-now-head h3', now.title);
+      setText('.m95-now-head p', now.sub);
+      if (now.empty) {
+        COPY_NOW_EMPTY = now.empty;
+        var emptyEl = document.querySelector('.m95-now-empty');
+        if (emptyEl) emptyEl.textContent = now.empty;
+      }
+      if (now.desc) {
+        COPY_NOW_DESC = now.desc;
+        document.querySelectorAll('.m95-now-desc[data-fb]').forEach(function (el) {
+          el.textContent = now.desc;
+        });
+      }
+    }
+
+    var ending = copy['结尾'];
+    if (ending) {
+      setText('.m95-ending-line', ending.line);
+      setText('.m95-ending-sub', ending.sub);
+    }
+  }
+
+  // 文案加载失败时静默保留 HTML 里的默认文字
+  function loadCopy() {
+    if (!window.fetch) return Promise.resolve();
+    return fetch(encodeURI(COPY_FILE), { cache: 'no-cache' })
+      .then(function (res) { return res.ok ? res.text() : ''; })
+      .then(function (md) {
+        if (!md) return;
+        COPY = parseCopy(md);
+        applyCopy(COPY);
+      })
+      .catch(function () { /* 忽略:用 HTML 默认文案 */ });
   }
 
   // ---------- 预加载 ----------
@@ -246,7 +372,7 @@
       // 说明:把同学近照放进 95/photo/现状/(文件名=同学名字),跑一次压缩脚本,这里就会自动生成卡片
       var empty = document.createElement('p');
       empty.className = 'm95-now-empty';
-      empty.textContent = '大家的样子还在路上 —— 再等等,他们正从各自的城市往回赶。';
+      empty.textContent = COPY_NOW_EMPTY;
       grid.appendChild(empty);
       return;
     }
@@ -266,7 +392,12 @@
       nameEl.textContent = name;
       var desc = document.createElement('span');
       desc.className = 'm95-now-desc';
-      desc.textContent = notes[name] || '近况正在路上 —— 等 TA 自己来讲';
+      if (notes[name]) {
+        desc.textContent = notes[name];
+      } else {
+        desc.textContent = COPY_NOW_DESC;
+        desc.setAttribute('data-fb', '1'); // 标记为兜底文案,文案加载完成后可刷新
+      }
       cap.appendChild(nameEl);
       cap.appendChild(desc);
 
@@ -436,6 +567,9 @@
     bindLightbox();
     initReveal();
     bindSweep();
+
+    // 页面文案来自根目录 95-文案.md;加载失败时自动沿用 HTML 里的默认文字
+    loadCopy();
 
     document.body.style.overflow = 'hidden';
     var list = collectPreload();

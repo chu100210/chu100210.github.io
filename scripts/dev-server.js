@@ -22,6 +22,7 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.json': 'application/json',
   '.txt': 'text/plain; charset=utf-8',
+  '.md': 'text/markdown; charset=utf-8',
   '.ico': 'image/x-icon',
 };
 
