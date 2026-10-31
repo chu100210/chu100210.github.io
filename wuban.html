@@ -265,47 +265,59 @@
       aspect-ratio: 16 / 9;
       min-height: 260px;
       overflow: hidden;
-      /* 兜底图:JS 未执行时也能看到照片 */
-      background: #0a0c10 url('wbbg/4339c8a6239d3033eba35eebd834b187.jpg') center / cover no-repeat;
-      perspective: 1600px;
+      background:
+        radial-gradient(120% 120% at 30% 10%, rgba(77, 166, 255, 0.10), transparent 60%),
+        #0a0c10;
+      perspective: 1200px;
       transform: scale(1.02);
       transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* 翻页层:以左边缘为轴翻过去,背面朝外时自动隐藏 */
-    .photo-card-layer {
+    /* ---------- 堆叠的照片卡片 ----------
+       三张卡叠在一起,前方的卡被"抽走"后回到堆底 */
+    .card-page {
       position: absolute;
-      inset: 0;
-      z-index: 1;
+      inset: 0 32px 32px 0;          /* 右下留出厚度,让后面的卡露出来 */
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background-color: #12151b;
       background-size: cover;
       background-position: center;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform-origin: left center;
-      transform: rotateY(0deg);
-      transition: transform 1.05s cubic-bezier(0.55, 0.06, 0.2, 1);
-      will-change: transform;
-      filter: saturate(0.92) brightness(0.82);
+      box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.95);
+      transform-origin: center center;
+      transition: transform 0.85s cubic-bezier(0.22, 0.9, 0.24, 1),
+                  opacity 0.55s ease,
+                  box-shadow 0.6s ease;
+      will-change: transform, opacity;
+      filter: saturate(0.95) brightness(0.9);
     }
 
-    .photo-card-layer.is-top { z-index: 2; }
+    .card-page.pos-0 {
+      z-index: 3;
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      box-shadow: 0 30px 60px -26px rgba(0, 0, 0, 1);
+    }
 
-    .photo-card-layer.is-flipping { transform: rotateY(-180deg); }
+    .card-page.pos-1 {
+      z-index: 2;
+      transform: translate3d(15px, 15px, 0) rotate(1.5deg) scale(0.968);
+    }
 
-    /* 翻页时的侧光阴影,增强纸张立体感 */
-    .photo-card-layer::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 62%);
+    .card-page.pos-2 {
+      z-index: 1;
+      transform: translate3d(30px, 30px, 0) rotate(3deg) scale(0.936);
+      filter: saturate(0.85) brightness(0.66);
+    }
+
+    /* 被抽出的那张:向右上方滑出画面 */
+    .card-page.is-leaving {
+      z-index: 4;
+      transform: translate3d(44%, -16%, 0) rotate(9deg) scale(1.03);
       opacity: 0;
-      transition: opacity 0.55s ease;
+      box-shadow: 0 40px 70px -20px rgba(0, 0, 0, 0.9);
     }
 
-    .photo-card-layer.is-flipping::after { opacity: 1; }
-
-    .photo-card:hover .photo-card-media { transform: scale(1.035); }
+    .photo-card:hover .photo-card-media { transform: scale(1.025); }
 
     .photo-card-shade {
       position: absolute;
@@ -452,6 +464,11 @@
       .photo-card { border-radius: 22px; }
       .photo-card-media { aspect-ratio: 4 / 3; min-height: 0; }
 
+      /* 移动端:卡片厚度与圆角收一点,避免挤压 */
+      .card-page { inset: 0 20px 20px 0; border-radius: 14px; }
+      .card-page.pos-1 { transform: translate3d(10px, 10px, 0) rotate(1.2deg) scale(0.972); }
+      .card-page.pos-2 { transform: translate3d(20px, 20px, 0) rotate(2.4deg) scale(0.945); }
+
       /* 移动端:文案与按钮上下排列,避免挤压 */
       .photo-card-body {
         flex-direction: column;
@@ -468,7 +485,7 @@
       .hero-prefix { transition: none; }
       .bg-layer { transition: none; }
       .photo-card-media { transition: none; }
-      .photo-card-layer { transition: none; }
+      .card-page { transition: none; }
       .photos-kicker,
       .photos-title,
       .photos-sub,
@@ -512,8 +529,9 @@
 
       <a class="photo-card" href="95.html#cat-geren" aria-label="进入九五时光册">
         <div class="photo-card-media">
-          <div class="photo-card-layer" id="cardLayerA"></div>
-          <div class="photo-card-layer" id="cardLayerB"></div>
+          <div class="card-page pos-0" style="background-image: url('wbbg/4339c8a6239d3033eba35eebd834b187.jpg');"></div>
+          <div class="card-page pos-1" style="background-image: url('wbbg/1e158f068b4105c97e44fd0122cd13e7.jpg');"></div>
+          <div class="card-page pos-2" style="background-image: url('wbbg/5f4c96d9c3d8e09ea2611929bde205d3.jpg');"></div>
         </div>
         <div class="photo-card-shade" aria-hidden="true"></div>
         <div class="photo-card-body">
@@ -673,63 +691,70 @@
         "url('" + PHOTO_DIR + nextPhoto() + "')";
       preloadAllPhotos();
 
-      /* ---------- 卡片封面翻页 ----------
-         两层交替:顶层绕左边缘翻走,露出底层已备好的下一张,
-         翻完后角色互换,像翻相册一样一张张过 */
-      var cardLayers = [
-        document.getElementById('cardLayerA'),
-        document.getElementById('cardLayerB')
-      ];
-      var cardTopIdx = 1;          // 当前盖在上面的是哪一层
-      var CARD_SWAP_MS = 4500;     // 每 4.5 秒翻一页
-      var CARD_FLIP_MS = 1050;     // 与 CSS 中 layer 的 transition 时长一致
+      /* ---------- 卡片封面:堆叠翻卡 ----------
+         三张卡叠在一起,每次把最前面那张抽出去,再放回堆底 */
+      var cardPages = Array.prototype.slice.call(
+        document.querySelectorAll('.photo-card-media .card-page')
+      );
+      var CARD_SWAP_MS = 4200;   // 每 4.2 秒抽一张
+      var CARD_LEAVE_MS = 850;   // 与 CSS 中 .card-page 的 transition 时长一致
 
       function cardPhotoUrl() {
         return "url('" + PHOTO_DIR + nextPhoto() + "')";
       }
 
-      function initCardPages() {
-        // A 层放下一张(会被翻出来的),B 层放当前这张(盖在上面)
-        cardLayers[0].style.backgroundImage = cardPhotoUrl();
-        cardLayers[1].style.backgroundImage = cardPhotoUrl();
-        cardLayers[0].classList.remove('is-top', 'is-flipping');
-        cardLayers[1].classList.add('is-top');
-        cardTopIdx = 1;
+      function layoutCardPages() {
+        cardPages.forEach(function (page, i) {
+          page.classList.remove('is-leaving');
+          page.className = 'card-page pos-' + i;
+        });
       }
 
-      function flipCardPage() {
-        var top = cardLayers[cardTopIdx];
-        var under = cardLayers[1 - cardTopIdx];
-        if (!top || !under) return;
+      // 首次进入:三张卡都换成随机照片(HTML 里的图只是 JS 失败时的兜底)
+      function seedCardPages() {
+        cardPages.forEach(function (page) {
+          page.style.backgroundImage = cardPhotoUrl();
+        });
+      }
 
-        top.classList.add('is-flipping');
+      function rotateCardStack() {
+        if (cardPages.length < 2) return;
 
+        var leaving = cardPages[0];
+
+        // 1. 最前面的那张向右上方抽走
+        leaving.classList.add('is-leaving');
+
+        // 2. 后面两张顺势补位
+        for (var i = 1; i < cardPages.length; i++) {
+          cardPages[i].className = 'card-page pos-' + (i - 1);
+        }
+
+        // 3. 抽走的卡放回堆底并换上下一张照片
         setTimeout(function () {
-          // 翻完:旧顶页退到下面并换上下一张,原底页升为顶层
-          // 复位时临时关掉过渡,避免"翻回去"的残影
-          top.style.transition = 'none';
-          top.classList.remove('is-flipping', 'is-top');
-          top.style.backgroundImage = cardPhotoUrl();
-          void top.offsetWidth;
-          top.style.transition = '';
+          leaving.style.transition = 'none';
+          leaving.className = 'card-page pos-' + (cardPages.length - 1);
+          leaving.style.backgroundImage = cardPhotoUrl();
+          void leaving.offsetWidth;      // 强制回流,让复位不产生过渡
+          leaving.style.transition = '';
 
-          under.classList.add('is-top');
-          cardTopIdx = 1 - cardTopIdx;
-        }, CARD_FLIP_MS);
+          cardPages.push(cardPages.shift());  // 数组顺序与画面层级保持一致
+        }, CARD_LEAVE_MS);
       }
 
       function startCardSlideshow() {
-        if (!cardLayers[0] || !cardLayers[1]) return;
-        initCardPages();
+        if (cardPages.length < 2) return;
+        seedCardPages();
+        layoutCardPages();
 
-        // 尊重「减少动效」:只留一张静图
+        // 尊重「减少动效」:保留静态的三张堆叠卡,不再自动翻
         var reduce = window.matchMedia &&
           window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) return;
 
         setInterval(function () {
           if (document.hidden) return;   // 切到后台时暂停,省电
-          flipCardPage();
+          rotateCardStack();
         }, CARD_SWAP_MS);
       }
 
