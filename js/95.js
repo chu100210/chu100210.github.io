@@ -175,7 +175,9 @@
   // 文案加载失败时静默保留 HTML 里的默认文字
   function loadCopy() {
     if (!window.fetch) return Promise.resolve();
-    return fetch(encodeURI(COPY_FILE), { cache: 'no-cache' })
+    // 加时间戳:避免 CDN 缓存(含 404 缓存)导致改了 md 页面不更新
+    var url = encodeURI(COPY_FILE) + '?t=' + Date.now();
+    return fetch(url, { cache: 'no-store' })
       .then(function (res) { return res.ok ? res.text() : ''; })
       .then(function (md) {
         if (!md) return;
