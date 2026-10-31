@@ -122,16 +122,22 @@ if ($DryRun) {
 if (-not $Message) { $Message = 'site update: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm') }
 
 Write-Host '[4/5] 正在创建提交…' -ForegroundColor Yellow
+$prevErr = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'   # git 的提示走 stderr,避免刷一屏红字
 $commitText = (Run-Git -GitArgs @('commit', '-m', $Message) 2>&1 | Out-String)
 $commitExit = $LASTEXITCODE
+$ErrorActionPreference = $prevErr
 if ($commitText.Trim()) { Write-Host $commitText.TrimEnd() }
 if ($commitExit -ne 0) { throw '提交失败,请查看上面的 git 输出。' }
 
 Write-Host '[5/5] 正在推送到 GitHub…' -ForegroundColor Yellow
+$prevErr = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
 $pushText = (& git --git-dir="$gd" --work-tree="$Root" push origin "HEAD:$Branch" 2>&1 | Out-String)
 $pushExit = $LASTEXITCODE
-if ($pushText.Trim()) { Write-Host $pushText.TrimEnd() }
+$ErrorActionPreference = $prevErr
 if ($pushExit -ne 0) {
+  if ($pushText.Trim()) { Write-Host $pushText.TrimEnd() }
   throw '推送失败:请检查网络 / 代理,或确认 GitHub 账号是否已授权。'
 }
 
