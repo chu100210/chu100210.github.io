@@ -5,8 +5,8 @@
   document.documentElement.classList.replace('no-js', 'js');
 
   var CATS = (window.PHOTO95 && window.PHOTO95.categories) || [];
-  var JSD_BASE = 'https://cdn.jsdelivr.net/gh/chu100210/chu100210.github.io@main';
-  var LOCAL_BASE = ''; // 相对站内路径回退
+  // 图片统一用站内相对路径(GitHub Pages 同域),
+  // 不再绕 jsDelivr——国内访问该 CDN 常常超时,会把加载门卡住好几秒
 
   // ---------- 页面文案(来源:根目录 95-文案.md,改 md 即可,无需动 HTML) ----------
   var COPY_FILE = '95-文案.md';       // 文案文件名(改名请同步这里)
@@ -15,44 +15,22 @@
   var COPY_NOW_DESC = '近况正在路上 —— 等 TA 自己来讲';
 
   // ---------- 加载门 ----------
-  var GATE_MAX_MS = 25000; // 网络极差时最多等 25 秒
+  var GATE_MAX_MS = 8000; // 网络极差时最多等 8 秒就放行,其余图片边滚边加载
   var entered = false;
   var rendered = false;
-  var prefetchMap = {}; // src -> 已确认可用 URL(jsDelivr 或本地)
 
   // ---------- 工具 ----------
   function enc(path) {
     return path.split('/').map(encodeURIComponent).join('/');
   }
 
-  // 构造 jsDelivr 优先、本地回退的图片
+  // 直接使用站内图片,原生懒加载负责首屏之外的部分
   function buildImg(src, alt) {
     var img = document.createElement('img');
     img.decoding = 'async';
-    img.alt = alt || '';
-    var local = enc(src);
-
-    // 预加载已确认的 URL 直接使用(命中缓存,秒显)
-    var prefetched = prefetchMap[src];
-    if (prefetched) {
-      img.src = prefetched;
-      return img;
-    }
-
-    // 预加载未覆盖(全局超时等)时:原生懒加载 + 失败/挂起 5 秒回退本地
-    function fallback() {
-      if (img.dataset.fb) return;
-      img.dataset.fb = '1';
-      img.src = local;
-    }
-    img.addEventListener('error', fallback);
     img.loading = 'lazy';
-    var timer = setTimeout(function () {
-      if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) fallback();
-    }, 5000);
-    img.addEventListener('load', function () { clearTimeout(timer); }, { once: true });
-    img.src = JSD_BASE + '/' + local;
-
+    img.alt = alt || '';
+    img.src = enc(src);
     return img;
   }
 
@@ -187,29 +165,14 @@
       .catch(function () { /* 忽略:用 HTML 默认文案 */ });
   }
 
-  // ---------- 预加载 ----------
-  // 加载单张:jsDelivr 优先(5 秒超时),失败回退本地(10 秒超时),resolve 最终 URL 或 null
+  // ---------- 预加载(仅首屏需要的少量缩略图) ----------
   function loadOnce(src) {
-    var local = enc(src);
-    var remote = JSD_BASE + '/' + local;
+    var url = enc(src);
     return new Promise(function (resolve) {
       var img = new Image();
-      var settled = false;
-      function settle(url) {
-        if (settled) return;
-        settled = true;
-        resolve(url);
-      }
-      function tryLocal() {
-        var t = setTimeout(function () { settle(null); }, 10000);
-        img.onload = function () { clearTimeout(t); settle(local); };
-        img.onerror = function () { clearTimeout(t); settle(null); };
-        img.src = local;
-      }
-      var timer = setTimeout(function () { tryLocal(); }, 5000);
-      img.onload = function () { clearTimeout(timer); settle(remote); };
-      img.onerror = function () { clearTimeout(timer); tryLocal(); };
-      img.src = remote;
+      img.onload = function () { resolve(url); };
+      img.onerror = function () { resolve(null); };
+      img.src = url;
     });
   }
 
@@ -238,11 +201,16 @@
     });
   }
 
-  // 收集所有需要预加载的缩略图路径
+  // 收集首屏要预加载的缩略图:每个分类取前 3 张,最多 12 张
+  // (其余交给原生 loading="lazy",进视口才请求)
   function collectPreload() {
+    var MAX = 12;
+    var PER_CAT = 3;
     var list = [];
     CATS.forEach(function (cat) {
-      (cat.files || []).forEach(function (f) {
+      if (list.length >= MAX) return;
+      (cat.files || []).slice(0, PER_CAT).forEach(function (f) {
+        if (list.length >= MAX) return;
         list.push('95/web/thumb/' + cat.name + '/' + f);
       });
     });
@@ -265,21 +233,8 @@
     // 清理上一张的未完成定时器,避免误切新图
     if (lbTimer) clearTimeout(lbTimer);
 
-    lbTimer = setTimeout(function () {
-      if (!img.dataset.fb && !(img.complete && img.naturalWidth > 0)) {
-        img.dataset.fb = '1';
-        img.src = enc(item.src);
-      }
-    }, 5000);
-
-    img.onload = function () { clearTimeout(lbTimer); };
-    img.onerror = function () {
-      if (img.dataset.fb) return;
-      img.dataset.fb = '1';
-      img.src = enc(item.src);
-    };
     img.dataset.fb = '';
-    img.src = JSD_BASE + '/' + enc(item.src);
+    img.src = enc(item.src);
 
     img.alt = item.alt;
     count.textContent = (i + 1) + ' / ' + gallery.length;
@@ -582,8 +537,7 @@
       return;
     }
 
-    preloadAll(list, setProgress).then(function (results) {
-      prefetchMap = results;
+    preloadAll(list, setProgress).then(function () {
       renderAll();
       enterPage();
     });

@@ -523,9 +523,9 @@
 
       <a class="photo-card" href="95.html#cat-geren" aria-label="进入九五时光册">
         <div class="photo-card-media">
-          <div class="card-page pos-0" style="background-image: url('wbbg/4339c8a6239d3033eba35eebd834b187.jpg');"></div>
-          <div class="card-page pos-1" style="background-image: url('wbbg/1e158f068b4105c97e44fd0122cd13e7.jpg');"></div>
-          <div class="card-page pos-2" style="background-image: url('wbbg/5f4c96d9c3d8e09ea2611929bde205d3.jpg');"></div>
+          <div class="card-page pos-0" style="background-image: url('wbbg/opt/4339c8a6239d3033eba35eebd834b187.webp');"></div>
+          <div class="card-page pos-1" style="background-image: url('wbbg/opt/1e158f068b4105c97e44fd0122cd13e7.webp');"></div>
+          <div class="card-page pos-2" style="background-image: url('wbbg/opt/5f4c96d9c3d8e09ea2611929bde205d3.webp');"></div>
 
           <div class="photo-card-shade" aria-hidden="true"></div>
           <div class="photo-card-body">
@@ -578,17 +578,18 @@
       var SWAP_MS = 700;
 
       // 背景照片目录与文件名列表(★ 增删照片:改 wbbg 文件夹后同步改这里)
-      var PHOTO_DIR = 'wbbg/';
+      // 用 wbbg/opt/ 里的压缩版(约 150KB/张,原图 350KB+),运行 scripts/optimize-images.js 生成
+      var PHOTO_DIR = 'wbbg/opt/';
       var PHOTOS = [
-        '1e158f068b4105c97e44fd0122cd13e7.jpg',
-        '4339c8a6239d3033eba35eebd834b187.jpg',
-        '594861f44a8b6753891aaef1eda49b6d.jpg',
-        '5f4c96d9c3d8e09ea2611929bde205d3.jpg',
-        '8035b6cf16b5905f59c72022efeb32e6.jpg',
-        '85222a5e5335d645428a4d8f8765b372.jpg',
-        'bb0306dfd5515db44f45cda1fbd0e9c9.jpg',
-        'e9144304656af46ed8b7ff7eeb43d8dd.jpg',
-        'fb11b3eeac6772bf1a92fc6c2e2526ed.jpg'
+        '1e158f068b4105c97e44fd0122cd13e7.webp',
+        '4339c8a6239d3033eba35eebd834b187.webp',
+        '594861f44a8b6753891aaef1eda49b6d.webp',
+        '5f4c96d9c3d8e09ea2611929bde205d3.webp',
+        '8035b6cf16b5905f59c72022efeb32e6.webp',
+        '85222a5e5335d645428a4d8f8765b372.webp',
+        'bb0306dfd5515db44f45cda1fbd0e9c9.webp',
+        'e9144304656af46ed8b7ff7eeb43d8dd.webp',
+        'fb11b3eeac6772bf1a92fc6c2e2526ed.webp'
       ];
 
       // 背景交叉淡入时长(毫秒):比文字过渡稍慢,更沉稳
@@ -673,18 +674,26 @@
         bgCurLayer = nextLayerIdx;
       }
 
-      // 启动时全部预加载(小图,一次加载后切换零延迟)
-      function preloadAllPhotos() {
-        PHOTOS.forEach(function (f) {
+      // 不一次性预加载全部照片:首屏只加载当前这张,
+      // 其余在空闲时逐张后台预取,避免首屏被 1MB+ 的图片拖慢
+      function preloadRestPhotos() {
+        var i = 0;
+        function next() {
+          if (i >= PHOTOS.length) return;
           var img = new Image();
-          img.src = PHOTO_DIR + f;
-        });
+          img.decoding = 'async';
+          img.src = PHOTO_DIR + PHOTOS[i++];
+          var idle = window.requestIdleCallback;
+          if (idle) idle(next, { timeout: 3000 });
+          else setTimeout(next, 1500);
+        }
+        setTimeout(next, 1500);   // 等首屏渲染完再开始
       }
 
       // 首屏第一张
       bgLayers[0].style.backgroundImage =
         "url('" + PHOTO_DIR + nextPhoto() + "')";
-      preloadAllPhotos();
+      preloadRestPhotos();
 
       /* ---------- 卡片封面:堆叠翻卡 ----------
          三张卡叠在一起,每次把最前面那张抽出去,再放回堆底 */
