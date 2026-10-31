@@ -122,13 +122,15 @@ if ($DryRun) {
 if (-not $Message) { $Message = 'site update: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm') }
 
 Write-Host '[4/5] 正在创建提交…' -ForegroundColor Yellow
-Run-Git -GitArgs @('commit', '-m', $Message) | Out-Host
-if ($LASTEXITCODE -ne 0) { throw '提交失败,请查看上面的 git 输出。' }
+$commitText = (Run-Git -GitArgs @('commit', '-m', $Message) 2>&1 | Out-String)
+$commitExit = $LASTEXITCODE
+if ($commitText.Trim()) { Write-Host $commitText.TrimEnd() }
+if ($commitExit -ne 0) { throw '提交失败,请查看上面的 git 输出。' }
 
 Write-Host '[5/5] 正在推送到 GitHub…' -ForegroundColor Yellow
-$pushOut = & git --git-dir="$gd" --work-tree="$Root" push origin "HEAD:$Branch" 2>&1
+$pushText = (& git --git-dir="$gd" --work-tree="$Root" push origin "HEAD:$Branch" 2>&1 | Out-String)
 $pushExit = $LASTEXITCODE
-$pushOut | Out-Host
+if ($pushText.Trim()) { Write-Host $pushText.TrimEnd() }
 if ($pushExit -ne 0) {
   throw '推送失败:请检查网络 / 代理,或确认 GitHub 账号是否已授权。'
 }
